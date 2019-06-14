@@ -13,6 +13,13 @@ ENV LD_PRELOAD /usr/local/lib/libjemalloc.so.2
 ```
 
 ```
+java ...
 cd /
 jeprof --show_bytes --gif $(which java) jeprof*.heap > app-profiling.gif
+```
+
+```
+docker exec -it ... bash
+kill <pid>
+docker cp ...:/app-profiling.gif ./
 ```
