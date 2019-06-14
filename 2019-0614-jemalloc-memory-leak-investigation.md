@@ -11,3 +11,8 @@ RUN apt-get update && \
 ENV MALLOC_CONF prof_leak:true,lg_prof_sample:0,prof_final:true
 ENV LD_PRELOAD /usr/local/lib/libjemalloc.so.2
 ```
+
+```
+cd /
+jeprof --show_bytes --gif $(which java) jeprof*.heap > app-profiling.gif
+```
