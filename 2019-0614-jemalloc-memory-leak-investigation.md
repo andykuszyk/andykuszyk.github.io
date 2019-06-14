@@ -1,7 +1,7 @@
 # Investigating native memory leaks using `jemalloc`
 I was recently investigating a memory leak of a Java application, which didn't seem to exhibit an increase in heap utilisation, despite having a constantly growing memory footprint.
 
-Reading [this]() and [this]() article led me to suspect that my problem might have been due to unmanaged memory allocation taking place through native Java calls. Perhaps this was a case of some resources that utilise native memory not correctly freeing up the memory they had used.
+Reading [this](https://www.evanjones.ca/java-native-leak-bug.html) and [this](https://technology.blog.gov.uk/2015/12/11/using-jemalloc-to-get-to-the-bottom-of-a-memory-leak/) article led me to suspect that my problem might have been due to unmanaged memory allocation taking place through native Java calls. Perhaps this was a case of some resources that utilise native memory not correctly freeing up the memory they had used.
 
 It transpires that this was not the case, but the process of discovering this was rather torturous, so I thought I'd post up the steps I followed to get `jemalloc` running and profiling my application.
 
