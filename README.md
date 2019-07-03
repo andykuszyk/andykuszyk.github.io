@@ -1,6 +1,9 @@
 # Andy Kuszyk's tech blog
 I am a Software Engineer based on the South coast of the UK. I work with .NET, Python, Node, Bash and Go. I have a keen interest in Data Science and enjoy thinking about ways to help teams work better.
 
+## [3rd July 2018 - Running the ELK stack locally](2019-07-03-local-elk.md)
+I recently needed to run the ELK stack locally in order to analyse some application specific logs. This post describes how I went about doing it.
+
 ## [14th June 2019 - Investigating memory leaks with `jemalloc`](2019-06-14-jemalloc-memory-leak-investigation.md)
 Investigating a memory leak using `jemalloc` proved to be difficult, so I've documented the steps I followed to use `jemalloc` with my application.
 
