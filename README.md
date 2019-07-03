@@ -1,7 +1,7 @@
 # Andy Kuszyk's tech blog
 I am a Software Engineer based on the South coast of the UK. I work with .NET, Python, Node, Bash and Go. I have a keen interest in Data Science and enjoy thinking about ways to help teams work better.
 
-## [14th June 2019 - Investigating memory leaks with `jemalloc`](2019-0614-jemalloc-memory-leak-investigation.md)
+## [14th June 2019 - Investigating memory leaks with `jemalloc`](2019-06-14-jemalloc-memory-leak-investigation.md)
 Investigating a memory leak using `jemalloc` proved to be difficult, so I've documented the steps I followed to use `jemalloc` with my application.
 
 ## [10th July 2018 - Heist Planning](2018-07-10-heist-planning.md)
