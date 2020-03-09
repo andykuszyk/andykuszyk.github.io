@@ -30,3 +30,41 @@ Running i3 or Compton requires a number of different config files and scripts to
 This, combined with the common use-case of backing up other dotfiles (e.g. `.bash_profile`, `.bash_aliases` and `.bashrc`) means having a good way to manage these files important.
 
 A common pattern that people use is to have a "dotfiles repo" - a git repository in which they store these files. That way, they can use source control techniques to manage changes to the files and easily synchronise files across machines.
+
+## Step 2: Why bother anyway?
+Ok, so now we've got a point of reference for the various buzz-words, is it worth the effort?
+
+### i3
+First of all, you don't need any of the other tools listed above (or an of those that aren't listed, like `i3-gaps`). All you need to do is install `i3`, reboot and login to the new desktop environment. i3 has has three main window tiling modes (as well as a huge amount of customisation potential, which I won't go into here). These three modes are as follows.
+
+#### Splits
+In split mode, windows are split across the available screen space vertically or horizontally. This is a format you might be familiar with if you're used to arranging windows in a grid (whether manually or with some other tool). If you're familiar with `tmux`, this mode is a lot like `tmux` but for your desktop.
+
+> In split mode, everytime you open a new window the screen is subdivided into a new row or column for the new window.
+
+#### Tabs
+Tabs, as the name suggests, arranges all of your windows fullscreen, but with a tab bar with tabs arranged horizontally. In this mode, you can switch left and right between the tabs in much the same way as you would with the `Alt-tab` shortcut on most desktops. 
+
+> In tabbed mode, everytime you open a new window, it is opened in a new tab in the tab bar.
+
+#### Stacks
+Stacks are almost identical to tabs, except the tab bar is arranged vertically, so you can swap between windows by moving up and down.
+
+> In stacked mode, everytime you open a new window, a new tab is added to the bottom of the stack.
+
+The real power of i3 comes into play, because you can combine each of these modes in a single workspace (which is like a virtual desktop). In other words, you can have the screen split into three vertical splits - one can have horizontal splits in, one can have stacked windows in and the other can have tabbed windows in. The image below (taken from the wonderful [i3 user guide](https://i3wm.org/docs/userguide.html)) illustrates this perfectly:
+
+![](images/i3-modes.png)
+
+This flexibility means that you can arrange windows just the way you want them and move between them effortlessly, without ever taking your fingers off the keyboard.
+
+### Compton (or any other compositor)
+Compton is very much a nice-to-have when it comes to tiling window managers. Based on the people I've worked with who use i3, some people use Compton and others just don't see the need. It can do all sorts of cool things to make your windows transparent when you're using them, or when they're unfocussed, as well as adding animations and effects here there and everywhere. The config looks complicated!
+
+Personally, I just use a very minimal Compton setup to make my terminals slightly transparent.
+
+### Dotfiles repos
+Based on the number of config files you'll need to manage, not to mention the number of tweaks and changes you'll want to experiment with, I can highly recommend organising your dotfiles in a source control repo of some kind.
+
+## Step 3: My setup - a simple example
+
