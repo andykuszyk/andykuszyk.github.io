@@ -6,7 +6,7 @@ However, just as I have been curious to try a new desktop environment, I've also
 This steep learning curve has always seen be reverting to using Gnome after a dabble here or a dabble there, but I recently invested the time to overcome these challenges and am finally an i3 convert! In this post, I hope to explain things as I see them (in very simple terms!) to try go give other people in my situation a fast-track to getting up and running sooner.
 
 ## Step 1: Glossary
-You might be asking, what is i3? What is a tiling window manager? Do I need a compositor? What is compton? How do I use a dotfiles repo?
+You might be asking, what is i3? What is a tiling window manager? Do I need a compositor? What is Compton? How do I use a dotfiles repo?
 
 Well, let's start there.
 
@@ -40,17 +40,17 @@ First of all, you don't need any of the other tools listed above (or an of those
 #### Splits
 In split mode, windows are split across the available screen space vertically or horizontally. This is a format you might be familiar with if you're used to arranging windows in a grid (whether manually or with some other tool). If you're familiar with `tmux`, this mode is a lot like `tmux` but for your desktop.
 
-> In split mode, everytime you open a new window the screen is subdivided into a new row or column for the new window.
+> In split mode, every time you open a new window the screen is subdivided into a new row or column for the new window.
 
 #### Tabs
-Tabs, as the name suggests, arranges all of your windows fullscreen, but with a tab bar with tabs arranged horizontally. In this mode, you can switch left and right between the tabs in much the same way as you would with the `Alt-tab` shortcut on most desktops. 
+Tabs, as the name suggests, arranges all of your windows full-screen, but with a tab bar with tabs arranged horizontally. In this mode, you can switch left and right between the tabs in much the same way as you would with the `Alt-tab` shortcut on most desktops. 
 
-> In tabbed mode, everytime you open a new window, it is opened in a new tab in the tab bar.
+> In tabbed mode, every time you open a new window, it is opened in a new tab in the tab bar.
 
 #### Stacks
 Stacks are almost identical to tabs, except the tab bar is arranged vertically, so you can swap between windows by moving up and down.
 
-> In stacked mode, everytime you open a new window, a new tab is added to the bottom of the stack.
+> In stacked mode, every time you open a new window, a new tab is added to the bottom of the stack.
 
 The real power of i3 comes into play, because you can combine each of these modes in a single workspace (which is like a virtual desktop). In other words, you can have the screen split into three vertical splits - one can have horizontal splits in, one can have stacked windows in and the other can have tabbed windows in. The image below (taken from the wonderful [i3 user guide](https://i3wm.org/docs/userguide.html)) illustrates this perfectly:
 
@@ -59,7 +59,7 @@ The real power of i3 comes into play, because you can combine each of these mode
 This flexibility means that you can arrange windows just the way you want them and move between them effortlessly, without ever taking your fingers off the keyboard.
 
 ### Compton (or any other compositor)
-Compton is very much a nice-to-have when it comes to tiling window managers. Based on the people I've worked with who use i3, some people use Compton and others just don't see the need. It can do all sorts of cool things to make your windows transparent when you're using them, or when they're unfocussed, as well as adding animations and effects here there and everywhere. The config looks complicated!
+Compton is very much a nice-to-have when it comes to tiling window managers. Based on the people I've worked with who use i3, some people use Compton and others just don't see the need. It can do all sorts of cool things to make your windows transparent when you're using them, or when they're unfocused, as well as adding animations and effects here there and everywhere. The config looks complicated!
 
 Personally, I just use a very minimal Compton setup to make my terminals slightly transparent.
 
@@ -72,7 +72,7 @@ My first foray into the world of i3 and Compton has been a simple one, but never
 In the sections below, I've picked out some of the highlights that I find particularly useful or that took my a while to figure out.
 
 ### `.config/i3/config`
-This file is bascially the default i3 config file, with the comments removed and a few modifications here and there. The most notable is the override for the default fullscreen behaviour, which is a workaround for the fact that this triggers Chrome to open the focussed tab in fullscreen mode:
+This file is basically the default i3 config file, with the comments removed and a few modifications here and there. The most notable is the override for the default full-screen behaviour, which is a workaround for the fact that this triggers Chrome to open the focused tab in full-screen mode:
 
 ```
 bindsym $mod+f split v; focus parent; fullscreen toggle; focus child
