@@ -67,4 +67,31 @@ Personally, I just use a very minimal Compton setup to make my terminals slightl
 Based on the number of config files you'll need to manage, not to mention the number of tweaks and changes you'll want to experiment with, I can highly recommend organising your dotfiles in a source control repo of some kind.
 
 ## Step 3: My setup - a simple example
+My first foray into the world of i3 and Compton has been a simple one, but nevertheless I hope my dotfiles might prove to be useful inspiration to other people in a similar position to myself at the beginning of my tiling journey. A lot of dotfile repos I see have so much in them that I don't know where to look first! You can find my repo at [https://github.com/andykuszyk/dotfiles](https://github.com/andykuszyk/dotfiles).
 
+In the sections below, I've picked out some of the highlights that I find particularly useful or that took my a while to figure out.
+
+### `.config/i3/config`
+This file is bascially the default i3 config file, with the comments removed and a few modifications here and there. The most notable is the override for the default fullscreen behaviour, which is a workaround for the fact that this triggers Chrome to open the focussed tab in fullscreen mode:
+
+```
+bindsym $mod+f split v; focus parent; fullscreen toggle; focus child
+```
+
+### `.config/i3/startup.sh`
+This script is run by i3 on startup and has a few useful commands in, most notably:
+
+* `xrandr...` - this is used to set the screen resolution and relative positions of my external displays. This can be a nightmare to do manually, so I used `arandr` to generate this line from a GUI.
+* `gnome-keyring-daemon --start --components=pkcs11,secrets,ssh,gpg` - coming from Gnome, I noticed that none of my passwords had been preserved in Chrome, etc. This command ensured that the Gnome keyring which manages all of this in Gnome still ran under i3.
+* `feh` - useful for setting desktop images.
+* `compton` - this is where I start Compton from.
+
+### `.config/compton.conf`
+This file contains the configuration used by Compton to render transparency, etc. I copied the default file and basically just hacked it and re-ran Compton each time until I arrived at something I liked - this file is the result.
+
+## Closing thoughts - was it worth it?
+Yes.
+
+I was happy with Gnome for years, but i3 has made me feel finally comfortable in my desktop environment. Arranging my workspace feels more natural than it did in a traditional floating window manager and feels more like shuffling papers on my desk than navigating Windows 95.
+
+I am a convert.
