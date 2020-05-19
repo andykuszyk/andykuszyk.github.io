@@ -1,5 +1,5 @@
 # A LaTeX Deployment Pipeline
-Outside of my day job, I dabble in writing short science-fiction stories. I recently decided to start publishing these stories on a small site in order to share them with my friends and family and solicite feedback.
+Outside of my day job, I dabble in writing short science-fiction stories. I recently decided to start publishing these stories on a small site in order to share them with my friends and family and solicit feedback.
 
 During this process, I needed to come up with a good way of transforming my raw LaTeX files into a working site that could be updated automatically. This article takes you through the process of:
 
@@ -14,7 +14,7 @@ This repo consists of a simple LaTeX book layout, with a main file (`template.te
 
 Included in the repo is a Makefile, with plenty of handy targets for building PDF, HTML and EPUB files. Most notable, however, is the default target. Simply running `make` will build a PDF of the document using the Docker image defined in https://github.com/andykuszyk/latex.
 
-Building the PDF in Docker container means that I don't need a local installation of LaTeX on the machine where I'm working, just Docker, and it also means I get reproducable output files whether I'm building the PDF locally or on a CI platform.
+Building the PDF in Docker container means that I don't need a local installation of LaTeX on the machine where I'm working, just Docker, and it also means I get reproducible output files whether I'm building the PDF locally or on a CI platform.
 
 ## The CI pipeline for my LaTeX projects
 Whenever I push to any of my writing projects, the CI will build a PDF, stamp it with part of the commit hash and artifact the PDF. This makes it easy to quickly take a look at previous builds in PDF format and access PDFs on the go.
