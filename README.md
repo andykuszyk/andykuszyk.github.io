@@ -1,6 +1,9 @@
 # Andy Kuszyk's tech blog
 I am a Software Engineer based on the South coast of the UK. I work with .NET, Python, Node, Bash and Go. I have a keen interest in Data Science and enjoy thinking about ways to help teams work better.
 
+## [19th May 2020 - A LaTeX Deployment Pipeline](2020-05-19-latex-deployment-pipeline.tex)
+A run-down of how I organise, build and deploy my personal fiction projects, written in LaTeX.
+
 ## [18th February 2020 - De-mystifiying i3](2020-02-18-demystifying-i3.md)
 I've been using Linux for a couple of years but have always struggled to understand i3, Compton and how some Linux users make me feel like I'm still using Windows! Having finally made the switch from Gnome to i3, this post explains each of the technologies in turn as I understand them - in simple terms!
 
