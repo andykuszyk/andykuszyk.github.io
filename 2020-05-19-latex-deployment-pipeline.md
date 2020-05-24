@@ -115,7 +115,32 @@ pdf:
 
 Some of my projects also publish directly to my static fiction site, https://akuszyk.com, and this involves a couple of additional steps. Once the PDF is built, I use the targets in the Makefile to also build a HTML and EPUB files (which is simple enough, using `pandoc`). I then clone my static site (https://github.com/andykuszyk/akuszyk.com), copy the files in and run a site generation make target which transforms these raw files into the static site which is served.
 
-Once this process is complete, I commit and push the changes and let the CI for the static site take care of publishing the new version.
+Once this process is complete, I commit and push the changes and let the CI for the static site take care of publishing the new version. This full process for one of my projects looks like this:
+
+```yml
+image: andykuszyk/latex
+pdf:
+    script:
+        - make pdf
+        - make stamp
+    artifacts:
+        paths:
+            - '*.pdf'
+publish:
+    script:
+        - make html
+        - make epub
+        - make pdf
+        - git clone https://$CREDENTIALS@github.com/andykuszyk/akuszyk.com
+        - cp *.html akuszyk.com
+        - cp *.pdf akuszyk.com
+        - cp *.epub akuszyk.com
+        - cd akuszyk.com
+        - make generate-the-kingdom-of-tharg
+        - git add the-kingdom-of-tharg/
+        - git commit -m "Auto-update from GitLab"
+        - git push
+```
 
 ## Regenerating my static site from raw LaTeX files
 As mentioned above, whenever I push to a LaTeX project that is configured to be published, I generate an HTML file and then re-generate my static site. This process involves using some template files along with a bit of Python to take the HTML file converted by `pandoc` (from the original LaTeX sources) and transform it into a static site that is a bit more user friendly (with a touch of Bootstrap and Javascript). You can check out the site generator I've written at https://github.com/andykuszyk/akuszyk.com.
