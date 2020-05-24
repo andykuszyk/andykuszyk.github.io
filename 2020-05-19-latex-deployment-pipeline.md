@@ -74,7 +74,15 @@ reading-time-mins:
     echo $$(($$(cat $$(find . | grep -v .git | grep -e 'tex$$') | wc | awk '{print $$2}') / 200))
 ```
 
-As you can see, the default target builds the PDF in Docker container which means that I don't need a local installation of LaTeX on the machine where I'm working, just Docker, and it also means I get reproducible output files whether I'm building the PDF locally or on a CI platform. The [Dockerfile](https://github.com/andykuszyk/latex) is pretty straightforward:
+As you can see, the default target builds the PDF in Docker container which means that I don't need a local installation of LaTeX on the machine where I'm working, just Docker, and it also means I get reproducible output files whether I'm building the PDF locally or on a CI platform. Here's the Dockerfile that's used:
+
+```dockerfile
+FROM andykuszyk/latex
+WORKDIR build
+CMD pdflatex *.tex && pdflatex *.tex
+```
+
+The [`andykuszyk/latex` base image](https://github.com/andykuszyk/latex) is pretty straightforward:
 
 ```dockerfile
 FROM alpine 
