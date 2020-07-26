@@ -47,4 +47,69 @@ Each histogram value--scraped at a scrape interval--summarises the distribution 
 Each time the histogram is scraped by Prometheus, the values are not reset. This means that the counts in each bucket are cumulative over the lifetime of the metric (at least in the memory of each process) and that it's really the *change* in each bucket's values the tells us the distribution of observations since the last scrape.
 
 ## An example
-Let's put all of these ideas into practice. The examples below can all be found [here](https://github.com/andykuszyk/prometheus-histogram-examples) along with a Docker Compose file for running a sample application, Prometheus and Grafana.
+Let's put all of these ideas into practice. The examples below can all be found [here](https://github.com/andykuszyk/prometheus-histogram-example) along with a Docker Compose file for running a sample application, Prometheus and Grafana.
+
+### Example application
+Let's start with an example application, written in Go. To begin with, let's configure the application to listen for HTTP requests on port 8080 and handle Prometheus scrapes on the `/metrics` route:
+
+```go
+package main
+
+import (
+    "log"
+    "net/http"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
+)
+
+func main () {
+    http.Handle("/metrics", promhttp.Handler())
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
+```
+
+Now, let's create a histogram metric with some predefined buckets:
+
+```go
+package main
+
+import (
+    "log"
+    "net/http"
+    "github.com/prometheus/client_golang/prometheus"
+    "github.com/prometheus/client_golang/prometheus/promhttp"
+    "github.com/prometheus/client_golang/prometheus/promauto"
+)
+
+func main () {
+    histogram := promauto.NewHistogram(prometheus.HistogramOpts{
+        Name:    "histogram_metric",
+        Buckets: []float64{1.0, 2.0, 3.0, 4.0, 5.0},
+    })
+    http.Handle("/metrics", promhttp.Handler())
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
+```
+
+Finally, let's run a function in the background to record values (or observations) in the histogram:
+
+```go
+func main () {
+    histogram := promauto.NewHistogram(prometheus.HistogramOpts{
+        Name:    "histogram_metric",
+        Buckets: []float64{1.0, 2.0, 3.0, 4.0, 5.0},
+    })
+    go func() {
+        for {
+            histogram.Observe(rand.Float32() * 5.0)
+            time.Sleep(1 * time.Second)
+        }
+    }()
+    http.Handle("/metrics", promhttp.Handler())
+    log.Fatal(http.ListenAndServe(":8080", nil))
+}
+```
+
+See [here](https://github.com/andykuszyk/prometheus-histogram-example/blob/master/application/main.go) for the full file, but note that all we're doing in this application is observing a random number between 0 and 5 once every second. The random number is a float, so each value will likely be different. We're expecting the histogram to count the observations that fall into each of the buckets, which are seperated by a value of 1.
+
+> Bucket thresholds are floats too, but in this example I've chosen integers to try to make things simpler.
+
