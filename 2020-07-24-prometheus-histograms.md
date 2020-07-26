@@ -100,7 +100,7 @@ func main () {
     })
     go func() {
         for {
-            histogram.Observe(rand.Float32() * 5.0)
+            histogram.Observe(rand.Float64() * 5.0)
             time.Sleep(1 * time.Second)
         }
     }()
@@ -113,3 +113,9 @@ See [here](https://github.com/andykuszyk/prometheus-histogram-example/blob/maste
 
 > Bucket thresholds are floats too, but in this example I've chosen integers to try to make things simpler.
 
+### Example metric
+Now that we've got an example application that will do some work, record some metric values and expose them to Prometheus, let's try running it and seeing the metric in Prometheus. Running `docker-compose up` against [this `docker-compose.yml` file](https://github.com/andykuszyk/prometheus-histogram-example/blob/master/docker-compose.yml) should get you setup with the application and Prometheus running locally.
+
+Open up Prometheus ([http://localhost:9090](http://localhost:9090)) and try searching for our metric with `histogram_metric_bucket`. You should see something like this:
+
+![](./images/prometheus-histogram-metric-1.png)
