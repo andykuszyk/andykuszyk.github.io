@@ -36,7 +36,7 @@ Prometheus histograms are cumulative. In Prometheus, our example above would hav
 
 You can see that now, each bucket is bigger than the one before and contains a sum of all values up until the bucket's threshold.
 
-### 2. Prometheus histograms are timeseries
+### 2. Prometheus histograms are time series'
 Prometheus scrapes metrics from a process at intervals. Each time it scrapes a histogram metric, it will receive a histogram similar to the one above - a cumulative histogram with "less than or equal to" buckets.
 
 What's important to understand is that when you're querying the histogram, you're suddenly dealing with a timeseries of histograms. The histogram metric itself contains a range of values--one for each point in time that a scrape occured--and each value represents a histogram like the one above.
@@ -119,3 +119,26 @@ Now that we've got an example application that will do some work, record some me
 Open up Prometheus ([http://localhost:9090](http://localhost:9090)) and try searching for our metric with `histogram_metric_bucket`. You should see something like this:
 
 ![](./images/prometheus-histogram-metric-1.png)
+
+> You may notice when you're typing `histogram_metric` that two other metrics are listed as well: `histogram_metric_count` and `histogram_metric_sum`. This is because, in addition to the data that represents a histogram as we discussed above, histogram metrics in Prometheus also expose a cumulative count of all observations and a cumulative sum of all observations. This is particularly useful if, for example, you want to know the average duration of some thing as well as how many times per second it happened - the `_count` series can be used with the `rate()` function to give you the per-second rate of change.
+
+Ok, so what are we looking at when we query the metric? There are a few key points to note:
+
+* We are looking at an [*instant vector*](https://prometheus.io/docs/prometheus/latest/querying/basics/#instant-vector-selectors), which means we're seeing the latest set of values scraped by Prometheus (as opposed to a range of values over time). In other words, we're looking at a cumulative histogram just like the example we discussed above.
+* Each time Prometheus scrapes a histogram, it collects an instant vector like this one.
+* After the metric name in `{}` are a set of *labels* which add dimensions to the histogram's data (you can filter the values based on label criteria).
+* The most important of these is the *`le`* label which is the "less than or equal to" bucket threshold.
+* The value for `le=1` is the cumulative count of all observations <=1. The same is true for the other `le` values, which is why the counts always increase as the value of `le` increases - all the buckets are cumulative.
+
+So, now we have a cumulative count of all observations in each of our buckets. Whilst that (hopefully) makes sense so far, it's not particularly useful for helping us understand the underlying distribution of the observations made in our instrumented program. We need a good way to query histograms.
+
+### Example query
+#### The frequency of observations
+First of all, before we dive into understanding the distribution of values in our histogram, let's just back-track to the fact that the histogram also exposes a `_count` which we can use to understand the frequency of observations per second. This might be particularly useful in the example of recording HTTP request durations - the histogram `_bucket` series will tell you how long the requests tool, but the `_count` series can also be used to tell you how many requests were made per second. Understanding the rate of observations is easy with the following Prometheus query:
+
+```
+rate(histogram_metric_count[1m])
+```
+
+Let's break this down into its component parts:
+* 
