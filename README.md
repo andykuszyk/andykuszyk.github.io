@@ -1,6 +1,9 @@
 # Andy Kuszyk's tech blog
 I am a Software Engineer based on the South coast of the UK. I work with .NET, Python, Node, Bash and Go. I have a keen interest in Data Science and enjoy thinking about ways to help teams work better.
 
+## [15th August 2020 - Understanding Prometheus Histograms](2020-07-24-prometheus-histograms.md)
+Prometheus histograms have always left me feeling a little confused. I recently used them to instrument a distributed system and this post covers a few of the things I learnt in the process.
+
 ## [19th May 2020 - A LaTeX Deployment Pipeline](2020-05-19-latex-deployment-pipeline.md)
 A run-down of how I organise, build and deploy my personal fiction projects, written in LaTeX.
 
