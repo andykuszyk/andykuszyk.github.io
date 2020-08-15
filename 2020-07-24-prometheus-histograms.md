@@ -16,13 +16,13 @@ Take a look at this histogram:
 
 <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTZRwsKfQVttZ1VCzT9lClNqbuij0v9iuiZUXsVUBsP16n4juzgk2i3UyKvXEBu32Gb-RDZdWPEwe_b/pubchart?oid=1197197263&amp;format=image"></iframe> 
 
-It shows the distribution of a dataset. Some values are low (<=10), some are medium (>10 and <=100) and some are high (>100 and <=1000). The histogram groups the data into buckets based on these ranges and counts how many values are in each bucket. This gives us some insight into how the data is distrubuted across its range of values. When deciding how to draw a histogram, you normally choose bucket ranges that are sensible for the data and meaningful to the analysis.
+It shows the distribution of a dataset. Some values are low (<=10), some are medium (>10 and <=100) and some are high (>100 and <=1000). The histogram groups the data into buckets based on these ranges and counts how many values are in each bucket. This gives us some insight into how the data is distributed across its range of values. When deciding how to draw a histogram, you normally choose bucket ranges that are sensible for the data and meaningful to the analysis.
 
 ## What about Prometheus histograms?
 Now that we know what a histogram is, let's talk about Prometheus histograms. Prometheus histograms are a little different to the above example in three ways:
 
 1. The buckets are cumulative - that is to say that each bucket contains values less than or equal to the bucket's upper threshold.
-2. A Prometheus histogram metric is also a timeseries - the example we say above can be thought of a simple example of a Prometheus histogram at an instant in time. But, Prometheus records these histograms over time so things are a little more complicated when you start writing queries.
+2. A Prometheus histogram metric is also a time series - the example we say above can be thought of a simple example of a Prometheus histogram at an instant in time. But, Prometheus records these histograms over time so things are a little more complicated when you start writing queries.
 3. The time series itself is cumulative - the buckets in the histogram are always increasing so that the most recent instance of the histogram shows the total values for each of the buckets since the metric was first recorded.
 
 Let's focus on each of these differences in turn.
@@ -39,7 +39,7 @@ You can see that now, each bucket is bigger than the one before and contains a s
 ### 2. Prometheus histograms are time series'
 Prometheus scrapes metrics from a process at intervals. Each time it scrapes a histogram metric, it will receive a histogram similar to the one above - a cumulative histogram with "less than or equal to" buckets.
 
-What's important to understand is that when you're querying the histogram, you're suddenly dealing with a timeseries of histograms. The histogram metric itself contains a range of values--one for each point in time that a scrape occured--and each value represents a histogram like the one above.
+What's important to understand is that when you're querying the histogram, you're suddenly dealing with a time series of histograms. The histogram metric itself contains a range of values--one for each point in time that a scrape occurred--and each value represents a histogram like the one above.
 
 Each histogram value--scraped at a scrape interval--summarises the distribution of values recorded by the process since the last scrape.
 
@@ -47,7 +47,7 @@ Each histogram value--scraped at a scrape interval--summarises the distribution 
 Each time the histogram is scraped by Prometheus, the values are not reset. This means that the counts in each bucket are cumulative over the lifetime of the metric (at least in the memory of each process) and that it's really the *change* in each bucket's values the tells us the distribution of observations since the last scrape.
 
 ## An example
-Let's put all of these ideas into practice. The examples below can all be found [here](https://github.com/andykuszyk/prometheus-histogram-example) along with a Docker Compose file for running a sample application, Prometheus and Grafana.
+Let's put all of these ideas into practice. The examples below can all be found [here](https://github.com/andykuszyk/prometheus-histogram-example) along with a Docker Compose file for running a sample application and Prometheus.
 
 ### Example application
 Let's start with an example application, written in Go. To begin with, let's configure the application to listen for HTTP requests on port 8080 and handle Prometheus scrapes on the `/metrics` route:
@@ -109,7 +109,7 @@ func main () {
 }
 ```
 
-See [here](https://github.com/andykuszyk/prometheus-histogram-example/blob/master/application/main.go) for the full file, but note that all we're doing in this application is observing a random number between 0 and 5 once every second. The random number is a float, so each value will likely be different. We're expecting the histogram to count the observations that fall into each of the buckets, which are seperated by a value of 1.
+See [here](https://github.com/andykuszyk/prometheus-histogram-example/blob/master/application/main.go) for the full file, but note that all we're doing in this application is observing a random number between 0 and 5 once every second. The random number is a float, so each value will likely be different. We're expecting the histogram to count the observations that fall into each of the buckets, which are separated by a value of 1.
 
 > Bucket thresholds are floats too, but in this example I've chosen integers to try to make things simpler.
 
@@ -122,7 +122,7 @@ Open up Prometheus ([http://localhost:9090](http://localhost:9090)) and try sear
 
 > You may notice when you're typing `histogram_metric` that two other metrics are listed as well: `histogram_metric_count` and `histogram_metric_sum`. This is because, in addition to the data that represents a histogram as we discussed above, histogram metrics in Prometheus also expose a cumulative count of all observations and a cumulative sum of all observations. This is particularly useful if, for example, you want to know the average duration of some thing as well as how many times per second it happened - the `_count` series can be used with the `rate()` function to give you the per-second rate of change.
 
-Ok, so what are we looking at when we query the metric? There are a few key points to note:
+OK, so what are we looking at when we query the metric? There are a few key points to note:
 
 * We are looking at an [*instant vector*](https://prometheus.io/docs/prometheus/latest/querying/basics/#instant-vector-selectors), which means we're seeing the latest set of values scraped by Prometheus (as opposed to a range of values over time). In other words, we're looking at a cumulative histogram just like the example we discussed above.
 * Each time Prometheus scrapes a histogram, it collects an instant vector like this one.
@@ -163,7 +163,7 @@ Let's see how those buckets have been changing over time by looking at the per-s
 
 > This shows us how frequently observations have been made in each of the buckets over the last minute.
 
-Finally, we can use the Prometheus function [`histogram_quantile()`](https://prometheus.io/docs/prometheus/latest/querying/functions/#histogram_quantile) to turn this information into useful insight. Becasue we have the rate of change of each of the histogram buckets, Prometheus can now work out which bucket label contains a given quantile (e.g. the 95th percentile). This means that we can now find out the approximate value at which a given quantile was represented in the data. For example, `histogram_quantile(0.95, rate(histogram_metric_bucket[1m]))`:
+Finally, we can use the Prometheus function [`histogram_quantile()`](https://prometheus.io/docs/prometheus/latest/querying/functions/#histogram_quantile) to turn this information into useful insight. Because we have the rate of change of each of the histogram buckets, Prometheus can now work out which bucket label contains a given quantile (e.g. the 95th percentile). This means that we can now find out the approximate value at which a given quantile was represented in the data. For example, `histogram_quantile(0.95, rate(histogram_metric_bucket[1m]))`:
 
 ![](images/prometheus-histogram-metric-5.png)
 
