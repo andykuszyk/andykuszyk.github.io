@@ -1,5 +1,8 @@
 # Andy Kuszyk's tech blog
-I am a Software Engineer based on the South coast of the UK. I work with .NET, Python, Node, Bash and Go. I have a keen interest in Data Science and enjoy thinking about ways to help teams work better.
+I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. I also enjoy writing [short science fiction stories](https://akuszyk.com).
+
+## [26th May 2021 - Tracking time and TODOs using Git](./2021-05-26-git-track.md)
+I've recently finished a small project that allows me to track my working time and keep track of a simple TODO list using a Git repo's history. Here's how I did it.
 
 ## [15th August 2020 - Understanding Prometheus Histograms](2020-07-24-prometheus-histograms.md)
 Prometheus histograms have always left me feeling a little confused. I recently used them to instrument a distributed system and this post covers a few of the things I learnt in the process.
