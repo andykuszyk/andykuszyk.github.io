@@ -1,5 +1,5 @@
 # Andy Kuszyk's tech blog
-I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. I also enjoy writing [short science fiction stories](https://akuszyk.com).
+I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python.
 
 ## [26th May 2021 - Tracking time and TODOs using Git](./2021-05-26-git-track.md)
 I've recently finished a small project that allows me to track my working time and keep track of a simple TODO list using a Git repo's history. Here's how I did it.
