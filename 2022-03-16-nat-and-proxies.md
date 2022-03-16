@@ -103,6 +103,7 @@ As a result, it's difficult to illustrate IP packet handling in a simple user sp
 > - IP is a low-level protocol, concerned with the IP addresses of hosts on a network (but not ports).
 > - IP packet transmission is normally handled by the operating system.
 > - The Linux kernel offers applications a networking abstraction at the transport-level (e.g. TCP, UDP), and handles IP packet transmission internally.
+
 ---
 
 ## Network Address Translation
