@@ -2,7 +2,7 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python.
 
 ---
-### [Network Address Translation and Proxies](./2022-03-16-nat-and-proxies.md)
+## [Network Address Translation and Proxies](./2022-03-16-nat-and-proxies.md)
 I've always found NAT, forward proxies, and reverse proxies to be somewhat mystical, and I've never understood the fundamentals of how each technique works. This post tries to distil each idea into a simple form, and provides Go code examples where possible.
 
 *Published: 16th March 2022.*
