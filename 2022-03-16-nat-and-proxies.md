@@ -84,6 +84,7 @@ hello world!
 > - TCP is a connection-oriented protocol, allowing a client to establish a reliable line of communication with a server.
 > - TCP is a transport-layer protocol, and requires a network-layer protocol to handle underlying network transmission.
 > - TCP is usually transmitted via the Internet Protocol (IP), and this combination is normally referred to as TCP/IP.
+
 ---
 
 ## IP and the Linux networking stack
@@ -167,6 +168,7 @@ NAT is normally performed by specialised networking devices (like routers), whos
 > - NAT involves re-writing source and destination addresses in IP packets, so that all network traffic from a network appears to have originated from a single IP address.
 > - NAT can be used to mask source or destination IP addresses.
 > - NAT is a useful way of connecting private and public networks together, whilst still preserving IP address space.
+
 ---
 
 ## Forward proxies
@@ -241,6 +243,7 @@ Whilst this is a very different approach to NAT, it does have the same effect of
 > - Forward proxies operate at the application-layer.
 > - They receive and terminate network-level traffic, e.g. TCP connections.
 > - Forward proxies make onward requests on behalf of the original client, so the requests appear to originate from the proxy.
+
 ---
 
 ## Reverse proxies
@@ -304,6 +307,7 @@ In this example, all requests to the reverse proxy are forwarded to `https://www
 > - Reverse proxies operate at the application-layer.
 > - They receive and terminate network-level traffic, e.g. TCP connections.
 > - Reverse proxies make onward requests on behalf of the original client according to a set of pre-defined rules.
+
 ---
 
 ## Summary
