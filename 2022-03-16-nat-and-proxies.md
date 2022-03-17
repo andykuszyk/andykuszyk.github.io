@@ -157,7 +157,7 @@ Your router knows it needs to adjust the source IP address of your IP packets, s
 This process is completely transparent to the sender and receiver, and is normally completed by a hardware network device (e.g. a router).
 
 #### The not-so-simple explanation
-The less simple part of this process is that source and destination address information isn't just used at the IP level of network transmission. It's also used in TCP and UDP, where it forms part of the message checksum calculations to avoid errors in transmission. This means that the device performing NAT needs to be aware of the higher-level protocols being transmitted in the IP packets, and modify their payloads accordingly so that they still contain valid messages when they are decoded and passed up the network stack to user space applications.
+The less simple part of this process is that source and destination address information isn't just used at the IP level of network transmission. It's also used in TCP and UDP, where it forms part of the message checksum calculations to avoid errors in transmission. This means that the device performing NAT needs to be aware of the higher-level protocols being transmitted in the IP packets. It needs to decode the contents of the IP packet's payload, modify it accordingly, and re-write it so that it still contain valid TCP/UDP packets. When the packets are decoded and passed up the network stack to user space applications, they still appear to contain valid TCP or UDP packets, which have been modified transparently from the point of view of the application.
 
 ### Where's the code example?
 This whole process is difficult to demonstrate in a simple coding example, because the processing of IP packets is normally handled by the networking stack in an OS, and user space application code typically deals with higher-level abstractions based around TCP and UDP protocols.
@@ -210,10 +210,10 @@ func main() {
 
         // The response is read by the proxy.
         body, err := io.ReadAll(res.Body)
-        defer res.Body.Close()
         if err != nil {
             panic(err)
         }
+        defer res.Body.Close()
 
         // The contents of the proxied request are then written back
         // to the HTTP response of the original client's request.
@@ -283,16 +283,10 @@ func main() {
         }
         defer res.Body.Close()
 
-        // The proxy reads the response from the proxied request.
-        bytes, err := io.ReadAll(res.Body)
-        if err != nil {
-            panic(err)
-        }
-
-        // The proxy writes the contents of the proxied response back
-        // to the response to the original client's request.
+        // The proxy copies the contents of the proxied response into
+        // the response to the original client's request.
         w.WriteHeader(res.StatusCode)
-        _, err = w.Write(bytes)
+        _, err = io.Copy(w, res.Body)
         if err != nil {
             panic(err)
         }
