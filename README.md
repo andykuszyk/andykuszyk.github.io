@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python.
 
 ---
+## [Linux fundamentals](./2022-04-20-linux-fundamentals.md)
+The Linux kernel has always held a mystical place in my mind. It's the inner sanctum of computer magic which makes programs work. Somehow. In this post I try to suummarise some of the big ideas about the Linux kernel, including what the kernel does, user/kernel space, and the syscalls API surface.
+
+*Published: 20th April 2022.*
+
+---
 ## [Network Address Translation and Proxies](./2022-03-16-nat-and-proxies.md)
 I've always found NAT, forward proxies, and reverse proxies to be somewhat mystical, and I've never understood the fundamentals of how each technique works. This post tries to distil each idea into a simple form, and provides Go code examples where possible.
 
