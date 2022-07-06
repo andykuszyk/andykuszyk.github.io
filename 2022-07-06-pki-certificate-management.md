@@ -46,7 +46,22 @@ to be represented by two files:
    decryption.
 
 ## Certificate requests
-TODO
+Before we dive into generating new certificates in the next section, it's worth
+briefly mentioning what a certificate request is. Certificate requests require a
+basic understanding of certificate authorities, which are discussed later in
+this blog post.
+
+Normally, when a new certificate is generate it is signed by a certificate
+authority who vouch for its authenticity. When generating certificates in this
+way, the artefacts of the certificate generation process are files which
+actually represent a certificate request, and not a certificate.
+
+The certificate request is sent to the certificate authority, who return a
+signed certificate which is ready to use. When experimenting with certificate
+generation locally, this certificate request and signing step can be skipped,
+and a certificate can be generated directly with no signing. This is known as a
+self-signed certificate, which is perfectly usable, but would fail certificate
+verification checks in real life.
 
 ## Generating and inspecting certificates with `openssl`
 New X.509 certificates can be generated using the `openssl` command line tool.
@@ -76,7 +91,8 @@ $ openssl req -x509 -nodes -newkey rsa:4096 -keyout private.pem -out public.pem 
 
 Let's just examine each of the command line arguments:
 - `req`: this command creates and processes certificate requests.
-- `-x509`: generate an X.509 certificate.
+- `-x509`: generate an X.509 certificate that is self-signed, as opposed to a
+  certificate request that would need to be signed by a certificate authority.
 - `-nodes`: do not encrypt the private key.
 - `-newkey rsa:4096`: indicates that a new certificate request and private key 
   should be generated, and that the RSA algorithm should be used with a key 
@@ -288,11 +304,25 @@ A certificate file can be generated for verification with:
 $ echo -n | openssl s_client -connect www.google.com:443 | openssl x509 > google.pem
 ```
 
-This certificate can then be manually verified against its root certificate with:
+If you inspect this certificate (`openssl x509 -in google.pem -text`), you will
+see that this certificate was issued by "Google Trust Services". A quick search
+of your root certificate directory (`cat /etc/ssl/certs | grep oogle`) will show
+that Google Trust Services is not a root certificate authority. This means that
+there is a chain of issuing certificates between the one in use at google.com
+and the certificate authority that signed the first certificate in the chain.
+
+We can download the certificate chain separately using `openssl` as follows:
 
 ```sh
-$ openssl verify -CAfile /etc/ssl/certs/GlobalSign_Root_CA.pem google.pem
-TODO: output here. This step seems to fail
+$ echo -n | openssl s_client -connect www.google.com:443 -showcerts > google-chain.pem
+```
+
+The original certificate can then be manually verified against its root
+certificate via the certificate chain with:
+
+```sh
+$ openssl verify -CAfile google-chain.pem google.pem
+google.pem: OK
 ```
 
 The verification of Google's certificate against the root certificate installed
