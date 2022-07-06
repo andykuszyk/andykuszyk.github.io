@@ -2,6 +2,17 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python.
 
 ---
+## [PKI certificate management](./2022-07-06-pki-certificate-management.md)
+I have a rough understanding of PKI certificates, how they work, and what TLS is
+in general. However, I've always struggled to understand the details,
+particularly from the point of view of an operator. How do I check if a
+certificate is valid? How do I check who issued it? What does it even mean to
+"issue" a certificate? In this blog post I try to cover some of these details,
+and life the shroud of confusion that has always surrounded these topics for me.
+
+*Published: 6th July 2022.*
+
+---
 ## [Linux fundamentals](./2022-04-20-linux-fundamentals.md)
 The Linux kernel has always held a mystical place in my mind. It's the inner sanctum of computer magic which makes programs work. Somehow. In this post I try to suummarise some of the big ideas about the Linux kernel, including what the kernel does, user/kernel space, and the syscalls API surface.
 
