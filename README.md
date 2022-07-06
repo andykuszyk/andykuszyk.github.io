@@ -8,7 +8,7 @@ in general. However, I've always struggled to understand the details,
 particularly from the point of view of an operator. How do I check if a
 certificate is valid? How do I check who issued it? What does it even mean to
 "issue" a certificate? In this blog post I try to cover some of these details,
-and life the shroud of confusion that has always surrounded these topics for me.
+and lift the shroud of confusion that has always surrounded these topics for me.
 
 *Published: 6th July 2022.*
 
