@@ -20,7 +20,7 @@ In this post, I will try to explain:
 - The difference between a TLS certificate and an SSH certificate.
 
 Having covered these basics, I'll then walk though a practical example of using
-certificates for TLS via a local `nginx` proxy, modelling the client/server TLS
+certificates for TLS via a local `nginx` proxy, modeling the client/server TLS
 you often see on the web.
 
 Hopefully by the end of the post, you'll have a clearer idea of what
@@ -52,7 +52,7 @@ in a variety of different formats. For me, this is the main cause of confusion
 about the different file types used to store certificates.
 
 The certificate itself is comprised of three parts:
-1. Information about the certificate, such as the issuer and the distinguised
+1. Information about the certificate, such as the issuer and the distinguished
    name the certificate is for.
 2. The public key, used for encrypting data.
 3. The private key, used for decrypting data.
@@ -75,7 +75,7 @@ this blog post.
 
 Normally, when a new certificate is generated, it is signed by a certificate
 authority, who vouches for its authenticity. When generating certificates in this
-way, the artefacts of the certificate generation process are files which
+way, the artifacts of the certificate generation process are files which
 actually represent a certificate request, and not a certificate.
 
 The certificate request is sent to the certificate authority, who returns a
@@ -271,7 +271,7 @@ characteristic of a root certificate. The root certificate is trusted, because
 it was installed by the operating system. Our certificate is less trustworthy,
 because we just generated it on the fly.
 
-TLS certificates in use on the internet are signed by one of the root
+TLS certificates in use on the Internet are signed by one of the root
 certificates installed on your computer, which allows their authenticity to be
 verified.
 
@@ -365,7 +365,7 @@ google.pem: OK
 
 The verification of Google's certificate against the root certificate installed
 in your operating system demonstrates the difference in trust between the public
-certificates in use on the internet for TLS, and the self-signed certificates
+certificates in use on the Internet for TLS, and the self-signed certificates
 you might generate locally. The fact that the certificates in use online can be
 verified against known certificates on your computer demonstrates that they have
 been issued to a trustworthy server.
