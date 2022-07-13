@@ -26,6 +26,24 @@ you often see on the web.
 Hopefully by the end of the post, you'll have a clearer idea of what
 certificates are, and how to interact with them.
 
+## An introduction to PKI certificates
+Before we start exploring the different ways PKI certificates can be generated,
+stored, verified, and used, let's just take a step back and start with an
+introduction to PKI certificates in general.
+
+Public Key Infrastructure certificates are most commonly used for securing TCP
+and HTTP communication via TLS. They are primarily used to:
+- Encrypt end-to-end communication.
+- Establish trust between a client and a server, so that the server's identity
+  can be verified.
+
+The certificates themselves normally contain metadata about the owner (such as
+name, location, etc.), as well as a public key used for encryption. The
+certificate is accompanied by a private key, which makes decryption possible.
+
+Normally, a PKI certificate manifests as a pair of files on disk. One containing
+the certificate, and another containing the private key.
+
 ## PKI certificate files
 Most TLS certificates are in fact X.509 certificates. X.509 is a standard for
 certificate structure which defines which fields are included in the
@@ -33,17 +51,21 @@ certificate. X.509 certificates can be stored in a variety of different files,
 in a variety of different formats. For me, this is the main cause of confusion
 about the different file types used to store certificates.
 
-X.509 certificates are typically stored in base64 encoded ASCII files which use
-the `*.pem`, `*.crt`, `*.cer`, and `*.key` file extensions interchangeably.
-Whenever you see one of these files, you're looking at a base64 encoded X.509
-certificate, irrespective of what the file extension might be.
+The certificate itself is comprised of three parts:
+1. Information about the certificate, such as the issuer and the distinguised
+   name the certificate is for.
+2. The public key, used for encrypting data.
+3. The private key, used for decrypting data.
 
-Whichever file format or extension you're using, an X.509 certificate is going
-to be represented by two files:
-1. A public key, which will contain information on the issuer and validity of the
-   certificate, as well as cryptographic material required for encryption.
-2. A private key, which will contain cryptographic material required for
-   decryption.
+Normally, when a certificate is generated, its information and public key are
+stored in one file (normally just referred to as the certificate), and the
+private key is stored in another file.
+
+X.509 certificates are typically stored in base64 encoded ASCII files which use
+the `*.pem`, `*.crt` and `*.cer` file extensions for the public key portion
+interchangeably. The private key is typically stored in a file with the `*.key`
+file extension. Whenever you see one of these files, you're looking at a base64 
+encoded X.509 certificate, irrespective of what the file extension might be.
 
 ## Certificate requests
 Before we dive into generating new certificates in the next section, it's worth
@@ -51,17 +73,17 @@ briefly mentioning what a certificate request is. Certificate requests require a
 basic understanding of certificate authorities, which are discussed later in
 this blog post.
 
-Normally, when a new certificate is generate it is signed by a certificate
-authority who vouch for its authenticity. When generating certificates in this
+Normally, when a new certificate is generated, it is signed by a certificate
+authority, who vouches for its authenticity. When generating certificates in this
 way, the artefacts of the certificate generation process are files which
 actually represent a certificate request, and not a certificate.
 
-The certificate request is sent to the certificate authority, who return a
+The certificate request is sent to the certificate authority, who returns a
 signed certificate which is ready to use. When experimenting with certificate
 generation locally, this certificate request and signing step can be skipped,
 and a certificate can be generated directly with no signing. This is known as a
 self-signed certificate, which is perfectly usable, but would fail certificate
-verification checks in real life.
+verification checks as no trusted authority has signed it. More on this later.
 
 ## Generating and inspecting certificates with `openssl`
 New X.509 certificates can be generated using the `openssl` command line tool.
@@ -79,14 +101,22 @@ prompt=no
 countryName=UK
 localityName=London
 organizationName=Form3
+commonName=localhost
 EOF
 ```
+
+> The distinguished name in this configuration identifies the owner of the
+> certificate. As well as containing things like organisation name and location,
+> the distinguished name also includes the Common Name. This is the hostname at
+> which the certificate will be used, and forms an important part of certificate
+> verification. In this case, the certificate we're generating could only be
+> used to encrypt traffic on `localhost`.
 
 Then, we can use `openssl` to generate a new X.509 certificate with the
 following:
 
 ```sh
-$ openssl req -x509 -nodes -newkey rsa:4096 -keyout private.pem -out public.pem -config openssl.conf
+$ openssl req -x509 -nodes -newkey rsa:4096 -keyout private.key -out certificate.pem -config openssl.conf
 ```
 
 Let's just examine each of the command line arguments:
@@ -97,17 +127,17 @@ Let's just examine each of the command line arguments:
 - `-newkey rsa:4096`: indicates that a new certificate request and private key 
   should be generated, and that the RSA algorithm should be used with a key 
   length of 4096 bits.
-- `-keyout private.pem`: the file to write the private key to.
-- `-out public.pem`: the file to write the certificate/public key to.
+- `-keyout private.key`: the file to write the private key to.
+- `-out certificate.pem`: the file to write the certificate and public key to.
 - `-config openssl.conf`: the config file to use for certificate parameters.
 
-The result of this command is two files: a private key, and a public certificate
-file.
+The result of this command is two files: a private key, and a certificate file
+containing a public key.
 
-The public key looks like this:
+The certificate looks like this:
 
 ```sh
-$ cat public.pem
+$ cat certificate.pem
 -----BEGIN CERTIFICATE-----
 MIIE2DCCAsACCQCZfiGwlnUbgDANBgkqhkiG9w0BAQsFADAuMQswCQYDVQQGEwJV
 SzEPMA0GA1UEBwwGTG9uZG9uMQ4wDAYDVQQKDAVGb3JtMzAeFw0yMjA0MjcxNTU1
@@ -120,7 +150,7 @@ qjgSTJpltmuAUl2qYvo8ZV9RFnhUKPk3e1ntJMWA1rvhaHaClTLUK9hUTGVuj/eL
 The private key looks like this:
 
 ```sh
-$ cat private.pem
+$ cat private.key
 -----BEGIN ENCRYPTED PRIVATE KEY-----
 MIIJnzBJBgkqhkiG9w0BBQ0wPDAbBgkqhkiG9w0BBQwwDgQI/SQlNhidF/ECAggA
 MB0GCWCGSAFlAwQBKgQQ/KqcoZLt2nrZYniObOZRFgSCCVA6GDSvQpmzr7sg40GU
@@ -130,21 +160,21 @@ k1v/0kZuvPGMLRpRUhhNlOOfSw==
 -----END ENCRYPTED PRIVATE KEY-----
 ```
 
-Now that we've successfully generated a public/private key pair, we can inspect
-these keys as follows:
+Now that we've successfully generated a certificate and private key, we can
+inspect these files as follows:
 
 ```sh
-$ openssl x509 -in public.pem -text
+$ openssl x509 -in certificate.pem -text
 Certificate:
     Data:
         Version: 1 (0x0)
         Serial Number: 11060314777190734720 (0x997e21b096751b80)
     Signature Algorithm: sha256WithRSAEncryption
-        Issuer: C=UK, L=London, O=Form3
+        Issuer: C=UK, L=London, O=Form3, CN=localhost
         Validity
             Not Before: Apr 27 15:55:58 2022 GMT
             Not After : May 27 15:55:58 2022 GMT
-        Subject: C=UK, L=London, O=Form3
+        Subject: C=UK, L=London, O=Form3, CN=localhost
         Subject Public Key Info:
             Public Key Algorithm: rsaEncryption
                 Public-Key: (4096 bit)
@@ -158,7 +188,7 @@ Here you can see the issuer, validity, and algorithm of the public key.
 Similarly, the private key can be inspected with:
 
 ```sh
-$ openssl rsa -in private.pem -text
+$ openssl rsa -in private.key -text
 Enter pass phrase for key.pem:
 Private-Key: (4096 bit)
 modulus:
@@ -168,15 +198,18 @@ modulus:
 ```
 
 Checking the private key yields less useful information (for an operator, at
-least), but you can also check the consistency of the key using `openssl rsa -in
-private.pem -check`.
+least), but you can also check the consistency of the key using:
+
+```
+$ openssl rsa -in private.key -check
+```
 
 ## Certificate chains
 In order to verify the authenticity of certificates, it's necessary to inspect
 the issuer (or certificate authority) of a certificate. In the example above,
-the distinguished name of the issuer is `C=UK, L=London, O=Form3`. This
-distinguished name identifies the certificate authority, who must be trusted in
-order for the authenticity of a certificate to be verified.
+the distinguished name of the issuer is `C=UK, L=London, O=Form3, CN=localhost`.
+This distinguished name identifies the certificate authority, who
+must be trusted in order for the authenticity of a certificate to be verified.
 
 The certificate authority has a root certificate, which is used to generate a
 signature for each certificate that it issues. Combining the signature of a
@@ -226,10 +259,10 @@ $ openssl verify -CAFile /etc/ssl/certs/Go_Daddy_Root_Certificate_Authority_-_G2
 Similarly, if we try to verify the issuer signature for the certificate we generated, we get a verification error:
 
 ```sh
-$ openssl verify -CAfile /etc/ssl/certs/Go_Daddy_Root_Certificate_Authority_-_G2.pem public.pem
+$ openssl verify -CAfile /etc/ssl/certs/Go_Daddy_Root_Certificate_Authority_-_G2.pem certificate.pem
 C = UK, L = London, O = Form3
 error 18 at 0 depth lookup: self signed certificate
-error public.pem: verification failed
+error certificate.pem: verification failed
 ```
 
 This error message indicates that the certificate we generated was
@@ -298,6 +331,11 @@ Verify return code: 0 (ok)
 DONE
 ```
 
+> Note that the Common Name of this certificate was `google.com`, indicating
+> that this certificate can only be used to encrypt traffic to this domain
+> name. Even if the certificate is verified as authentic, it cannot be used to
+> serve TLS traffic from any other domain in a trusted capacity.
+
 A certificate file can be generated for verification with:
 
 ```sh
@@ -336,13 +374,13 @@ been issued to a trustworthy server.
 According to `man ssh-keygen`, the certificates used for SSH are a different,
 and much more simple, format than X.509 certificates used for TLS. SSH
 certificates are used in a similar way to the X.509 certificates used in TLS:
-they consist of a private and key, but the format is different to the
+they consist of public and private keys, but the format is different to the
 certificates described in this post.
 
 ## Example: TLS for HTTPS web servers
 When you connect to a server that offers TLS, the server will be configured to
 send you its public certificate and will encrypt data with its private
-certificate. I'm not going to delve into the details of how TLS works here, but
+key. I'm not going to delve into the details of how TLS works here, but
 instead demonstrate how you might configure a simple web server with the
 materials it needs to make TLS possible. I'll be using `nginx` running in a
 Docker container to provide a small example.
@@ -409,8 +447,8 @@ http {
         location / {}
 
         listen 443 ssl;
-        ssl_certificate public.pem;
-        ssl_certificate_key private.pem;
+        ssl_certificate certificate.pem;
+        ssl_certificate_key private.key;
     }
 }
 EOF
@@ -420,7 +458,7 @@ This configuration uses the certificates we generated earlier. To re-cap, we
 generated these files using `openssl`:
 
 ```sh
-$ openssl req -x509 -nodes -newkey rsa:4096 -keyout private.pem -out public.pem -config openssl.conf
+$ openssl req -x509 -nodes -newkey rsa:4096 -keyout private.key -out certificate.pem -config openssl.conf
 ```
 
 The certificate files will also need to be present in the Dockerfile:
@@ -431,6 +469,7 @@ FROM nginx
 COPY index.html /www/index.html
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY *.pem /etc/nginx/
+COPY *.key /etc/nginx/
 EOF
 ```
 
@@ -479,6 +518,13 @@ Hello world!
 
 This web page is protected using TLS!
 ```
+
+If you were working with self-signed certificates regularly, or with a private
+certificate authority whose root certificates aren't installed automatically, it
+is possible to import custom root certificates into your system's list of
+trusted certificates. Doing so would mean that clients like `curl` would
+recognise the authenticity of your certificate, rather than failing to verify
+its signature.
 
 ## Summary
 So there you have it! Most TLS certificates are X.509 certificates, and whether
