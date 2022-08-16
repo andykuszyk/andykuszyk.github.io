@@ -1,5 +1,5 @@
 # Andy Kuszyk's tech blog
-I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python.
+I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
 ## [PKI certificate management](./2022-07-06-pki-certificate-management.md)
