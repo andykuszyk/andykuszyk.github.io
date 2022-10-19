@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
+## [What I learned from starting a new project](./2022-10-19-what-i-learned-from-a-new-project.md)
+I have spent almost the last two years working on a large, greenfield project first as the lead engineer, and now as the head of engineering. I've learnt a lot about how to grow engineering teams, and build complex systems in this time. This blog post summarises some of my key kearnings.
+
+*Published: 19th October 2022.*
+
+---
 ## [PKI certificate management](./2022-07-06-pki-certificate-management.md)
 I have a rough understanding of PKI certificates, how they work, and what TLS is
 in general. However, I've always struggled to understand the details,
