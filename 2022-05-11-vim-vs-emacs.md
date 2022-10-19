@@ -14,10 +14,19 @@ This post is not a comparison between Vim and Emacs, nor does it describe which 
 - Vim: `:q`
 - Emacs: `C-x C-c`
 
+## Moving around
+### Beginning of line
+- Vim: `^`
+- Emacs: `C-a`
+
+### End of line
+- Vim: `$`
+- Emacs: `C-e`
+
 ## Text editing
 ### Deleting a line
 - Vim: `dd`
-- Emacs: `C-S-backspace`
+- Emacs: `C-S-backspace` to delete, and `C-k` to cut.
 
 ## Window management
 ### Switching windows
