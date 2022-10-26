@@ -1,9 +1,9 @@
 # What I learned from starting a new project
 In February 2021 I moved from an individual contributor role at Form3, to being lead engineer on a new project. For the first six months, I was lead engineer of a team of one (myself!), and spent a long time researching the new project, and iterating on technical designs. I also spent a lot of time thinking about how we would eventually build a team around the project, and organise its various activities.
 
-More than a year and a half later, and that team now exists. It consists of three independent engineering teams, consisting of more than twenty engineers. I am now in the role of Head of Engineering for this larger team, and I find myself now reflecting on how things have gone.
+More than a year and a half later, and that team now exists. In fact, it has grown into a new department at Form3. It consists of three independent engineering teams, consisting of more than twenty engineers. I am now in the role of Head of Engineering for this new department, and I find myself now reflecting on how things have gone.
 
-Many of the ideas I had in the early days have born fruit, and some have not. In this blog post, I would like to share the ideas and practices that have proven effective in planning, growing, and operating a large team of engineers across a complex project. I have organised my learnings around three key themes:
+Many of the ideas I had in the early days have borne fruit, and some have not. In this blog post, I would like to share the ideas and practices that have proven effective in planning, growing, and operating a large team of engineers across a complex project. I have organised my learnings around three key themes:
 1. Encouraging a self-organising culture.
 2. De-centralising decision making.
 3. Democratising the technical design process.
@@ -40,16 +40,16 @@ GitHub issues, on the other hand, support all of these things:
 
 Below is an example of an issue list from one of our knowledge bases:
 
-![](./images/kb.png)
+![Knowledge Base example](./images/kb.png)
 
 You can see from this screenshot that many of the issues have been categorised in more than one category, and have been contributed by multiple members of the team. This was one of the goals of storing project documentation in this format: not only is it easy to find and organise, but it's also easy to contribute to. It is my view that this format encourages members of the team to contribute their own knowledge to the team's corpus of documentation, making it a resource which is owned by everyone.
 
 For those that think they might miss a more traditional wiki-like layout, we have also organised our knowledge base with a wiki-style index. The links in this index refer to labels, which means they link to a dynamic list of issues that will grow and shrink as issues are labelled in the knowledge base:
 
-![](./images/kb-index.png)
+![Knowledge Base index](./images/kb-index.png)
 
-### Storing external documentation as plain files in source control
-We used the GitHub issues approach described above mainly for team-generated documentation. Documents that came from a third party, or which were otherwise considered primary sources, we generally stored as plain files committed to a git repository. These files are often linked for further reading from the issues in our knowledge base.
+### Storing external documentation as binary files in source control
+We used the GitHub issues approach described above mainly for team-generated documentation. Documents that came from a third party, or which were otherwise considered primary sources, we generally stored as binary files committed to a git repository. For example, these files would often be PDFs. These files are often linked for further reading from the issues in our knowledge base.
 
 ### Documenting requirements with references and acceptance criteria
 I think a key characteristic of a self-organising team is that anyone in the team can pick up any new piece of work. This means that, as long as work is clearly labelled as being ready to go, no single person needs to orchestrate the scheduling or assignation of new work.
@@ -59,6 +59,8 @@ This means that each new work item needs to have the following attributes:
 - It needs clear context and documentation. It should assume the reader has general context about the project, but not about the specific are the work needs to be completed it. It should contain references to further reading to help the reader understand the particular domain within which the task needs to be completed.
 - It should have a clear set of requirements. These describe what needs to be done to complete the task.
 - It should have a clear set of acceptance criteria. These are similar to requirements, but describe the conditions that must be met for the task to be completed.
+
+A lot of the refinement necessary to prepare requirements in this fashion takes place in our early design process, which is carried out by a working group of engineers. More on this later.
 
 We made use of our knowledge base extensively for providing engineers with background reading for new tasks. In fact, it was a good reminder that something wasn't well documented when we realised that a particular term or topic required a good external definition, when writing a short introduction for new tasks.
 
@@ -90,12 +92,16 @@ This issue will be complete when:
 -->
 ```
 
+Here's an example of one of these requirements:
+
+![Example requirement](./images/requirement.png)
+
 ### Using a "next-up" column for scheduling upcoming work
-In order to make it easy for anyone in the team to pick up a new task with no centralised organisation, we made use of a "next-up" column on our project/kanban board. This list of tasks is normally curated by the lead engineer of a team, and contains tasks that match the team's current priorities, and have been documented to a sufficient standard to allow them to be independently accessible by anyone on the team.
+In order to make it easy for anyone in the team to pick up a new task with no centralised organisation, we made use of a "next-up" column on our project's kanban board. This list of tasks is normally curated by the lead engineer of a team, and contains tasks that match the team's current priorities, and have been documented to a sufficient standard to allow them to be independently accessible by anyone on the team.
 
 Here's an example from one of our typical project boards:
 
-![](./images/next-up.png)
+![Project board next up column](./images/next-up.png)
 
 ### Onboarding new team members with a documented guide
 Growing the team with new people to the company, or existing team members from elsewhere, requires a lot of product orientation, domain knowledge transfer, and explanation of our architecture. We wanted this process to be as scalable, and self-directed as possible, so as we grew our team, we also documented an onboarding guide.
@@ -104,7 +110,9 @@ When a new person joins the team, we always ask them to follow this guide to ori
 
 Here is an example of our onboarding guide:
 
-![](./images/onboarding.png)
+![Onboarding guide example](./images/onboarding.png)
+
+New members of the team are also paired up with someone as an "onboarding buddy", so their self-directed onboarding time would also be accompanied by regular check-ins with their buddy to ask questions and discuss what they've learned.
 
 ### Growing a team only as fast as pair programming allows
 One final note on onboarding is that, whilst our self-directed onboarding process was a success, it was then always followed of a month or two of sustained pair programming. We practice pair programming as a matter of course anyway, but this is especially important for new members of the team. The onboarding guide covered the basics, and then everything else a person needed to know was normally covered during the synchronous time they had with other members of the team whilst pairing.
@@ -128,7 +136,7 @@ There are many ways of achieving this, some of which include:
 Many of these terms refer to overlapping ideas, and in some cases describe the same thing. There are lots of ways to record these things, varying from markdown files in a git repository to a shared spreadsheet. For me, the most important thing was to have a consistent, documented, and accessible method of making decisions, that everyone in the team could contribute to regardless of the role.
 
 As a result, we decided to use GitHub issues to keep track of our decisions for many of the same reasons we used them for our internal documentation:
-- Anyone in the team can write a new issue, whereas some team members might have more trouble editing markdown files directly.
+- Anyone in the team can write a new issue, whereas some team members might have more trouble editing markdown files directly (editing files requires knowledge of markdown and using git, which is less accessible to non-engineers).
 - Issues benefit from reciprocal links, which means decisions could be linked to requirements and knowledge base articles, and vice versa.
 
 We decided to use two different flavours of GitHub issue to track our decisions:
@@ -170,6 +178,10 @@ Guidance on creating new decision records:
 ## Decision
 <!-- Describe the solution that has been decided upon. -->
 ```
+
+Here is an example of a decision record from our project:
+
+![Example decision record](./images/decision-record.png)
 
 ### Proposals
 We use proposals when we need to make a decision about something, but it's less clear that a decision can be made unilaterally, or when feedback is required to gain a consensus. Proposals typically document a problem we have with the product, security, technology or our team process. They normally outline one or more possible solutions, and propose a way forward. We circulate them amongst the team, and people can take part in the decision making process asynchronously via comments. Sometimes we organise a small working group to discuss the problem synchronously, but most of the time we are able to reach a consensus asynchronously.
@@ -222,7 +234,7 @@ As the size of our team grew, and the complexity of the product we were building
 3. Me writing a "technical proposal" (more on this below).
 4. The requirements being shared with the engineering team for implementation.
 
-I had a lot of background knowledge and context, combined with the experience of designing the system so far. When I reviewed requirements, I would write a technical proposal which a was proposal designed to summarise the functionality from a technical point of view. This proposal served three purposes:
+I had a lot of background knowledge and context, combined with the experience of designing the system so far. When I reviewed requirements, I would write a technical proposal which was a proposal designed to summarise the functionality from a technical point of view. This proposal served three purposes:
 1. To summarise my understanding to play back to the product team for approval.
 2. To communicate the overall design to engineers implementing individual requirements, for context.
 3. To serve as a record of the design of the system for reference in the future.
