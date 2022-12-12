@@ -36,7 +36,7 @@ However both of these approaches suffer from three main problems:
 GitHub issues, on the other hand, support all of these things:
 1. They are browsable using the issue search, and via labels.
 2. They are easy to organise into multiple, dynamic categories using labels.
-3. They naively support reciprocal linking--linking another issue adds a reverse link on that issue.
+3. They natively support reciprocal linking--linking another issue adds a reverse link on that issue.
 
 Below is an example of an issue list from one of our knowledge bases:
 
