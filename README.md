@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
+## [Migrating project v2 boards in GitHub](./2023-02-01-migrating-projectv2-boards.md)
+Migrating issues from one project v2 board to another in GitHub can be a little painful. In this blog post I explain how I did it recently using the GitHub GraphQL API, and a smattering of Bash and Python.
+
+*Published: 1st February 2023.*
+
+---
 ## [What I learned from starting a new project](./2022-10-19-what-i-learned-from-a-new-project.md)
 I have spent almost the last two years working on a large, greenfield project first as the lead engineer, and now as the head of engineering. I've learnt a lot about how to grow engineering teams, and build complex systems in this time. This blog post summarises some of my key kearnings.
 
