@@ -168,7 +168,7 @@ project_id=$(gh api graphql --jq '.data.organization.projectV2.id' -f query='
 	    id
 	  }
 	}
-  })'
+  }')
 ```
 
 ## Step 4: find out about the status field in the new project
