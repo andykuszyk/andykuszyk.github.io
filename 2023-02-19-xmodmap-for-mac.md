@@ -7,23 +7,23 @@ The only trouble with this machine is that they keyboard doesn't have the right 
 
 The bottom row of the Mac keyboard looks a bit like this:
 
-<kbd>fn</kbd> <kbd>ctrl</kbd> <kbd>alt</kbd> <kbd>cmd</kbd> <kbd>space</kbd> <kbd>cmd</kbd> <kbd>alt</kbd>
+`fn` `ctrl` `alt` `cmd` `space` `cmd` `alt`
 
 What I want is:
 
-<kbd>fn</kbd> <kbd>super</kbd> <kbd>alt</kbd> <kbd>ctrl</kbd> <kbd>space</kbd> <kbd>ctrl</kbd> <kbd>alt</kbd>
+`fn` `super` `alt` `ctrl` `space` `ctrl` `alt`
 
-The <kbd>cmd</kbd>/<kbd>super</kbd> keys are the same, but I want to move one of them to <kbd>ctrl</kbd> and replace both of the <kbd>cmd</kbd> keys with <kbd>ctrl</kbd>.
+The `cmd`/`super` keys are the same, but I want to move one of them to `ctrl` and replace both of the `cmd` keys with `ctrl`.
 
-Lastly, although there are two <kbd>alt</kbd> keys, the right one is interpreted as <kbd>alt gr</kbd>, which isn't useful for me, because it doesn't act as a standard Meta key in Emacs.
+Lastly, although there are two `alt` keys, the right one is interpreted as `alt gr`, which isn't useful for me, because it doesn't act as a standard Meta key in Emacs.
 
-Oh, and another thing! The arrow keys are tiny on this keyboard! I'm very used to using <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> as arrow keys inside Emacs, and I want to be able to use them as arrow keys outside of Emacs too (e.g. in a web browser), with the use of a modifier key.
+Oh, and another thing! The arrow keys are tiny on this keyboard! I'm very used to using `h``j``k``l` as arrow keys inside Emacs, and I want to be able to use them as arrow keys outside of Emacs too (e.g. in a web browser), with the use of a modifier key.
 
 So, here are the three things I want to achieve:
 
-1. Mapping both <kbd>cmd</kbd> keys to <kbd>ctrl</kbd>, and <kbd>ctrl</kbd> to <kbd>cmd</kbd>.
-2. Making the right <kbd>alt</kbd> behave like the left one.
-3. Make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys when some modifier key is held down.
+1. Mapping both `cmd` keys to `ctrl`, and `ctrl` to `cmd`.
+2. Making the right `alt` behave like the left one.
+3. Make `h``j``k``l` behave like arrow keys when some modifier key is held down.
 
 The remainder of this post is an explanation of how I did it. All of the remapping was achieved with `xmodmap`. I find `xmodmap` a bit arcane, but, in retrospect, everything I needed to know was in the manpage. I just didn't read it enough times! If you're not familiar with `xmodmap`, I suggest reading the manpage before continuing with this post, because it provides a better summary than I could offer.
 
@@ -40,10 +40,10 @@ Before I begin, here are the keycodes for my various modifier keys for reference
 
 I discovered these by running `xev`, pressing keys, and watching the `stdout`.
 
-## Step 1: swapping <kbd>cmd</kbd> and <kbd>ctrl</kbd>
-In order to swap <kbd>ctrl</kbd> with <kbd>cmd</kbd> we need to:
+## Step 1: swapping `cmd` and `ctrl`
+In order to swap `ctrl` with `cmd` we need to:
 1. Clear the `control` and `mod4` modifiers.
-2. Re-assign the keycodes for the <kbd>ctrl</kbd> and right/left <kbd>cmd</kbd> keys to the relevant keysym (e.g. `Control_L`).
+2. Re-assign the keycodes for the `ctrl` and right/left `cmd` keys to the relevant keysym (e.g. `Control_L`).
 3. Re-add the modifiers to the same keysyms, which now have different keycodes assigned to them.
 
 This is how it's done in `xmodmap` expressions:
@@ -61,11 +61,11 @@ xmodmap -e 'add mod4 = Super_L'
 
 > You can find the keycodes of all your keys with `xmodmap -pke`, and a list of the modifiers with `xmodmap -pm`.
 
-## Step 2: make right <kbd>alt</kbd> behave like the left one
-In order to remap right <kbd>alt</kbd> to also be left <kbd>alt</kbd>, we just need to:
+## Step 2: make right `alt` behave like the left one
+In order to remap right `alt` to also be left `alt`, we just need to:
 
-1. Clear `mod5`, which the right <kbd>alt</kbd> was previously a keysym for.
-2. Remap the keycode of right <kbd>alt</kbd> to be `Alt_L`.
+1. Clear `mod5`, which the right `alt` was previously a keysym for.
+2. Remap the keycode of right `alt` to be `Alt_L`.
 
 We don't need to re-add it to a modifier, because `Alt_L` is already mapped to `mod1`.
 
@@ -76,8 +76,8 @@ xmodmap -e 'clear mod5'
 xmodmap -e 'keycode 108 = Alt_L NoSymbol Alt_L'
 ```
 
-## Step 3: make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> into arrow keys using caps lock
-The following will make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys if caps lock is held down:
+## Step 3: make `h``j``k``l` into arrow keys using caps lock
+The following will make `h``j``k``l` behave like arrow keys if caps lock is held down:
 
 ```sh
 #                  code = no modifier
@@ -86,14 +86,14 @@ The following will make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave 
 #                         | | |    mode_switch and shift
 #                         | | |    |
 #                         v v v    v
-xmodmap -e 'keycode  66 = Mode_switch NoSymbol Caps_Lock'
 xmodmap -e 'keycode  43 = h H Left h hstroke Hstroke hstroke'
 xmodmap -e 'keycode  44 = j J Down j dead_hook dead_horn dead_hook'
 xmodmap -e 'keycode  45 = k K Up k kra ampersand kra'
 xmodmap -e 'keycode  46 = l L Right l lstroke Lstroke lstroke'
+xmodmap -e 'keycode  66 = Mode_switch NoSymbol Caps_Lock'
 ```
 
-The result is that holding caps lock and any of <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> will result in arrow key presses. Caps lock will no longer result in capitalised characters, but shift can still be used for this.
+The result is that holding caps lock and any of `h``j``k``l` will result in arrow key presses. Caps lock will no longer result in capitalised characters, but shift can still be used for this.
 
 ## Step 4: profit!
 I hope this post helps you if you're looking to do a similar thing. It took me a bit of Stack Overflow surfing, and man page reading (not to mention lots of bricking my keyboard layout!) to work out how to do this. Enjoy Linux on Mac!
