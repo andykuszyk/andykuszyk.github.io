@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
+## [Remapping modifier keys on a Mac, for Linux](./2023-02-19-xmodmap-for-mac.md)
+A description of how I remapped some modifier keys on a Macbook Air running Linux. I swapped <kbd>cmd</kbd> and <kbd>ctrl</kbd>, fixed right <kbd>alt</kbd>, and made <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys when caps lock is held.
+
+*Published: 19th February 2023*
+
+---
 ## [Migrating project v2 boards in GitHub](./2023-02-01-migrating-projectv2-boards.md)
 Migrating issues from one project v2 board to another in GitHub can be a little painful. In this blog post I explain how I did it recently using the GitHub GraphQL API, and a smattering of Bash and Python.
 

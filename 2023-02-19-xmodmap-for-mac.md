@@ -67,7 +67,7 @@ In order to remap right <kbd>alt</kbd> to also be left <kbd>alt</kbd>, we just n
 1. Clear `mod5`, which the right <kbd>alt</kbd> was previously a keysym for.
 2. Remap the keycode of right <kbd>alt</kbd> to be `Alt_L`.
 
-We don't need to re-add it to a modifer, because `Alt_L` is already mapped to `mod1`.
+We don't need to re-add it to a modifier, because `Alt_L` is already mapped to `mod1`.
 
 This is how it's done:
 
