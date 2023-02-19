@@ -32,11 +32,11 @@ Before I begin, here are the keycodes for my various modifier keys for reference
 
 | Key         | Keycode |
 |-------------+---------|
-| left ~cmd~  |     133 |
-| right ~cmd~ |     134 |
-| ~ctrl~      |      37 |
-| left ~alt~  |      64 |
-| right ~alt~ |     108 |
+| left `cmd`  |     133 |
+| right `cmd` |     134 |
+| `ctrl`      |      37 |
+| left `alt`  |      64 |
+| right `alt` |     108 |
 
 I discovered these by running `xev`, pressing keys, and watching the `stdout`.
 
