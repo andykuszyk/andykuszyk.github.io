@@ -25,7 +25,7 @@ So, here are the three things I want to achieve:
 2. Making the right <kbd>alt</kbd> behave like the left one.
 3. Make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys when some modifier key is held down.
 
-The remainder of this post is an explanation of how I did it. All of the remapping was achieved with `xmodmap`. I find `xmodmap` a bit arcane, but, in retrospect, everything I needed to know was in the `man` page. I just didn't read it enough times!
+The remainder of this post is an explanation of how I did it. All of the remapping was achieved with `xmodmap`. I find `xmodmap` a bit arcane, but, in retrospect, everything I needed to know was in the manpage. I just didn't read it enough times! If you're not familiar with `xmodmap`, I suggest reading the manpage before continuing with this post, because it provides a better summary than I could offer.
 
 ## Step 0: my keycodes
 Before I begin, here are the keycodes for my various modifier keys for reference:
@@ -76,3 +76,24 @@ xmodmap -e 'clear mod5'
 xmodmap -e 'keycode 108 = Alt_L NoSymbol Alt_L'
 ```
 
+## Step 3: make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> into arrow keys using caps lock
+The following will make <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys if caps lock is held down:
+
+```sh
+#                  code = no modifier
+#                         | with shift
+#                         | | mode_switch
+#                         | | |    mode_switch and shift
+#                         | | |    |
+#                         v v v    v
+xmodmap -e 'keycode  66 = Mode_switch NoSymbol Caps_Lock'
+xmodmap -e 'keycode  43 = h H Left h hstroke Hstroke hstroke'
+xmodmap -e 'keycode  44 = j J Down j dead_hook dead_horn dead_hook'
+xmodmap -e 'keycode  45 = k K Up k kra ampersand kra'
+xmodmap -e 'keycode  46 = l L Right l lstroke Lstroke lstroke'
+```
+
+The result is that holding caps lock and any of <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> will result in arrow key presses. Caps lock will no longer result in capitalised characters, but shift can still be used for this.
+
+## Step 4: profit!
+I hope this post helps you if you're looking to do a similar thing. It took me a bit of Stack Overflow surfing, and man page reading (not to mention lots of bricking my keyboard layout!) to work out how to do this. Enjoy Linux on Mac!
