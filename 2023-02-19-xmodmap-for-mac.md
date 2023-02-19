@@ -93,6 +93,8 @@ xmodmap -e 'keycode  46 = l L Right l lstroke Lstroke lstroke'
 xmodmap -e 'keycode  66 = Mode_switch NoSymbol Caps_Lock'
 ```
 
+> Keycode `66` here is my caps lock.
+
 The result is that holding caps lock and any of `h``j``k``l` will result in arrow key presses. Caps lock will no longer result in capitalised characters, but shift can still be used for this.
 
 ## Step 4: profit!
