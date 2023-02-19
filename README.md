@@ -15,7 +15,7 @@ Migrating issues from one project v2 board to another in GitHub can be a little 
 
 ---
 ## [What I learned from starting a new project](./2022-10-19-what-i-learned-from-a-new-project.md)
-I have spent almost the last two years working on a large, greenfield project first as the lead engineer, and now as the head of engineering. I've learnt a lot about how to grow engineering teams, and build complex systems in this time. This blog post summarises some of my key kearnings.
+I have spent almost the last two years working on a large, greenfield project first as the lead engineer, and now as the head of engineering. I've learnt a lot about how to grow engineering teams, and build complex systems in this time. This blog post summarises some of my key learnings.
 
 *Published: 19th October 2022.*
 
