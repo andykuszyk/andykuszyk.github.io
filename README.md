@@ -3,7 +3,7 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 
 ---
 ## [Remapping modifier keys on a Mac, for Linux](./2023-02-19-xmodmap-for-mac.md)
-A description of how I remapped some modifier keys on a Macbook Air running Linux. I swapped <kbd>cmd</kbd> and <kbd>ctrl</kbd>, fixed right <kbd>alt</kbd>, and made <kbd>h</kbd><kbd>j</kbd><kbd>k</kbd><kbd>l</kbd> behave like arrow keys when caps lock is held.
+A description of how I remapped some modifier keys on a Macbook Air running Linux. I swapped `cmd` and `ctrl`, fixed right `alt`, and made `h``j``k``l` behave like arrow keys when caps lock is held.
 
 *Published: 19th February 2023*
 
