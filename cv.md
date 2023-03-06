@@ -21,7 +21,7 @@ You can read more about me on my technology blog: https://andykuszyk.github.io.
 ### Staff Engineer (Nov '22 - present)
 At the end of 2022, I decided to move away from engineering management into a more technical role. I am now a Staff Engineer on a project building payment systems for the US market.
 
-As a Staff Engineer, I am mostly self-lead; I seek out any issues in the team's practices or codebases, and try to help improve them where I can. I often pair up with members of the team to help solve specific problems, or to plan larger programmes of work.
+As a Staff Engineer, I am mostly self-led; I seek out any issues in the team's practices or codebases, and try to help improve them where I can. I often pair up with members of the team to help solve specific problems, or to plan larger programmes of work.
 
 ### Head of International Engineering (Feb '21 - Nov '22)
 In 2021, I started working on a new project at Form3 to build out a fresh product line for international payments.
