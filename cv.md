@@ -6,7 +6,7 @@ I have worked with privately hosted servers, private clouds hosted in data centr
 
 I practice DevOps as a matter of course.
 
-I'm an enthusiastic Vim and Emacs user, love Linux, and can't work without a tiling window manager!
+I'm an enthusiastic Emacs user, love Linux, and can't work without a tiling window manager!
 
 You can read more about me on my technology blog: https://andykuszyk.github.io.
 
@@ -18,21 +18,24 @@ You can read more about me on my technology blog: https://andykuszyk.github.io.
 
 # Work Experience
 ## Form3 (2019 - present)
-### Head of International Engineering (Dec '21 - present)
-I am currently the Head of Engineering for a department building international payment systems. The department consists of three engineering teams of around six engineers each, working across two projects.
+### Staff Engineer (Nov '22 - present)
+At the end of 2022, I decided to move away from engineering management into a more technical role. I am now a Staff Engineer on a project building payment systems for the US market.
 
-In this role I:
+As a Staff Engineer, I am mostly self-lead; I seek out any issues in the team's practices or codebases, and try to help improve them where I can. I often pair up with members of the team to help solve specific problems, or to plan larger programmes of work.
 
-- Provide technical leadership, and project management.
-- Lead and facilitate design work for future development.
-- Advocate and support asynchronous knowledge sharing, documentation, and decision-making (ADRs/RFCs).
-
-### Lead Engineer (Feb '21 - Dec '21)
+### Head of International Engineering (Feb '21 - Nov '22)
 In 2021, I started working on a new project at Form3 to build out a fresh product line for international payments.
 
 This involved building applications in Golang, AWS infrastructure with Terraform, and a compute platform in Kubernetes.
 
 It also gave me the opportunity to shape how an engineering team could work and grow, and allowed me to introduce good foundations for knowledge sharing, documentation, and asynchronous decision-making.
+
+In this role I:
+
+- Laid the groundwork for three engineering teams to build out a product successfully with high-quality CI pipelines, load testing, observability, and functional testing.
+- Provided technical leadership, and project management.
+- Led and facilitated design work for future development.
+- Advocated and supported asynchronous knowledge sharing, documentation, and decision-making (using PRDs, RFCs, and ADRs).
 
 ### Senior Engineer (June '19 - Feb '21)
 When I joined Form3, my first role was a member of the scaling and performance team. I spent most of my time working on Golang and Java code bases, and on analysing the performance of a distributed payments processing system.
