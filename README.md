@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
+## [Bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md)
+I've been reflecting on the most important things to get right when bootstrapping a new engineering organisation, particuarly by thinking about what must have gone well when the [Form3](https://www.form3.tech) was founded. This is the first of several posts describing what some of the major challenges might be, and how I think they can be solved.
+
+*Published: 15th March 2023*
+
+---
 ## [Remapping modifier keys on a Mac, for Linux](./2023-02-19-xmodmap-for-mac.md)
 A description of how I remapped some modifier keys on a Macbook Air running Linux. I swapped `cmd` and `ctrl`, fixed right `alt`, and made `h``j``k``l` behave like arrow keys when caps lock is held.
 
