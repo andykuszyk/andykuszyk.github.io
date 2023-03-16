@@ -8,7 +8,7 @@ In this blog post, I'm going to try to identify the main themes in this bootstra
 The themes are as follows:
 
 1. **Day One:** themes that I think are most important in the early bootstrapping phase of an engineering organisation.
-	1. [Secrets management in build and deployment pipelines](#Secrets-management-in-build-and-deployment-pipelines).
+	1. [Secrets management in build and deployment pipelines](#secrets-management-in-build-and-deployment-pipelines).
 	1. [Distributed management, DevOps, and hiring](#Distributed-management-DevOps-and-hiring).
 	1. [Decision making and design](#Decision-making-and-design).
 	1. [Infrastructure as code](#Infrastructure-as-code).
