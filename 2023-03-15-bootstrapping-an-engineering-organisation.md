@@ -9,23 +9,23 @@ The themes are as follows:
 
 1. **Day One:** themes that I think are most important in the early bootstrapping phase of an engineering organisation.
 	1. [Secrets management in build and deployment pipelines](#secrets-management-in-build-and-deployment-pipelines).
-	1. [Distributed management, DevOps, and hiring](#Distributed-management-DevOps-and-hiring).
-	1. [Decision making and design](#Decision-making-and-design).
-	1. [Infrastructure as code](#Infrastructure-as-code).
-	1. [Environment access](#Environment-access).
-	1. [Documentation](#Documentation).
-	1. [Testing](#Testing).
+	1. [Distributed management, DevOps, and hiring](#distributed-management-devops-and-hiring).
+	1. [Decision making and design](#decision-making-and-design).
+	1. [Infrastructure as code](#infrastructure-as-code).
+	1. [Environment access](#environment-access).
+	1. [Documentation](#documentation).
+	1. [Testing](#testing).
 2. **Day Two:** themes that I think need to be tackled as engineering organisation begins to grow.
-	1. [Secrets management in applications](#Secrets-management-in-applications).
-	1. [Incident response](#Incident-response).
-	1. [Observability](#Observability).
+	1. [Secrets management in applications](#secrets-management-in-applications).
+	1. [Incident response](#incident-response).
+	1. [Observability](#observability).
 3. **Considerations:** themes that need to be addressed when starting and growing an engineering organisation, but which I think are issues that need to be addressed on a case-by-case basis.
-	1. [Building and managing compute capacity](#Building-and-managing-compute-capacity).
-	1. [Service communication and messaging](#Service-communication-and-messaging).
-	1. [Orchestrating containers](#Orchestrating-containers).
-	1. [Security considerations](#Security-considerations).
-	1. [Programming languages](#Programming-languages).
-	1. [Database engines](#Database-engines).
+	1. [Building and managing compute capacity](#building-and-managing-compute-capacity).
+	1. [Service communication and messaging](#service-communication-and-messaging).
+	1. [Orchestrating containers](#orchestrating-containers).
+	1. [Security considerations](#security-considerations).
+	1. [Programming languages](#programming-languages).
+	1. [Database engines](#database-engines).
 
 Overall, I hope this series of blog posts serves as a useful set of examples of how to successfully bootstrap an engineering organisation from the beginning.
 
