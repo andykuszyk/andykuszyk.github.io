@@ -1,4 +1,4 @@
 theme: jekyll-theme-hacker
-gems: [jekyll-mermaid]
+plugins: [jekyll-mermaid]
 mermaid:
   src: 'https://cdn.jsdelivr.net/npm/mermaid@10.0.2/dist/svgDraw-c034b55e.min.js'
