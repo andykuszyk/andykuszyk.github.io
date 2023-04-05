@@ -8,12 +8,3 @@ this is a raw mermaid code block:
 flowchart TD
      a-->b
 ```
-
----
-
-this is a mermaid block between mermaid directives:
-
-{% mermaid %}
-flowchart TD
-     a-->b
-{% endmermaid %}
