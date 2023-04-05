@@ -1,7 +1,6 @@
 ---
 mermaid: true
 ---
-{% include mermaid.html %}
 
 hello, this is a mermaid test
 
