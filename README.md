@@ -2,7 +2,7 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
-## [Yet another guide to Mermaid diagrams in GitHub pages](./2023-yet-another-mermaid-in-github-pages-guide.md)
+## [Yet another guide to Mermaid diagrams in GitHub pages](./2023-05-03-yet-another-mermaid-in-github-pages-guide.md)
 I've recently published my first blog post on GitHub pages using Mermaid diagrams as plain text in the markup. It was surprisingly difficult to find the annoyingly simple way to do this, so here is yet another guide on how to include Mermaid in GitHub pages.
 
 ---
