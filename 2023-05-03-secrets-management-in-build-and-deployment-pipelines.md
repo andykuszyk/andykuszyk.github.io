@@ -78,7 +78,7 @@ In my description below, I will be focusing on GitHub and GitHub Actions secrets
 
 The general idea with this pattern is that you manage your GitHub repos centrally in Terraform, and use Terraform to create secrets in each of your repos. CI pipelines in each repo can then access the secrets provisioned via Terraform:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   subgraph estateman[GitHub management]
     tf[Terraform]
@@ -103,7 +103,7 @@ flowchart LR
   repo1-->pipe1
   repo2-->pipe2
   repo3-->pipe3
-```
+</pre>
 
 What this looks like in reality is fairly straightforward. GitHub repos are easy to provision using Terraform:
 
@@ -151,7 +151,7 @@ Furthermore, if you need to rotate a secret, the process is simple:
 ### 2. Issue secrets from a secret manager
 An alternative pattern to the approach described above, is to issue secrets to CI pipelines, rather than inject them in. A secret manager (e.g. [Hashicorp Vault](https://www.vaultproject.io/)) can be used as the central location of secrets, and can control issuing them to authorised clients. Provided your CI pipelines have a suitable mechanism of authenticating with the secret manager, they can then reach out on demand to fetch the secrets they need:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   subgraph secman[Secret management]
     vault[Vault]
@@ -176,7 +176,7 @@ flowchart LR
   pipe1-->|SECRET_VAR=***|vault
   pipe2-->vault
   pipe3-->vault
-```
+</pre>
 
 This approach has the advantage of avoiding the need to restrict access to the same Terraform workspace that manages your GitHub repos (although you still need to inject your secrets into the secret manager somehow), but does require additional infrastructure to run and manage the secret manager in the first place.
 
@@ -195,3 +195,11 @@ In my opinion, the first pattern is easier to get up and running, and scales ver
 The second approach separates the concepts of repo management and secret management, by introducing a dedicated secrets manager. Whilst this approach has advantages--notably by allowing the use of ephemeral secrets--it comes with the additional overhead of having to run and manage a separate secret manager (e.g. Vault).
 
 However, I think both approaches are preferable to manually managing secrets on a repo-by-repo basis. It's all too easy to fall into that trap when you start out, which is why I think getting this right from day one is so important.
+
+<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+	mermaid.initialize({
+		startOnLoad: true,
+		theme: 'dark'
+	});
+</script>
