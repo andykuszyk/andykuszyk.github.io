@@ -9,8 +9,8 @@ flowchart TD
      a-->b
 ```
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.1.0/mermaid.min.js"></script>
-<script>
+<script type="module">
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
 var config = {
     startOnLoad:true,
     theme: 'dark',
