@@ -1,2 +1,2 @@
 theme: jekyll-theme-hacker
-include: [head.html]
+include: [head.html, mermaid.html]
