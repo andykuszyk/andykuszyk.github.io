@@ -39,7 +39,7 @@ However, it doesn't take long before you've got lots of secrets in lots of diffe
 
 Ideally, when bootstrapping an engineering organisation, you want to establish a good way of injecting secrets into your entire build and deployment pipeline estate from day one.
 
-*Blog post to follow!*
+I've written a [dedicated blog post](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md) about this topic, with some practical ideas for doing this well on day one.
 
 ### Distributed management, DevOps, and hiring
 You might be wondering what management, DevOps, and hiring have in common at Form3 such that I have grouped them together! One of the philosophies underpinning the organisation's foundation was the distribution and delegation of responsibility to a largely self-organising team.
