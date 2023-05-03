@@ -2,13 +2,17 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
-## [Secrets management in build and deployment pipelines](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md)
+## [Yet another guide to Mermaid diagrams in GitHub pages](./2023-yet-another-mermaid-in-github-pages-guide.md)
+I've recently published my first blog post on GitHub pages using Mermaid diagrams as plain text in the markup. It was surprisingly difficult to find the annoyingly simple way to do this, so here is yet another guide on how to include Mermaid in GitHub pages.
+
+---
+## [Secrets management in build and deployment pipelines (2/8)](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md)
 This is the first of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss some practical ideas for managing secrets in build and deployment pipelines which will scale well as an engineering organisation begins to grow.
 
 *Published: 3rd May 2023*
 
 ---
-## [Bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md)
+## [Bootstrapping a successful engineering organisation (1/8)](./2023-03-15-bootstrapping-an-engineering-organisation.md)
 I've been reflecting on the most important things to get right when bootstrapping a new engineering organisation, particuarly by thinking about what must have gone well when [Form3](https://www.form3.tech) was founded. This is the first of several posts describing what some of the major challenges might be, and how I think they can be solved.
 
 *Published: 15th March 2023*
