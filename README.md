@@ -5,6 +5,8 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 ## [Yet another guide to Mermaid diagrams in GitHub pages](./2023-05-03-yet-another-mermaid-in-github-pages-guide.md)
 I've recently published my first blog post on GitHub pages using Mermaid diagrams as plain text in the markup. It was surprisingly difficult to find the annoyingly simple way to do this, so here is yet another guide on how to include Mermaid in GitHub pages.
 
+*Published: 3rd May 2023*
+
 ---
 ## [Secrets management in build and deployment pipelines (2/8)](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md)
 This is the first of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss some practical ideas for managing secrets in build and deployment pipelines which will scale well as an engineering organisation begins to grow.
