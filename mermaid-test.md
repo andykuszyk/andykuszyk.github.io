@@ -9,11 +9,11 @@ flowchart TD
      a-->b
 ```
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/8.0.0/mermaid.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.1.0/mermaid.min.js"></script>
 <script>
 var config = {
     startOnLoad:true,
-    theme: 'forest',
+    theme: 'dark',
     flowchart:{
             useMaxWidth:false,
             htmlLabels:true
