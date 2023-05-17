@@ -2,7 +2,7 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
-## [Decision-making and design in growing engineering organisations](./2023-05-17-decision-making-and-design.md)
+## [Decision-making and design in growing engineering organisations (3/8)](./2023-05-17-decision-making-and-design.md)
 This is the second of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss the importance of documenting decisions from early-on, and describe a framework I've found useful for structuring problem-solving and design discussions as engineering teams grow.
 
 *Published: 17th May 2023*.
