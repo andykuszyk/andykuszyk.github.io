@@ -2,6 +2,12 @@
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang and Terraform, but also have experience in .NET and Python. If you're looking for my CV, you can find it [here](./cv.md).
 
 ---
+## [Decision-making and design in growing engineering organisations](./2023-05-17-decision-making-and-design.md)
+This is the second of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss the importance of documenting decisions from early-on, and describe a framework I've found useful for structuring problem-solving and design discussions as engineering teams grow.
+
+*Published: 17th May 2023*.
+
+---
 ## [Yet another guide to Mermaid diagrams in GitHub pages](./2023-05-03-yet-another-mermaid-in-github-pages-guide.md)
 I've recently published my first blog post on GitHub pages using Mermaid diagrams as plain text in the markup. It was surprisingly difficult to find the annoyingly simple way to do this, so here is yet another guide on how to include Mermaid in GitHub pages.
 
