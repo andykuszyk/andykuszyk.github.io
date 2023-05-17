@@ -57,7 +57,7 @@ With a small team, it's easy to quickly make decisions and act on them. Decision
 
 Having a scalable process in place for distributed decision making and design is essential--especially in a remote setting--to making sure everyone is included in shaping the trajectory of your product. It also ensures that future generations of your team can look back on the fruits of your labour, and understand why things are the way they are.
 
-*Blog post to follow!*
+I've written a [dedicated blog post](https://andykuszyk.github.io/2023-05-17-decision-making-and-design.html) about this topic with some ideas I've found useful for structuring the decision-making and design process.
 
 ### Infrastructure as code
 Although taken for granted now, infrastructure as code was in its infancy when Form3 was founded. Despite its novelty, codified infrastructure (using Terraform) is completely ubiquitous at Form3. Everything from our AWS infrastructure to the repos in our GitHub organisation are managed through Terraform. Anything you can imagine with an API is managed via Terraform (apart from perhaps Slack channels!).
