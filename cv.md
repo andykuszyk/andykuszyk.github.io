@@ -1,25 +1,36 @@
 # Andy Kuszyk CV
+
 ## About Me
-I am an experienced software engineer, with almost a decade of experience working in Golang, Terraform, Python and .NET. 
+I am:
 
-I have worked with privately hosted servers, private clouds hosted in data centres, and public cloud providers. 
+- An **experienced engineer**; with a decade of individual contributions in Golang, Terraform, AWS, Python and .NET.
 
-I practice DevOps as a matter of course.
+- A **competent leader**; I have grown teams and projects from inception; I have led individuals, and entire engineering organisations.
 
-I'm an enthusiastic Emacs user, love Linux, and can't work without a tiling window manager!
+- A **confident architect**; I have designed new systems and platforms from scratch, and have facilitated a culture of excellence in growing teams.
 
-You can read more about me on my technology blog: https://andykuszyk.github.io.
+I value:
+
+- **DevOps** practices and philosophies.
+
+- Strong **writing cultures** for documentation and design.
+
+- **Emacs, Linux**, and free software!
+
+You can read more about me on my technology blog: [**andykuszyk.github.io**](https://andykuszyk.github.io), or contact me on LinkedIn: [**linkedin.com/in/andy-kuszyk**](https://www.linkedin.com/in/andy-kuszyk/)
 
 ## Primary Skills
-- Application development in Golang, and Python.
-- Infrastructure development in Terraform.
-- Platform design with AWS and Kubernetes.
-- Telemetry management with the Prometheus and ELK stacks.
+- Application development in **Golang**, and **Python**.
+- Infrastructure development in **Terraform**.
+- Platform design with **AWS** and **Kubernetes**.
+- Telemetry management with the **Prometheus** and ELK stacks.
+
+---
 
 # Work Experience
 ## Form3 (2019 - present)
 ### Staff Engineer (Nov '22 - present)
-At the end of 2022, I decided to move away from engineering management into a more technical role. I am now a Staff Engineer on a project building payment systems for the US market.
+At the end of 2022, I decided to take a step away from engineering management, back into an IC role. I am now a Staff Engineer on a project building payment systems for the US market.
 
 As a Staff Engineer, I am mostly self-led; I seek out any issues in the team's practices or codebases, and try to help improve them where I can. I often pair up with members of the team to help solve specific problems, or to plan larger programmes of work.
 
@@ -40,7 +51,7 @@ In this role I:
 ### Senior Engineer (June '19 - Feb '21)
 When I joined Form3, my first role was a member of the scaling and performance team. I spent most of my time working on Golang and Java code bases, and on analysing the performance of a distributed payments processing system.
 
-This involved lots of work with instrumentation (generally Prometheus), as well as working on our in-house load testing tool (https://github.com/form3tech-oss/f1).
+This involved lots of work with instrumentation (generally Prometheus), as well as working on our in-house load testing tool: [github.com/form3tech-oss/f1](https://github.com/form3tech-oss/f1).
 
 The workloads I was analysing ran on ECS or Kubernetes, and most relied on asynchronous message processing via SQS or NATS.
 
@@ -59,6 +70,8 @@ My role at Capita was an MI Analyst, which mainly involved analysing data in Exc
 
 ## Teaching (2010 - 2011)
 Prior to my technology career, I trained and worked as a secondary school Physics teacher.
+
+---
 
 # Education
 - MSc in Advanced Computer Science (MMU, 2016 - 2018)
