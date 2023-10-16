@@ -4,17 +4,13 @@
 I am:
 
 - An **experienced engineer**; with a decade of individual contributions in Golang, Terraform, AWS, Python and .NET.
-
 - A **competent leader**; I have grown teams and projects from inception; I have led individuals, and entire engineering organisations.
-
 - A **confident architect**; I have designed new systems and platforms from scratch, and have facilitated a culture of excellence in growing teams.
 
 I value:
 
 - **DevOps** practices and philosophies.
-
 - Strong **writing cultures** for documentation and design.
-
 - **Emacs, Linux**, and free software!
 
 You can read more about me on my technology blog: [**andykuszyk.github.io**](https://andykuszyk.github.io), or contact me on LinkedIn: [**linkedin.com/in/andy-kuszyk**](https://www.linkedin.com/in/andy-kuszyk/)
