@@ -24,6 +24,40 @@ Before we start talking about securing environment access, I want to classify a 
 Let's brief explore each of these categories with a simple example, so I can show you what I mean.
 
 ### 1. Static compute with SSH
+When I refer to environments comprising of static compute with SSH access, I'm talking about one where you run a set of virtual machines, and your primary means of access is SSH.
+
+You might run a pool of EC2 instances that run your software, or which provide the compute capacity for a container scheduler like Kubernetes. You might want to administer and operate your environment primarily by accessing these machines over SSH, and you might facilitate access to these machines using a bastion server. Here's an example of what this setup might look like:
+
+```mermaid
+flowchart LR
+  subgraph vpc[VPC]
+    subgraph private[Private subnet]
+	  ec21[Worker node 1]
+	  ec22[Worker node 2]
+	end
+	subgraph public[Public subnet]
+		bastion[Bastion server]
+	end
+  end
+  internet((Internet))
+  internet-->|ssh|bastion
+  bastion-.->|ssh|ec21
+  bastion-.->|ssh|ec22
+```
+
+In this example, your worker nodes run in a private, secure subnet, with no direct access to the internet. You run a bastion server alongside them, which has internet access, and you use the bastion to mediate access further into your environment.
+
+A typical access control flow would be:
+
+```mermaid
+flowchart TD
+	operator((Operator))
+	bastion[Bastion]
+	worker[Worker node]
+	
+	operator-->|ssh to public IP address|bastion
+	bastion-->|ssh to private IP address|worker
+```
 
 ### 2. Static compute without SSH
 
