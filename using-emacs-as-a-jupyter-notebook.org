@@ -1,0 +1,45 @@
+** Create some data
+#+begin_src bash :results verbatim
+cat <<EOF > data.njson
+{"name": "Spock", "editor": "Emacs"}
+{"name": "James Kirk", "editor": "Vim"}
+{"name": "Dr McCoy", "editor": "Vim"}
+{"name": "Scotty", "editor": "Emacs"}
+{"name": "Worf", "editor": "ed"}
+{"name": "Geordi LaForge", "editor": "Emacs"}
+{"name": "Jean-luc Picard", "editor": "VS Code"}
+{"name": "Wesley Crusher", "editor": "VS Code"}
+{"name": "William Riker", "editor": "Vim"}
+EOF
+#+end_src
+
+#+RESULTS:
+
+#+begin_src bash :results verbatim
+cat data.njson
+#+end_src
+
+#+RESULTS:
+: {"name": "Spock", "editor": "Emacs"}
+: {"name": "James Kirk", "editor": "Vim"}
+: {"name": "Dr McCoy", "editor": "Vim"}
+: {"name": "Scotty", "editor": "Emacs"}
+: {"name": "Worf", "editor": "ed"}
+: {"name": "Geordi LaForge", "editor": "Emacs"}
+: {"name": "Jean-luc Picard", "editor": "VS Code"}
+: {"name": "Wesley Crusher", "editor": "VS Code"}
+: {"name": "William Riker", "editor": "Vim"}
+
+** Visualise the data
+#+begin_src python :results output file :file usage.png
+import pandas as pd
+import seaborn as sns
+import sys
+
+df = pd.read_json("data.njson", lines=True)
+axes = sns.histplot(df, x="editor")
+axes.getfigure().savefig(sys.stdout.buffer)
+#+end_src
+
+#+RESULTS:
+[[file:usage.png]]
