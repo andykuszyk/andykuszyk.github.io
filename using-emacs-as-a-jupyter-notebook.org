@@ -7,6 +7,7 @@ cat <<EOF > data.njson
 {"name": "Scotty", "editor": "Emacs"}
 {"name": "Worf", "editor": "ed"}
 {"name": "Geordi LaForge", "editor": "Emacs"}
+{"name": "Data", "editor": "Emacs"}
 {"name": "Jean-luc Picard", "editor": "VS Code"}
 {"name": "Wesley Crusher", "editor": "VS Code"}
 {"name": "William Riker", "editor": "Vim"}
@@ -20,15 +21,18 @@ cat data.njson
 #+end_src
 
 #+RESULTS:
-: {"name": "Spock", "editor": "Emacs"}
-: {"name": "James Kirk", "editor": "Vim"}
-: {"name": "Dr McCoy", "editor": "Vim"}
-: {"name": "Scotty", "editor": "Emacs"}
-: {"name": "Worf", "editor": "ed"}
-: {"name": "Geordi LaForge", "editor": "Emacs"}
-: {"name": "Jean-luc Picard", "editor": "VS Code"}
-: {"name": "Wesley Crusher", "editor": "VS Code"}
-: {"name": "William Riker", "editor": "Vim"}
+#+begin_example
+{"name": "Spock", "editor": "Emacs"}
+{"name": "James Kirk", "editor": "Vim"}
+{"name": "Dr McCoy", "editor": "Vim"}
+{"name": "Scotty", "editor": "Emacs"}
+{"name": "Worf", "editor": "ed"}
+{"name": "Geordi LaForge", "editor": "Emacs"}
+{"name": "Data", "editor": "Emacs"}
+{"name": "Jean-luc Picard", "editor": "VS Code"}
+{"name": "Wesley Crusher", "editor": "VS Code"}
+{"name": "William Riker", "editor": "Vim"}
+#+end_example
 
 ** Visualise the data
 #+begin_src python :results output file :file usage.png
@@ -38,7 +42,7 @@ import sys
 
 df = pd.read_json("data.njson", lines=True)
 axes = sns.histplot(df, x="editor")
-axes.getfigure().savefig(sys.stdout.buffer)
+axes.get_figure().savefig(sys.stdout.buffer)
 #+end_src
 
 #+RESULTS:
