@@ -33,7 +33,7 @@ echo '{"name": "Spock", "editor": "Emacs"}
 #+end_src
 ```
 
-The key to this source block is the `:results output file` header argument, and the corresponding `:file data.njson`. This tells org-mode to save the output of the code block to a file, rather than displaying the `stdout` in-buffer, and that the results should be saved to a file called `data.njson`.
+The key to this source block is the `:results output file` header argument, and the corresponding `:file data.njson` argument. This tells org-mode to save the output of the code block to a file, rather than displaying the `stdout` in-buffer, and that the results should be saved to a file called `data.njson`.
 
 ## Visualising the data, directly in org-mode
 Now, we can load that data into `pandas`, and visualise it with `seaborn`:
