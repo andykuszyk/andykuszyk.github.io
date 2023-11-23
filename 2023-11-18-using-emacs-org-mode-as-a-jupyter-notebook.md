@@ -12,15 +12,14 @@ What I wanted to do was:
 3. Plot a chart using `seaborn`
 4. See the chart appear--as if by magic--directly within Emacs.
 
-Steps (1) and (2) are pretty straightforward, but I had to Google how to do step (4). In this blog post, I'm just going to briefly summarise how you do it.
+Steps (1) and (2) are pretty straightforward to do with regular org-mode code blocks, but I had to Google how to do step (4). In this blog post, I'm just going to briefly summarise how you do it.
 
 ## In the beginning, there was Data
-First, we need some data. Here's some real-world data about the text editors that some well-known computer users prefer. I've included an org-mode snippet showing how you would write this to disk from within Emacs.
+First, we need some data. Here's some real-world data about the text editors that some well-known computer users prefer. I've included an org-mode snippet showing how you could write this to disk from within Emacs.
 
 ```org
-#+begin_src bash
-cat <<EOF > data.njson
-{"name": "Spock", "editor": "Emacs"}
+#+begin_src bash :results output file :file data.njson
+echo '{"name": "Spock", "editor": "Emacs"}
 {"name": "James Kirk", "editor": "Vim"}
 {"name": "Dr McCoy", "editor": "Vim"}
 {"name": "Scotty", "editor": "Emacs"}
@@ -30,11 +29,11 @@ cat <<EOF > data.njson
 {"name": "Jean-luc Picard", "editor": "VS Code"}
 {"name": "Wesley Crusher", "editor": "VS Code"}
 {"name": "William Riker", "editor": "Vim"}
-EOF
+'
 #+end_src
 ```
 
-As you can see, this data is 100% genuine.
+The key to this source block is the `:results output file` header argument, and the corresponding `:file data.njson`. This tells org-mode to save the output of the code block to a file, rather than displaying the `stdout` in-buffer, and that the results should be saved to a file called `data.njson`.
 
 ## Visualising the data, directly in org-mode
 Now, we can load that data into `pandas`, and visualise it with `seaborn`:
@@ -50,3 +49,14 @@ axes = sns.histplot(df, x="editor")
 axes.get_figure().savefig(sys.stdout.buffer)
 #+end_src
 ```
+
+The main tricks in use here are:
+- The `:results output file` and `:file usage.png` header arguments to save the `stdout` to a file called `usage.png`, just like when we created the data.
+- Saving the chart to `sys.stdout.buffer`, which causes Python to write the bytes of the image to the `stdout` file descriptor.
+
+Since Python is writing the image to `stdout`, and org-mode is saving the `stdout` to a file, this all works nicely to save the image to disk, and display it directly in the org-mode buffer.
+
+## Results
+And, of course, the results are unsurprising:
+
+![](usage.png)

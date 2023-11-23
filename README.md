@@ -4,6 +4,12 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 If you're looking for my CV, you can find an overview [here](./cv.md) ([PDF](andy-kuszyk-cv.pdf)). If you're interested in hiring me as a consultant, you can find an expanded CV [here](./consulting-cv.md) ([PDF](andy-kuszyk-consulting-cv.pdf)).
 
 ---
+## [Visualising data analysis in Emacs org-mode](./2023-11-18-using-emacs-org-mode-as-a-jupyter-notebook.md)
+I recently wanted to perform some data analysis and visualise the results in a similar way to using a Jupyter Notebook. This post shows a couple of tricks for doing so directly from within Emacs org-mode.
+
+*Published: 23rd November 2023*.
+
+---
 ## [Decision-making and design in growing engineering organisations (3/8)](./2023-05-17-decision-making-and-design.md)
 This is the second of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss the importance of documenting decisions from early-on, and describe a framework I've found useful for structuring problem-solving and design discussions as engineering teams grow.
 

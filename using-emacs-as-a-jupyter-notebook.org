@@ -1,7 +1,6 @@
 ** Create some data
-#+begin_src bash :results verbatim
-cat <<EOF > data.njson
-{"name": "Spock", "editor": "Emacs"}
+#+begin_src bash :results output file :file data.njson
+echo '{"name": "Spock", "editor": "Emacs"}
 {"name": "James Kirk", "editor": "Vim"}
 {"name": "Dr McCoy", "editor": "Vim"}
 {"name": "Scotty", "editor": "Emacs"}
@@ -10,11 +9,11 @@ cat <<EOF > data.njson
 {"name": "Data", "editor": "Emacs"}
 {"name": "Jean-luc Picard", "editor": "VS Code"}
 {"name": "Wesley Crusher", "editor": "VS Code"}
-{"name": "William Riker", "editor": "Vim"}
-EOF
+{"name": "William Riker", "editor": "Vim"}'
 #+end_src
 
 #+RESULTS:
+[[file:data.njson]]
 
 #+begin_src bash :results verbatim
 cat data.njson
