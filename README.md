@@ -4,6 +4,12 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 If you're looking for my CV, you can find an overview [here](./cv.md) ([PDF](andy-kuszyk-cv.pdf)). If you're interested in hiring me as a consultant, you can find an expanded CV [here](./consulting-cv.md) ([PDF](andy-kuszyk-consulting-cv.pdf)).
 
 ---
+## [Using multiple SSH keys for git authentication](./2023-11-23-using-multiple-ssh-keys-for-git-authentication.md)
+Although I've been vaguely aware this was possible for many years, I only recently had the need to authenticate with multiple GitHub accounts via SSH from the same machine. In this post, I summarise how to make use of multiple git SSH identities from the same host, with some easy-to-manage configuration tips.
+
+*Published: 27th November 2023*.
+
+---
 ## [Visualising data analysis in Emacs org-mode](./2023-11-18-using-emacs-org-mode-as-a-jupyter-notebook.md)
 I recently wanted to perform some data analysis and visualise the results in a similar way to using a Jupyter Notebook. This post shows a couple of tricks for doing so directly from within Emacs org-mode.
 
