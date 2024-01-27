@@ -4,24 +4,28 @@ I [recently wrote](https://andykuszyk.github.io/2023-03-15-bootstrapping-an-engi
 You'll probably start with a development environment. Then you might need a testing environment. Soon enough you'll have a production environment, and in no time at all you'll have a fleet of environments to manage. For each environment, your engineers will need a variety of different means of access. For example:
 
 - SSH access to compute nodes.
-- Control plane access (e.g. via `kubectl`) to Kubernetes.
+- Control plane access to your container scheduler (e.g. via `kubectl` for Kubernetes).
 - Database access to your database servers.
 - Command line or web console access to your cloud provider.
 
 For some environments, you'll want engineers to have unrestricted access. In others, you'll want access to be tightly controlled, possibly with some kind of privilege escalation and auditing.
 
-Access to your environments is a fundamental component to your engineering organisation, and getting this right at the beginning will allow your team to grow and build out a platform in a secure, safe way.
+Access to your environments is a fundamental component of your engineering organisation, and getting this right at the beginning will allow your team to grow and build out a platform in a secure, safe, and productive way.
 
-In this post, I'm going to outline a few ways of tackling this problem. This is a very broad subject, which is also very deep. There are many ways of solving this problem, and each solution can be individually quite complicated. Rather than delving into the details of just one idea, I'm going to outline a few, and give you some simple examples. These examples will necessarily be opinionated, and I hope that they serve as inspiration for your own ideas about how you might approach the problem of securing access to your organisations environments.
+In this post, I'm going to outline a few approaches to securing access to your environments. This is a very broad subject, which is also very deep. There are many ways of solving this problem, and each solution can be individually quite complicated. Rather than delving into the details of just one idea, I'm going to outline a few, and give you some simple examples. These examples will necessarily be opinionated, and I hope that they serve as inspiration for your own ideas about how you might approach the problem of securing access to your organisation's environments.
+
+> 💡 This blog post will focus mainly on securing environment access using AWS. The concepts are probably portable to other cloud providers, but the examples presented here are all AWS-specific.
+
+---
 
 ## A taxonomy of environment types
-Before we start talking about securing environment access, I want to classify a few basic patterns for building an environment. Each of these types has different access characteristics, and it will be convenient to compare them using a simple name. This list is by no means exhaustive and, if anything, is simply a product of my experience to-date.
+Before we start talking about securing environment access, I want to classify a few basic patterns for building an environment. Each of these types has different access-control characteristics, and it will be convenient to compare them using a simple name. This list is by no means exhaustive, and is probably just product of my experience. Nonetheless, here are the environment types I'll be discussing:
 
 1. Static compute with SSH.
 2. Static compute without SSH.
 3. Dynamic compute.
 
-Let's brief explore each of these categories with a simple example, so I can show you what I mean.
+Let's briefly explore each of these categories with a simple example, so I can show you what I mean.
 
 ### 1. Static compute with SSH
 When I refer to environments comprising of static compute with SSH access, I'm talking about one where you run a set of virtual machines, and your primary means of access is SSH.
@@ -38,19 +42,14 @@ flowchart LR
 	subgraph public[Public subnet]
 		bastion[Bastion server]
 	end
-	subgraph managed[Managed service]
-	   ctrl[Control plane]
-	end
   end
   internet((Internet))
   internet-->|ssh|bastion
   bastion-.->|ssh|ec21
   bastion-.->|ssh|ec22
-  ec21-.->ctrl
-  ec22-.->ctrl
 ```
 
-In this example, your worker nodes run in a private, secure subnet, with no direct access to the internet. They may connect to a managed service control plane, e.g. EKS. You run a bastion server alongside them, which has internet access, and you use the bastion to mediate access further into your environment.
+In this example, your worker nodes run in a private, secure subnet, with no direct access to the internet. You run a bastion server alongside them, which has internet access, and you use the bastion to mediate access further into your environment.
 
 A typical access control flow would be:
 
@@ -64,10 +63,10 @@ flowchart TD
 	bastion-->|ssh to private IP address|worker
 ```
 
-I would describe this as a fairly typical set-up, although it is not without its complexities and disadvantages.
+This is a fairly standard set-up, although it is not without its complexities and disadvantages.
 
 ### 2. Static compute without SSH
-Static compute without SSH is very similar, except that you treat the underlying compute nodes providing capacity to your container scheduler as immutable, and ephemeral. You operate your environment entirely through the control plane of your scheduler, and don't permit direct SSH access to your compute nodes at all. Following on from the example above, an environment like this might look as follows:
+Static compute without SSH is very similar, except that you treat the underlying compute nodes providing capacity to your container scheduler as immutable, and ephemeral. You operate your environment entirely through the control plane of your scheduler (e.g Kubernetes), and don't permit direct SSH access to your compute nodes at all. Following on from the example above, an environment like this might look as follows:
 
 ```mermaid
 flowchart LR
@@ -76,7 +75,7 @@ flowchart LR
 	  ec21[Worker node 1]
 	  ec22[Worker node 2]
 	end
-	subgraph managed[Managed service]
+	subgraph managed[Container scheduler]
 	   ctrl[Control plane]
 	end
   end
@@ -86,9 +85,9 @@ flowchart LR
   ec22-->ctrl
 ```
 
-In this configuration, you don't need to expose any compute nodes directly to the internet. Instead, you rely soley on your nodes communicating with your schedulers control plane, and then mediate operator access directly with the control plane itself.
+In this configuration, you don't need to expose any compute nodes directly to the internet. Instead, you rely soley on your nodes communicating with your scheduler's control plane, and then mediate operator access directly with the control plane itself.
 
-For example, an operator might gain access as like this:
+For example, an operator might gain access as follows:
 
 ```mermaid
 flowchart TD
@@ -97,7 +96,7 @@ flowchart TD
 	worker[Worker node]
 	
 	operator-->|kubectl|ctrl
-	ctrl-->worker
+	ctrl-->|Run container|worker
 ```
 
 This has some security benefits in terms of limiting the footprint of your estate on the internet, but can be difficult to manage and troubleshoot in the event that things going wrong with your underlying hosts.
@@ -105,20 +104,28 @@ This has some security benefits in terms of limiting the footprint of your estat
 ### 3. Dynamic compute
 The third configuration I wanted to describe is one where you have no control over the underlying compute whatsoever. This might take the form of fully managed compute nodes for your container orchestrator (e.g. AWS Fargate), or serverless functions (e.g. AWS Lambda).
 
-Irrespective of the mechanism, environments consisting of dynamic compute have no logical compute that you can directly access; the only thing your concerned with is the software running on top of the compute.
+Irrespective of the mechanism, environments consisting of dynamic compute have no logical compute that you can directly access; the only thing you're concerned with is the software running on top of the compute.
 
-## Securing access
-Now, when it comes to securing access to your environments, the main point of discussion is the first hop an operator would need to make in the configurations described above. For static compute with SSH, this is the SSH connection to the bastion. For static compute without SSH, this is authentication with the control plane. For dynamic compute, this is either authentication with the control plane, or no authentication at all!
+---
+
+## But what about securing access?
+OK, now that we've established a basic taxonomy of environment types, let's return to the topic of securing access to your environments. The main point to discuss is the first hop an operator would need to make in the architectures described above. For static compute with SSH, this is the SSH connection to the bastion. For static compute without SSH, this is authentication with the control plane. For dynamic compute, this is either authentication with the control plane, or no authentication at all!
 
 So, that leaves us with two primary challenges:
 1. Securing control plane access (i.e. securing cloud credentials).
 2. Securing SSH access.
 
-Securing control plane access is largely a vendor-specific issue once an operator is in possession of valid credentials. SSH access is a little more open ended. These are the two topics I'm going to focus on in this blog post.
+Securing control plane access is mostly a vendor-specific issue, once an operator is in possession of valid credentials. SSH access is a little more open-ended. These are the two topics I'm going to focus on in this blog post.
 
 ## 1. Securing cloud credentials
+The main idea I'd like to present for securing access to your cloud provider is simply this:
+
+> Use Hashicorp Vault!
+
+Vault has an array of different authentication mechanisms that your operators can use to authenticate with it, and it then supports a variety of different secrets backends; including ones designed to issue ephemeral credentials for your cloud provider of choice. This makes it an ideal candidate for controlling and mediating the access of your engineers to your environments.
+
 ### 1.1 Running Vault
-In this section, I'm going to focus on automating access to your AWS environment using Hashicorp Vault. Running Vault securely could be another blog post by itself, so I simply assume that you've got a Vault instance running somewhere.
+ounning Vault securely could be another blog post by itself, so I simply assume that you've got a Vault instance running somewhere.
 
 When I was working on this blog post, I signed up for a free account for Hashicorp Cloud Platform, and provisioned an instance of Vault with a public IP address. Whilst this probably isn't what you want in real life, it will get you up and running with the examples provided here.
 
