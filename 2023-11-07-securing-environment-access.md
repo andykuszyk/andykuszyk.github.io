@@ -19,7 +19,7 @@ In this post, I'm going to outline a few approaches to securing access to your e
 ---
 
 ## A taxonomy of environment types
-Before we start talking about securing environment access, I want to classify a few basic patterns for building an environment. Each of these types has different access-control characteristics, and it will be convenient to compare them using a simple name. This list is by no means exhaustive, and is probably just product of my experience. Nonetheless, here are the environment types I'll be discussing:
+Before we start talking about securing environment access, I want to classify a few basic patterns for building an environment. Each of these types has different access-control characteristics, and it will be convenient to compare them using a simple name. This list is by no means exhaustive, and is probably just a product of my experience. Nonetheless, here are the environment types I'll be discussing:
 
 1. Static compute with SSH.
 2. Static compute without SSH.
@@ -324,3 +324,11 @@ TODO
 
 ## Closing thoughts
 TODO
+
+<script type="module">
+	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+	mermaid.initialize({
+		startOnLoad: true,
+		theme: 'dark'
+	});
+</script>
