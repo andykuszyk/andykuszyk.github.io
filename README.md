@@ -4,6 +4,12 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 If you're looking for my CV, you can find an overview [here](./cv.md) ([PDF](andy-kuszyk-cv.pdf)). If you're interested in hiring me as a consultant, you can find an expanded CV [here](./consulting-cv.md) ([PDF](andy-kuszyk-consulting-cv.pdf)).
 
 ---
+## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md)
+This is the third of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I go into more detail about one way to secure engineering access to your environments from day one; in a way that will scale with the size of both your team, and your estate.
+
+*Published: 29th May 2024*.
+
+---
 ## [Using multiple SSH keys for git authentication](./2023-11-23-using-multiple-ssh-keys-for-git-authentication.md)
 Although I've been vaguely aware this was possible for many years, I only recently had the need to authenticate with multiple GitHub accounts via SSH from the same machine. In this post, I summarise how to make use of multiple git SSH identities from the same host, with some easy-to-manage configuration tips.
 
