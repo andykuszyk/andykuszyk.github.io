@@ -30,9 +30,9 @@ Let's briefly explore each of these categories with a simple example, so I can s
 ### 1. Static compute with SSH
 When I refer to environments comprising of static compute with SSH access, I'm talking about one where you run a set of virtual machines, and your primary means of access is SSH.
 
-You might run a pool of EC2 instances that run your software, or which provide the compute capacity for a container scheduler like Kubernetes. You might want to administer and operate your environment primarily by accessing these machines over SSH, and you might facilitate access to these machines using a bastion server. Here's an example of what this setup might look like:
+You might run a pool of EC2 instances that run your software, or which provide the compute capacity for a container scheduler like Kubernetes or ECS. You might want to administer and operate your environment primarily by accessing these machines over SSH, and you might facilitate access to these machines using a bastion server. Here's an example of what this setup might look like:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   subgraph vpc[VPC]
     subgraph private[Private subnet]
@@ -47,13 +47,13 @@ flowchart LR
   internet-->|ssh|bastion
   bastion-.->|ssh|ec21
   bastion-.->|ssh|ec22
-```
+</pre>
 
 In this example, your worker nodes run in a private, secure subnet, with no direct access to the internet. You run a bastion server alongside them, which has internet access, and you use the bastion to mediate access further into your environment.
 
 A typical access control flow would be:
 
-```mermaid
+<pre class="mermaid">
 flowchart TD
 	operator((Operator))
 	bastion[Bastion]
@@ -61,14 +61,14 @@ flowchart TD
 	
 	operator-->|ssh to public IP address|bastion
 	bastion-->|ssh to private IP address|worker
-```
+</pre>
 
 This is a fairly standard set-up, although it is not without its complexities and disadvantages.
 
 ### 2. Static compute without SSH
 Static compute without SSH is very similar, except that you treat the underlying compute nodes providing capacity to your container scheduler as immutable, and ephemeral. You operate your environment entirely through the control plane of your scheduler (e.g Kubernetes), and don't permit direct SSH access to your compute nodes at all. Following on from the example above, an environment like this might look as follows:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   subgraph vpc[VPC]
     subgraph private[Private subnet]
@@ -83,13 +83,13 @@ flowchart LR
   internet-->|kubectl|ctrl
   ec21-->ctrl
   ec22-->ctrl
-```
+</pre>
 
 In this configuration, you don't need to expose any compute nodes directly to the internet. Instead, you rely soley on your nodes communicating with your scheduler's control plane, and then mediate operator access directly with the control plane itself.
 
 For example, an operator might gain access as follows:
 
-```mermaid
+<pre class="mermaid">
 flowchart TD
 	operator((Operator))
 	ctrl[Control plane]
@@ -97,7 +97,7 @@ flowchart TD
 	
 	operator-->|kubectl|ctrl
 	ctrl-->|Run container|worker
-```
+</pre>
 
 This has some security benefits in terms of limiting the footprint of your estate on the internet, but can be difficult to manage and troubleshoot in the event that things going wrong with your underlying hosts.
 
@@ -149,7 +149,7 @@ This is a little easier to manage as your organisation grows, and also allows yo
 
 At this point, I'm assuming you've got a working installation of Vault, and an AWS account that you want to automate access to. The basics of this approach involve your engineers authenticating with Vault using TLS certificates, Vault issuing temporary AWS credentials, and then your engineers using these credentials to access the AWS CLI and web console. This idea is illustrated below:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
   subgraph eng[Engineer]
     vaultlogin[$ vault login]
@@ -165,7 +165,7 @@ flowchart LR
   vaultread-->|Generate ephemeral AWS credentials|awseng
   awseng-->aws
   awscli-->|Use ephemeral credentials|aws
-```
+</pre>
 
 I'm going to break this approach down into four stages, and provide some practical examples for each:
 1. Authentication with Vault.
@@ -264,7 +264,7 @@ Before your operators can authenticate with your hosts in this way, you'll need 
 
 These steps are illustrated below:
 
-```mermaid
+<pre class="mermaid">
 flowchart LR
     subgraph ca[CA setup]
 	    subgraph vault[Vault]
@@ -280,7 +280,7 @@ flowchart LR
 			userdata-->|Configure trusted CA|sshd
 		end
 	end
-```
+</pre>
 
 Then, when an operator tries to login, they will perform these steps:
 1. Request Vault to sign the public key of the local SSH keypair.
@@ -289,7 +289,7 @@ Then, when an operator tries to login, they will perform these steps:
 4. Access will be granted.
 
 This process is illustrated below:
-```mermaid
+<pre class="mermaid">
 flowchart LR
 	subgraph operator[Operator access]
     subgraph keys[SSH keys]
@@ -315,7 +315,7 @@ flowchart LR
 	end
 
 	end
-```
+</pre>
 
 This approach leverages the access your engineers already have to Vault, and extends it to control SSH permissions at scale. You can control which classes of machines or environments operators have access to using Vault policies, and only need to manage the distribution of the certificate authority materials to your compute nodes, rather than managing fleets of SSH keys.
 
