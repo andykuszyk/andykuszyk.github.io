@@ -28,7 +28,7 @@ Before we start talking about securing environment access, I want to classify a 
 Let's briefly explore each of these categories with a simple example, so I can show you what I mean.
 
 ### 1. Static compute with SSH
-When I refer to environments comprising of static compute with SSH access, I'm talking about one where you run a set of virtual machines, and your primary means of access is SSH.
+When I refer to environments comprising of *static compute with SSH* access, I'm talking about one where you run a set of virtual machines, and your primary means of access is SSH.
 
 You might run a pool of EC2 instances that run your software, or which provide the compute capacity for a container scheduler like Kubernetes or ECS. You might want to administer and operate your environment primarily by accessing these machines over SSH, and you might facilitate access to these machines using a bastion server. Here's an example of what this setup might look like:
 
@@ -66,7 +66,7 @@ flowchart TD
 This is a fairly standard set-up, although it is not without its complexities and disadvantages.
 
 ### 2. Static compute without SSH
-Static compute without SSH is very similar, except that you treat the underlying compute nodes providing capacity to your container scheduler as immutable, and ephemeral. You operate your environment entirely through the control plane of your scheduler (e.g Kubernetes), and don't permit direct SSH access to your compute nodes at all. Following on from the example above, an environment like this might look as follows:
+*Static compute without SSH* is very similar, except that you treat the underlying compute nodes providing capacity to your container scheduler as immutable, and ephemeral. You operate your environment entirely through the control plane of your scheduler (e.g Kubernetes), and don't permit direct SSH access to your compute nodes at all. Following on from the example above, an environment like this might look as follows:
 
 <pre class="mermaid">
 flowchart LR
@@ -101,15 +101,15 @@ flowchart TD
 
 This has some security benefits in terms of limiting the footprint of your estate on the internet, but can be difficult to manage and troubleshoot in the event that things going wrong with your underlying hosts.
 
-### 3. Dynamic compute
+### 3. *dynamic compute*
 The third configuration I wanted to describe is one where you have no control over the underlying compute whatsoever. This might take the form of fully managed compute nodes for your container orchestrator (e.g. AWS Fargate), or serverless functions (e.g. AWS Lambda).
 
-Irrespective of the mechanism, environments consisting of dynamic compute have no logical compute that you can directly access; the only thing you're concerned with is the software running on top of the compute.
+Irrespective of the mechanism, environments consisting of *dynamic compute* have no logical compute that you can directly access; the only thing you're concerned with is the software running on top of the compute.
 
 ---
 
 ## But what about securing access?
-OK, now that we've established a basic taxonomy of environment types, let's return to the topic of securing access to your environments. The main point to discuss is the first hop an operator would need to make in the architectures described above. For static compute with SSH, this is the SSH connection to the bastion. For static compute without SSH, this is authentication with the control plane. For dynamic compute, this is either authentication with the control plane, or no authentication at all!
+OK, now that we've established a basic taxonomy of environment types, let's return to the topic of securing access to your environments. The main point to discuss is the first hop an operator would need to make in the architectures described above. For *static compute with SSH*, this is the SSH connection to the bastion. For *static compute without SSH*, this is authentication with the control plane. For *dynamic compute*, this is either authentication with the control plane, or no authentication at all!
 
 So, that leaves us with two primary challenges:
 1. Securing control plane access (i.e. securing cloud credentials).
@@ -120,7 +120,7 @@ Securing control plane access is mostly a vendor-specific issue, once an operato
 ## 1. Securing cloud credentials
 The main idea I'd like to present for securing access to your cloud provider is simply this:
 
-> Use Hashicorp Vault!
+> 📣 Use Hashicorp Vault!
 
 Vault has an array of different authentication mechanisms that your operators can use to authenticate with it, and it then supports a variety of different secrets backends; including ones designed to issue ephemeral credentials for your cloud provider of choice. This makes it an ideal candidate for controlling and mediating the access of your engineers to your environments.
 
@@ -236,12 +236,12 @@ Ultimately, this is a very narrow lens through which to discuss the wide field o
 
 In summary, you can use Vault to:
 
-- Grant or revoke access to your estate, based on an engineers identity (their Yubikey private key).
+- Grant or revoke access to your estate, based on an engineer's identity (their Yubikey private key).
 - Issue engineers with ephemeral cloud provider credentials, allowing them to access resources like a Kubernetes control plane, and the cloud console.
 - Elevate the permissions and individual has under certain circumstances, based on the role mapped to their identity in Vault.
 - Grant SSH access to portions of your estate by using Vault as an SSH certificate authority.
 
-This approach is tremendously powerful if you're target either the Static Compute with SSH, or Static Compute without SSH architectures, and is still very useful for managing access to your cloud even if you choose the Dynamic Compute architecture.
+This approach is tremendously powerful if you're target either the *static compute with SSH*, or *static compute without SSH* architectures, and is still very useful for managing access to your cloud even if you choose the *dynamic compute* architecture.
 
 The pros and cons of each of these patterns could be another blog post in itself (and maybe it will be!), but--for now--I hope I have left you with some inspiration about how you could secure access to your environments in the future.
 

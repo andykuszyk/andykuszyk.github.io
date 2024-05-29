@@ -78,7 +78,7 @@ For some environments, you'll want engineers to have unrestricted access. In oth
 
 Access to your environments is a fundamental component to your engineering organisation, and getting this right at the beginning will allow your team to grow and build out a platform in a secure, safe way.
 
-*Blog post to follow!*
+I've written a [dedicated blog post](https://andykuszyk.github.io/2023-11-07-securing-environment-access.html) on this topic with some examples of how to secure your environments at scale.
 
 ### Documentation
 When there are only two engineers in your team, it hardly seems necessary to maintain documentation. Often knowledge is "tribal", and is passed on by word of mouth. This scales well in the beginning, when you add a modest number of people to your organisation, but sooner or later it breaks down. At this point, if you never built a culture of written documentation, you have two problems:
