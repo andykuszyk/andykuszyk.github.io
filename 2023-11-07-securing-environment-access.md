@@ -115,7 +115,7 @@ So, that leaves us with two primary challenges:
 1. Securing control plane access (i.e. securing cloud credentials).
 2. Securing SSH access.
 
-Securing control plane access is mostly a vendor-specific issue, once an operator is in possession of valid credentials. SSH access is a little more open-ended. These are the two topics I'm going to focus on in this blog post.
+Securing control plane access is mostly a vendor-specific issue, once an operator is in possession of valid credentials. However, SSH access is a little more open-ended. These are the two topics I'm going to focus on in this blog post.
 
 ## 1. Securing cloud credentials
 The main idea I'd like to present for securing access to your cloud provider is simply this:
@@ -124,21 +124,8 @@ The main idea I'd like to present for securing access to your cloud provider is 
 
 Vault has an array of different authentication mechanisms that your operators can use to authenticate with it, and it then supports a variety of different secrets backends; including ones designed to issue ephemeral credentials for your cloud provider of choice. This makes it an ideal candidate for controlling and mediating the access of your engineers to your environments.
 
-### 1.1 Running Vault
-ounning Vault securely could be another blog post by itself, so I simply assume that you've got a Vault instance running somewhere.
+You may start off with a team small enough for you to create new user accounts in each of your AWS accounts when new people join your team. However, creating accounts manually is problematic for a couple of reasons:
 
-When I was working on this blog post, I signed up for a free account for Hashicorp Cloud Platform, and provisioned an instance of Vault with a public IP address. Whilst this probably isn't what you want in real life, it will get you up and running with the examples provided here.
-
-You may also be able run a local development instance of Vault with a command similar to the following:
-
-```sh
-$ vault server -dev -dev-tls -dev-root-token-id root
-```
-
-This will run a local development server of Vault, with TLS enabled, and with a root token of `root`. It's worth noting that if you do this, any HTTP requests to the server will need to skip TLS verification (or use the temporary certificate authority generated for the development server). This can be done on Vault CLI commands using the `-tls-skip-verify` option, or by setting the `VAULT_CACERT` environment variable (the value for which is printed when the development server starts).
-
-### 1.2 Automating credential generation
-Before we start talking about accessing resources in your environments, we need to talk about how you authenticate with AWS in the first place. You probably have different AWS accounts for development and production, and you'll probably start off with a team small enough for you to create new user accounts in each of your AWS accounts when new people join your team. However, creating access manually is problematic for a couple of reasons:
 - It doesn't scale well as your team grows; you need to grant access to multiple AWS accounts for every user that joins, and remove access when they leave.
 - The user themselves can generate long-lived access keys, which could cause a lot of damage if they were compromised.
 - You'll need some kind of manual process for privilege escalation when granting users access to production environments.
@@ -147,7 +134,7 @@ The approach I will describe here involves dynamically provisioning access to AW
 
 This is a little easier to manage as your organisation grows, and also allows you to add some automation around privilege escalation. It also forms the foundation of the other access controls described later in this post.
 
-At this point, I'm assuming you've got a working installation of Vault, and an AWS account that you want to automate access to. The basics of this approach involve your engineers authenticating with Vault using TLS certificates, Vault issuing temporary AWS credentials, and then your engineers using these credentials to access the AWS CLI and web console. This idea is illustrated below:
+The basics of this approach involve your engineers authenticating with Vault using TLS certificates, Vault issuing temporary AWS credentials, and then your engineers using these credentials to access the AWS CLI and web console. This idea is illustrated below:
 
 <pre class="mermaid">
 flowchart LR
@@ -167,13 +154,6 @@ flowchart LR
   awscli-->|Use ephemeral credentials|aws
 </pre>
 
-I'm going to break this approach down into four stages, and provide some practical examples for each:
-1. Authentication with Vault.
-2. Setting up the AWS secrets engine in Vault.
-3. Generating ephemeral AWS credentials.
-4. Using the AWS CLI and console with ephemeral credentials.
-
-#### 1.2.1 Authentication with Vault
 One of the great things about Vault is the plethora of ways for a user to authenticate with Vault. I couldn't do justice to it to describe them all here, but I will briefly describe one way of managing authentication with Vault at scale.
 
 The TLS authentication method can be used in combination with a physical hardware token, such as a Yubikey, and the Vault Terraform provider to effectively manage access to Vault at scale. In brief, you could:
@@ -183,74 +163,6 @@ The TLS authentication method can be used in combination with a physical hardwar
 - Permit and deny access directly through source control, as well as controlling permissions and access through Terraform with Vault roles.
 
 With these things in place, your engineers can securely authenticate with Vault using the private key stored on their Yubikey, along with a PIN known only to them. This provides a secure way for operators to gain access to Vault, which will be the cornerstone of the access controls described in this post.
-
-### 1.2.2 The AWS secret engine
-When you have Vault running, and an AWS account you want it to issue credentials for, you can set up its AWS secrets engine to be able to provision ephemeral access keys.
-
-To do this, log in to your AWS account with your root credentials, and create a new user for Vault to use. This user should have administrative permissions. Generate an access key and secret access key for this user, and keep these values safe--they are the keys to your kingdom! These will be long-lived, and very powerful credentials that Vault uses to provision all other user accounts, so they need to be protected.
-
-Next, enable the AWS secrets engine in Vault, and configure it with the access key you just generated:
-```
-$ vault secrets enable aws
-Success! Enabled the aws secrets engine at: aws/
-$ vault write aws/config/root \
-    access_key=<your-access-key> \
-    secret_key=<your-secret-access-key> \
-    region=us-east-1
-Success! Data written to: aws/config/root
-```
-
-Once this is done, Vault can now authenticate with AWS and generate credentials.
-
-### 1.2.3 Generating ephemeral AWS credentials.
-Now that Vault can authenticate with AWS, we need a role that can be used to generate ephemeral credentials for a user. This is the role that will be associated with the ephemeral credentials issued to your users, and will describe what actions they can perform in your AWS account. You could easily use a variety of roles--each with different levels of permissions--and restrict which roles you engineers can access based on the Vault path permissions. In this example, the `developer` role has all permissions for EC2, and permission to create federation tokens (which is needed for web console access):
-
-```
-$ vault write aws/roles/developer \
-    credential_type=iam_user \
-    policy_document=-<<EOF
-{
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "ec2:*",
-      "Resource": "*"
-    },
-	{
-      "Effect": "Allow",
-      "Action": "sts:GetFederationToken",
-      "Resource": "*"
-    }
-  ]
-}
-EOF
-Success! Data written to: aws/roles/developer
-```
-
-A user authenticated with Vault can then generate ephemeral AWS credentials by simply reading from this path:
-
-```
-$ vault read aws/creds/developer
-Key                Value
----                -----
-lease_id           aws/creds/developer/lv1unjkhfJRvSOqe74RzbbEF.ucVqf
-lease_duration     1h
-lease_renewable    true
-access_key         HJHJKLHJKHJKGISC7FLD
-secret_key         nQeiHx6/2w5dashjfklh3j4klhlkjhkjslyhmJVN
-security_token     <nil>
-```
-
-### 1.2.4 Using the AWS CLI and console with ephemeral credentials
-Now that your operators have the ability to generate ephemeral AWS credentials using Vault, they can easily interact with AWS from the command line by exporting the access key and secret key into a shell environment:
-
-```
-$ export AWS_ACCESS_KEY_ID=HJKHKJHJKHJKHKJHBKGI
-$ export AWS_SECRET_ACCESS_KEY=eahfklhgkulhjkl.rehkghkh248937hjgh
-```
-
-Gaining access to the AWS console using these credentials is a little more involved, but mainly involves gaining federated access using `aws sts get-federation-token`.
 
 ## 2. Securing SSH access
 Once your engineers can reliable authenticate with Vault, you can also leverage Vault's [SSH secrets engine](https://developer.hashicorp.com/vault/docs/secrets/ssh/signed-ssh-certificates) to automate SSH access to your servers.
@@ -319,11 +231,19 @@ flowchart LR
 
 This approach leverages the access your engineers already have to Vault, and extends it to control SSH permissions at scale. You can control which classes of machines or environments operators have access to using Vault policies, and only need to manage the distribution of the certificate authority materials to your compute nodes, rather than managing fleets of SSH keys.
 
-## Comparison of environment types
-TODO
-
 ## Closing thoughts
-TODO
+Ultimately, this is a very narrow lens through which to discuss the wide field of options available to you when securing access to your environment. However, if you want to set things up at the beginning in a way that will scale well as your team and estate grows, Vault is a great technology to use.
+
+In summary, you can use Vault to:
+
+- Grant or revoke access to your estate, based on an engineers identity (their Yubikey private key).
+- Issue engineers with ephemeral cloud provider credentials, allowing them to access resources like a Kubernetes control plane, and the cloud console.
+- Elevate the permissions and individual has under certain circumstances, based on the role mapped to their identity in Vault.
+- Grant SSH access to portions of your estate by using Vault as an SSH certificate authority.
+
+This approach is tremendously powerful if you're target either the Static Compute with SSH, or Static Compute without SSH architectures, and is still very useful for managing access to your cloud even if you choose the Dynamic Compute architecture.
+
+The pros and cons of each of these patterns could be another blog post in itself (and maybe it will be!), but--for now--I hope I have left you with some inspiration about how you could secure access to your environments in the future.
 
 <script type="module">
 	import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
