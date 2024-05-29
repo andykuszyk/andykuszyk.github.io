@@ -101,7 +101,7 @@ flowchart TD
 
 This has some security benefits in terms of limiting the footprint of your estate on the internet, but can be difficult to manage and troubleshoot in the event that things going wrong with your underlying hosts.
 
-### 3. *dynamic compute*
+### 3. Dynamic compute
 The third configuration I wanted to describe is one where you have no control over the underlying compute whatsoever. This might take the form of fully managed compute nodes for your container orchestrator (e.g. AWS Fargate), or serverless functions (e.g. AWS Lambda).
 
 Irrespective of the mechanism, environments consisting of *dynamic compute* have no logical compute that you can directly access; the only thing you're concerned with is the software running on top of the compute.
