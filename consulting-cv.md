@@ -44,9 +44,9 @@ Deliveroo have a very strong writing culture, so alongside all of these projects
 
 ## Form3 (2019 - 2023)
 ### Staff Engineer (Nov '22 - Nov '23)
-At the end of 2022, I decided to take a step away from engineering management, back into an IC role. I spent a year as a Staff Engineer on a project building payment systems for the US market.
+At the end of 2022, I decided to take a step away from engineering leadership, back into an IC role. I spent a year as a Staff Engineer on a project building payment systems for the US market.
 
-In this staff role, I am was mostly self-led; I sought out any issues in the team's practices or codebases, and try to help improve them where I can. I often paired up with members of the team to help solve specific problems, or to plan larger programmes of work.
+In this staff role, I am was mostly self-led; I sought out any issues in the team's practices or codebases, and tied to help improve them where I could. I often paired up with members of the team to help solve specific problems, or to plan larger programmes of work.
 
 After more than four years at Form3, I decided to spend some time freelancing to gain more experience of different companies at different stages in their growth, and engineering organisations at different levels of maturity.
 
