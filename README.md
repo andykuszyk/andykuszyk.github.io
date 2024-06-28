@@ -1,7 +1,7 @@
 # Andy Kuszyk's tech blog
 I am a Software Engineer based on the South coast of the UK. I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experience in .NET, Clojure, and Python. And that's not to mention [Elisp](https://github.com/andykuszyk/noman.el)! 🤓
 
-> 💡 If you're looking for my CV, you can find it [here](./my-cv.md).
+> 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 ---
 ## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md)
