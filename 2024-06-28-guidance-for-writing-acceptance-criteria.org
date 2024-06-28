@@ -14,4 +14,4 @@ I've [[file:2022-10-19-what-i-learned-from-a-new-project.md][previously written]
 - Detailing exactly how the task should be implemented; the acceptance criteria should outline the boundaries of the task, without being prescriptive about the implementation.
 - Explaining why the task is being worked on; this should be included elsewhere in the description.
 ** 💭 When you're writing acceptance criteria, ask yourself...
-/"Will the person reading this achieve the outcomes I expect if the complete all of the acceptance criteria?"/
+/"Will the person reading this achieve the outcomes I expect if they complete all of the acceptance criteria?"/

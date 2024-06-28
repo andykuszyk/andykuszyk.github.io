@@ -27,5 +27,5 @@ I've [previously written](2022-10-19-what-i-learned-from-a-new-project.md) about
 
 ## 💭 When you're writing acceptance criteria, ask yourself&#x2026;
 
-*"Will the person reading this achieve the outcomes I expect if the complete all of the acceptance criteria?"*
+*"Will the person reading this achieve the outcomes I expect if they complete all of the acceptance criteria?"*
 
