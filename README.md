@@ -4,6 +4,12 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 > 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 ---
+## [A simple guide for writing good acceptance criteria](./2024-06-28-guidance-for-writing-acceptance-criteria.md)
+I recently shared some tips for writing acceptance criteria with a team I'm working with, so I thought I would re-post them here in case anyone else finds them useful.
+
+*Published: 28th June 2024*
+
+---
 ## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md)
 This is the third of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I go into more detail about one way to secure engineering access to your environments from day one; in a way that will scale with the size of both your team, and your estate.
 
