@@ -1,0 +1,18 @@
+#+options: toc:nil
+#+options: stat:nil
+#+options: todo:nil
+* A practical checklist for building distributed systems [1/7]
+** DONE Introduction
+When I worked at Form3--particularly during a period when I was designing a new payments system--I worked with several teams of engineers to design new components in a highly distributed system. The software components themselves were distributed; running in several different locations, with lots of asynchronous inputs. However, their underlying platform was also distributed; relying on [[https://www.cockroachlabs.com/][CockroachDB]] for data storage, and [[https://docs.nats.io/nats-concepts/jetstream][JetStream]] for messaging.
+
+There are many traps it's easy to fall into when building new components in an environment like this. Sometimes we would catch these early in the design process, and sometimes they would be caught later during peer review. Occasionally they didn't come up until we started performing load and chaos testing on the system. Luckily none of them made their way to production 😅
+
+As we iterated on our design process--which we repeated many times as the payments system took shape--we created a checklist of ideas to consider when designing a new part of the system. I thought this was an incredibly valuable prompt for conversations about the draft design; it ensured we considered what we planning from a variety of different angles and failure scenarios, before we'd even begun to write the code.
+
+Below is a list of the main items on the checklist, with a description of why its valuable, and its context for designing distributed systems.
+** TODO Network boundaries and failure
+** TODO Idempotency, retries, and duplicate checking
+** TODO Disaster recovery
+** TODO Horizontal scaling, and possible processing bottlenecks
+** TODO Interfaces with third parties
+** TODO Shared state, storage, and consensus
