@@ -1,7 +1,7 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* A practical checklist for building distributed systems [1/7]
+* A practical checklist for building distributed systems [1/9]
 ** DONE Introduction
 When I worked at Form3--particularly during a period when I was designing a new payments system--I worked with several teams of engineers to design new components in a highly distributed system. The software components themselves were distributed; running in several different locations, with lots of asynchronous inputs. However, their underlying platform was also distributed; relying on [[https://www.cockroachlabs.com/][CockroachDB]] for data storage, and [[https://docs.nats.io/nats-concepts/jetstream][JetStream]] for messaging.
 
@@ -16,3 +16,5 @@ Below is a list of the main items on the checklist, with a description of why it
 ** TODO Horizontal scaling, and possible processing bottlenecks
 ** TODO Interfaces with third parties
 ** TODO Shared state, storage, and consensus
+** TODO Graceless process termination
+** TODO Summary
