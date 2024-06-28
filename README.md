@@ -7,7 +7,7 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 ## [A simple guide for writing good acceptance criteria](./2024-06-28-guidance-for-writing-acceptance-criteria.md)
 I recently shared some tips for writing acceptance criteria with a team I'm working with, so I thought I would re-post them here in case anyone else finds them useful.
 
-*Published: 28th June 2024*
+*Published: 28th June 2024.*
 
 ---
 ## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md)
