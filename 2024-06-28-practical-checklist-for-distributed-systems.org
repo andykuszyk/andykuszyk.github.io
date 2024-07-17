@@ -1,7 +1,7 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* A practical checklist for building distributed systems [3/9]
+* A practical checklist for building distributed systems [4/8]
 ** DONE Introduction
 When I worked at Form3--particularly during a period when I was designing a new payments system--I worked with several teams of engineers to design new components in a highly distributed system. The software components themselves were distributed; running in several different locations, with lots of asynchronous inputs. However, their underlying platform was also distributed; relying on [[https://www.cockroachlabs.com/][CockroachDB]] for data storage, and [[https://docs.nats.io/nats-concepts/jetstream][JetStream]] for messaging.
 
@@ -84,16 +84,165 @@ In the example above, there are two ways of dealing with failure at each of the 
 
 In practice, a combination of the two approaches is often necessary. Communication over each boundary could be retried over a short timescale to see if this results in successful communication. For example, if sending the HTTP request to the internal API fails, the application could retry it 5 times every 100 ms. However, a long duration of retries (e.g. an exponential backoff lasting several seconds) puts the operation at risk of being interrupted (e.g. by a termination signal). If the failure cannot be mitigated by short-term retries, then the entire pipeline should be aborted; this relies on the initial message queue boundary to retry the segment of processing which includes this gauntlet of network I/O.
 
-This could be dangerous if not done carefully. Duplicate messages could be sent to the output queue, duplicate records written to the database, and multiple resources created in upstream APIs when one is expected. In order to retry the network I/O safely, each network boundary must have logic that ensures it is idempotent. For example:
+This could be dangerous if not done carefully. Duplicate messages could be sent to the output queue, duplicate records written to the database, and multiple resources created in upstream APIs when only one is expected. In order to retry the network I/O safely, each network boundary must have logic that ensures it is idempotent. For example:
 
 - Messages sent to a message queue should have an immutable identifier that won't change if they are re-sent in the future.
 - Records written to a database should have a deterministic primary key, such that inserting them more than once will fail.
 - Resources created in an API should have the same ID on every attempt, so that the upstream API can determine if the resource has been created in the past.
 
 This should make your application very robust to retrying its communication over network boundaries. Sometimes it is difficult to get this right when dealing with third party systems, but most of the time they have a mechanism for your to build your client in an idempotent way.
-** TODO Disaster recovery
+** DONE Disaster recovery [2/2]
+Designing disaster recovery strategies for software systems is a large topic in itself, however it's useful to have disaster recovery in mind when building new components in a distributed system. I like to think about this at three levels:
+
+1. The component level; what happens when an individual component is unavailable?
+2. The data center (or availability zone) level; what happens when a data center is unavailable?
+3. The region level; what happens if a cloud region is unavailable?
+
+How much effort you invest in each of these levels may vary based on your use-case. Your application might not be critical enough for you to worry about seemlessly surviving outages of an entire cloud region, or it might be a global, mission-critical system that has to be always-on. Either way, considering the first two levels can still bring value in the design process for a distributed system.
+*** DONE Disaster recovery at the component level
+As described in the network boundaries section above, your application is probably connected to several other software components over a network. Some of these might be other internal systems, others might be databases, etc:
+
+#+begin_src plantuml :file distributed-systems-checklist-component-level-dr.png
+@startuml
+node "Application" as app
+database "Database" as db
+node "Internal API" as api
+queue "Queue" as q
+cloud "3rd party" as ext
+
+q -> app
+app -> ext
+app --> db
+app --> api
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-checklist-component-level-dr.png]]
+
+When designing a system to communicate with each of these other components over a network, it's worth considering how the application will behave if each component is unavailable. In the sections above, we discussed a generalised way of handling such failure, but it may be worth considering each component in its own right. The approach discussed above was quite simplistic, but it might be worth introducing more components to try to make the application more resilient to component-level failure. This might become a trade off between the percieved resilience of different components in your system. However, you might consider services offered by a cloud provider much more resilient than other parts of your system, in which case it might make sense to rely on them more. For example, if your message queues are provided by AWS SQS, maybe you'll want to introduce buffers between your application and failure-prone components so that you can employ the same message/retry scenario in specific use cases:
+
+#+begin_src plantuml :file distributed-systems-checklist-component-level-dr-buffers.png
+@startuml
+node "Application" as app
+database "Database" as db
+node "Internal API" as api
+queue "SQS" as apiq
+queue "SQS" as q
+cloud "3rd party" as ext
+queue "SQS" as extq
+
+q -> app
+app -> extq
+extq -> ext
+app --> db
+app --> apiq
+apiq --> api
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-checklist-component-level-dr-buffers.png]]
+
+*** DONE Disaster recovery at the data center level
+Disaster recovery at the level of data centers--or availability zones--is more a question of how you plan to run your application, than it is of how you design it to function. Provided you've already considered its resiliency to network failure, you also need to consider what happens when the compute infrastructure running your application (and its dependencies) becomes unavailable.
+
+Consider the following example:
+
+#+begin_src plantuml :file distributed-systems-checklist-dr-az-example1.png
+@startuml
+package "AZ 1" as az1 {
+  node "Application" as app
+  database "Database" as db
+  node "Internal API" as api
+}
+package "Region" as region {
+  queue "SQS" as sqs
+}
+
+cloud "3rd party" as ext
+
+sqs -> app
+app -> sqs
+app --> db
+app --> api
+app -> ext
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:distriubuted-systems-checklist-dr-az-example1.png]]
+
+In this scenario, your application makes use of a regional cloud service (SQS), and is deployed in a single AZ alongside its dependencies. However, assuming you make use of a cloud service--or some other technology--that allows your database to be replicated across AZs, and the team that maintains the internal API has already solved this problem, the following diagram is probably more realistic:
+
+#+begin_src plantuml :file distributed-systems-checklist-dr-az-example2.png
+@startuml
+package "AZ 1" as az1 {
+  node "Application" as app
+  node "Internal API" as api_az1
+}
+package "AZ 2" as az2 {
+  node "Internal API" as api_az2
+}
+package "AZ 3" as az3 {
+  node "Internal API" as api_az3
+}
+package "Region" as region {
+  database "Database" as db
+  queue "SQS" as sqs
+}
+
+cloud "3rd party" as ext
+
+region -> app
+app -> region
+app --> api_az1
+app --> ext
+
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:distriubuted-systems-checklist-dr-az-example2.png]]
+
+As a result, the main things to consider when protecting against availability zone disasters are that:
+
+- The application depends on resources which are already as distributed geographically as possible.
+- The application itself is geographically distributed, and that running many concurrent replicas of it won't result in unusual behaviour.
+
+Ideally, this is the target state for the application:
+
+#+begin_src plantuml :file distributed-systems-checklist-dr-az-example3.png
+@startuml
+package "AZ 1" as az1 {
+  node "Application" as app_az1
+  node "Internal API" as api_az1
+}
+package "AZ 2" as az2 {
+  node "Application" as app_az2
+  node "Internal API" as api_az2
+}
+package "AZ 3" as az3 {
+  node "Application" as app_az3
+  node "Internal API" as api_az3
+}
+package "Region" as region {
+  database "Database" as db
+  queue "SQS" as sqs
+}
+
+cloud "3rd party" as ext
+
+app_az1 --> api_az1
+app_az2 --> api_az2
+app_az3 --> api_az3
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-checklist-dr-az-example3.png]]
+
 ** TODO Horizontal scaling, and possible processing bottlenecks
-** TODO Interfaces with third parties
 ** TODO Shared state, storage, and consensus
 ** TODO Graceless process termination
 ** TODO Summary
