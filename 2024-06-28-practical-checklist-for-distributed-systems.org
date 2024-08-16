@@ -1,7 +1,7 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* A practical checklist for building distributed systems [4/8]
+* A practical checklist for building distributed systems [5/7]
 ** DONE Introduction
 When I worked at Form3--particularly during a period when I was designing a new payments system--I worked with several teams of engineers to design new components in a highly distributed system. The software components themselves were distributed; running in several different locations, with lots of asynchronous inputs. However, their underlying platform was also distributed; relying on [[https://www.cockroachlabs.com/][CockroachDB]] for data storage, and [[https://docs.nats.io/nats-concepts/jetstream][JetStream]] for messaging.
 
@@ -242,7 +242,43 @@ app_az3 --> api_az3
 #+RESULTS:
 [[file:distributed-systems-checklist-dr-az-example3.png]]
 
-** TODO Horizontal scaling, and possible processing bottlenecks
-** TODO Shared state, storage, and consensus
-** TODO Graceless process termination
+** DONE Horizontal scaling and process heterogeneity
+One of the advantages of building a distributed system is that you can scale individual components based on the traffic demands and compute requirements of each program. However, when designing new functionality in a distributed system, it's important to consider how the program will behave when it scales horizontally. In other words, how will its behaviour differ in these two scenarios:
+#+begin_src plantuml :file distributed-systems-scalability-scenario-1.png
+package "Scenario 1: one replica" as scen1 {
+	node "Replica 1" as rep1
+	database "Database" as db
+}
+rep1 --> db
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-scalability-scenario-1.png]]
+
+#+begin_src plantuml :file distributed-systems-scalability-scenario-2.png
+package "Scenario 2: many replica" as scen1 {
+	node "Replica 1" as rep1
+	node "Replica 2" as rep2
+	node "Replica 3" as rep3
+	node "Replica 4" as rep4
+	database "Database" as db
+}
+rep1 --> db
+rep2 --> db
+rep3 --> db
+rep4 --> db
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-scalability-scenario-2.png]]
+
+For me, there are two main considerations when thinking about your program scaling from scenario 1 to 2:
+
+1. Will your program's dependencies be able to cope with many replicas? E.g. can your database handle a large number of clients?
+2. Will your program behave correctly when there are many instances of it running concurrently?
+
+The first consideration can often be thought about in terms of the specific technologies you're using. For example, perhaps you're using Postgres, and you might need to consider introducing an in-network connection pooler. Or, perhaps you're using a distributed database which will also scale horizontally in the event of increased traffic.
+
+However, the second consideration can be a little more complicated to think about. It requires understanding the domain your program operates in, and how it functions. In general, programs that have no special "sense of self" will probably work well without special modifications. These are the programs that don't consider themselves leaders, or have any logic that assumes they are the only process performing a piece of work. However, if you do have a program that assumes it is the only one performing certain types of work, then it might require careful thought before being ready for horizontal scaling.
+** TODO Planned and unplanned process termination
 ** TODO Summary
