@@ -1,7 +1,8 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* A practical checklist for building distributed systems [5/7]
+# Localwords: idempotently
+* A practical checklist for building distributed systems [6/7]
 ** DONE Introduction
 When I worked at Form3--particularly during a period when I was designing a new payments system--I worked with several teams of engineers to design new components in a highly distributed system. The software components themselves were distributed; running in several different locations, with lots of asynchronous inputs. However, their underlying platform was also distributed; relying on [[https://www.cockroachlabs.com/][CockroachDB]] for data storage, and [[https://docs.nats.io/nats-concepts/jetstream][JetStream]] for messaging.
 
@@ -75,7 +76,7 @@ app --> db : TCP
 
 In this example, when the application processes a message from the input queue, it does several things in succession. It publishes a message to an output queue, writes to a database, sends an HTTP request to a third party, and sends an HTTP request to an internal API. Any one of these network boundaries could cause a failure, so simply relying on retries originating from the input queue isn't enough.
 
-In addition to identifying network boundaries as a source of failure, we also need to consider idempotency, retry logic, and duplicate checking.
+In addition to identifying network boundaries as a source of failure, we also need to consider idempotency, retry logic, and duplicate checking. These topics are explored below, but it's also worth mentioning that two good patterns for dealing with this situation are [[https://microservices.io/patterns/data/transactional-outbox.html][transactional outbox]], and [[https://microservices.io/patterns/data/event-sourcing.html][event sourcing]].
 ** DONE Idempotency, retries, and duplicate checking
 In the example above, there are two ways of dealing with failure at each of the network boundaries:
 
@@ -280,5 +281,58 @@ For me, there are two main considerations when thinking about your program scali
 The first consideration can often be thought about in terms of the specific technologies you're using. For example, perhaps you're using Postgres, and you might need to consider introducing an in-network connection pooler. Or, perhaps you're using a distributed database which will also scale horizontally in the event of increased traffic.
 
 However, the second consideration can be a little more complicated to think about. It requires understanding the domain your program operates in, and how it functions. In general, programs that have no special "sense of self" will probably work well without special modifications. These are the programs that don't consider themselves leaders, or have any logic that assumes they are the only process performing a piece of work. However, if you do have a program that assumes it is the only one performing certain types of work, then it might require careful thought before being ready for horizontal scaling.
-** TODO Planned and unplanned process termination
+** DONE Planned and unplanned process termination
+A distributed system is likely to be running in a number of ephemeral containers, especially if it is designed with horizontal scaling in mind. This means that your program could receive a termination signal at any time, and--occasionally--experience unplanned termination. When designing new functionality for your system, it's important to keep in mind that any execution could be interrupted with relatively little notice. As a result, it's best to restrict in-memory processing to short lived operations. If you have a long-running pipeline of tasks that need to be executed, you could consider breaking them up into smaller chunks which can then be distributed amongst your pool of processes. This may require some additional orchestration, such as using the [[https://microservices.io/patterns/data/saga.html][saga pattern]], but it will limit the amount of work being performed at any time which could be unexpectedly interrupted.
+
+For example, let's say your program responds to some queued input, and carries out a three step processing pipeline, before sending its output to another queue. Each step can take several seconds, and the entire pipeline could take up to a minute:
+
+#+begin_src plantuml :file distributed-systems-long-running-pipeline.png
+queue "Input" as input
+queue "Output" as output
+node "Program" as program {
+  card "Step 1" as step1
+  card "Step 2" as step2
+  card "Step 3" as step3
+}
+input -> step1
+step1 -> step2
+step2 -> step3
+step3 -> output
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-long-running-pipeline.png]]
+
+If the program is interrupted during the execution of the third step, it will need some mechanism to retry the work from the input queue. As we've already discussed, it will need a way to do this idempotently to avoid the side-effects of steps 1 and 2 being repeated. This might be sufficient for your use case. However, if the processing pipeline is lengthy, or the individual steps costly, you might want to decompose the pipeline so that only the step that is interrupted is retried.
+
+As described in the [[https://microservices.io/patterns/data/saga.html][saga pattern]], one way of doing this is to separate each step via its own (or a shared) processing queue, and allow your program to individually process each step in turn:
+
+#+begin_src plantuml :file distributed-systems-distributed-pipeline.png
+queue "Input" as input
+queue "Output" as output
+queue step12 [
+]
+queue step23 [
+]
+node "Program" as p1 {
+  card "Step 1" as step1
+}
+node "Program" as p2 {
+  card "Step 2" as step2
+}
+node "Program" as p3 {
+  card "Step 3" as step3
+}
+input -> step1
+step1 -> step12
+step12 -> step2
+step2 -> step23
+step23 -> step3
+step3 -> output
+#+end_src
+
+#+RESULTS:
+[[file:distributed-systems-distributed-pipeline.png]]
+
+Another advantage this has is your application can more accurately scale to the different demands of each step in the process, and make better use of your underlying compute infrastructure.
 ** TODO Summary
