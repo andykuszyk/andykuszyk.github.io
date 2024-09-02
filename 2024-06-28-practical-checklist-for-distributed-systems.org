@@ -20,14 +20,13 @@ In any distributed system, there will be network boundaries between components. 
 Let me give two simple examples of how you might decide to handle failure. First, let's say you're introducing a feature which will make an HTTP request to an external system when it processes a message from a queue:
 
 #+begin_src plantuml :file distributed-systems-checklist-message-to-http-failure.png
-@startuml
+!theme crt-green
 queue "Queue" as q
 node "Application" as app
 cloud "3rd party" as ext
 q -> app
 app --> app : Processing
 app --> ext : HTTP
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -38,7 +37,7 @@ Typically, a message broker that asynchronously delivers messages to your applic
 Another example is of an application whose inputs are HTTP requests, with an upstream network boundary to a database:
 
 #+begin_src plantuml :file distributed-systems-checklist-http-to-database-failure.png
-@startuml
+!theme crt-green
 circle "Client" as c
 node "Application" as app
 database "Database" as db
@@ -46,7 +45,6 @@ database "Database" as db
 c -> app : HTTP
 app -> app : Processing
 app --> db : TCP
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -57,7 +55,7 @@ If there is a problem with the TCP connection between the application and its da
 However, things get more difficult if these examples get a little more complex:
 
 #+begin_src plantuml :file distributed-systems-checklist-multi-step-failure.png
-@startuml
+!theme crt-green
 queue "Input Queue" as q
 queue "Output Queue" as q2
 node "Application" as app
@@ -71,7 +69,6 @@ app --> ext : HTTP
 app --> api : HTTP
 app --> q2
 app --> db : TCP
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -107,7 +104,7 @@ How much effort you invest in each of these levels may vary based on your use-ca
 As described in the network boundaries section above, your application is probably connected to several other software components over a network. Some of these might be other internal systems, others might be databases, etc:
 
 #+begin_src plantuml :file distributed-systems-checklist-component-level-dr.png
-@startuml
+!theme crt-green
 node "Application" as app
 database "Database" as db
 node "Internal API" as api
@@ -118,7 +115,6 @@ q -> app
 app -> ext
 app --> db
 app --> api
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -127,7 +123,7 @@ app --> api
 When designing a system to communicate with each of these other components over a network, it's worth considering how the application will behave if each component is unavailable. In the sections above, we discussed a generalised way of handling such failure, but it may be worth considering each component in its own right. The approach discussed above was quite simplistic, but it might be worth introducing more components to try to make the application more resilient to component-level failure. This might become a trade off between the perceived resilience of different components in your system. However, you might consider services offered by a cloud provider much more resilient than other parts of your system, in which case it might make sense to rely on them more. For example, if your message queues are provided by AWS SQS, maybe you'll want to introduce buffers between your application and failure-prone components so that you can employ the same message/retry scenario in specific use-cases:
 
 #+begin_src plantuml :file distributed-systems-checklist-component-level-dr-buffers.png
-@startuml
+!theme crt-green
 node "Application" as app
 database "Database" as db
 node "Internal API" as api
@@ -142,7 +138,6 @@ extq -> ext
 app --> db
 app --> apiq
 apiq --> api
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -154,7 +149,7 @@ Disaster recovery at the level of data centers--or availability zones--is more a
 Consider the following example:
 
 #+begin_src plantuml :file distributed-systems-checklist-dr-az-example1.png
-@startuml
+!theme crt-green
 package "AZ 1" as az1 {
   node "Application" as app
   database "Database" as db
@@ -171,16 +166,15 @@ app -> sqs
 app --> db
 app --> api
 app -> ext
-@enduml
 #+end_src
 
 #+RESULTS:
-[[file:distriubuted-systems-checklist-dr-az-example1.png]]
+[[file:distributed-systems-checklist-dr-az-example1.png]]
 
 In this scenario, your application makes use of a regional cloud service (SQS), and is deployed in a single AZ alongside its dependencies. However, assuming you make use of a cloud service--or some other technology--that allows your database to be replicated across AZs, and the team that maintains the internal API has already solved this problem, the following diagram is probably more realistic:
 
 #+begin_src plantuml :file distributed-systems-checklist-dr-az-example2.png
-@startuml
+!theme crt-green
 package "AZ 1" as az1 {
   node "Application" as app
   node "Internal API" as api_az1
@@ -202,12 +196,10 @@ region -> app
 app -> region
 app --> api_az1
 app --> ext
-
-@enduml
 #+end_src
 
 #+RESULTS:
-[[file:distriubuted-systems-checklist-dr-az-example2.png]]
+[[file:distributed-systems-checklist-dr-az-example2.png]]
 
 As a result, the main things to consider when protecting against availability zone disasters are that:
 
@@ -217,7 +209,7 @@ As a result, the main things to consider when protecting against availability zo
 Ideally, this is the target state for the application:
 
 #+begin_src plantuml :file distributed-systems-checklist-dr-az-example3.png
-@startuml
+!theme crt-green
 package "AZ 1" as az1 {
   node "Application" as app_az1
   node "Internal API" as api_az1
@@ -240,7 +232,6 @@ cloud "3rd party" as ext
 app_az1 --> api_az1
 app_az2 --> api_az2
 app_az3 --> api_az3
-@enduml
 #+end_src
 
 #+RESULTS:
@@ -249,6 +240,7 @@ app_az3 --> api_az3
 ** DONE Horizontal scaling and process heterogeneity
 One of the advantages of building a distributed system is that you can scale individual components based on the traffic demands and compute requirements of each program. However, when designing new functionality in a distributed system, it's important to consider how the program will behave when it scales horizontally. In other words, how will its behaviour differ in these two scenarios:
 #+begin_src plantuml :file distributed-systems-scalability-scenario-1.png
+!theme crt-green
 package "Scenario 1: one replica" as scen1 {
 	node "Replica 1" as rep1
 	database "Database" as db
@@ -260,6 +252,7 @@ rep1 --> db
 [[file:distributed-systems-scalability-scenario-1.png]]
 
 #+begin_src plantuml :file distributed-systems-scalability-scenario-2.png
+!theme crt-green
 package "Scenario 2: many replicas" as scen1 {
 	node "Replica 1" as rep1
 	node "Replica 2" as rep2
@@ -290,6 +283,7 @@ A distributed system is likely to be running in a number of ephemeral containers
 For example, let's say your program responds to some queued input, and carries out a three step processing pipeline, before sending its output to another queue. Each step can take several seconds, and the entire pipeline could take up to a minute:
 
 #+begin_src plantuml :file distributed-systems-long-running-pipeline.png
+!theme crt-green
 queue "Input" as input
 queue "Output" as output
 node "Program" as program {
@@ -311,6 +305,7 @@ If the program is interrupted during the execution of the third step, it will ne
 As described in the [[https://microservices.io/patterns/data/saga.html][saga pattern]], one way of doing this is to separate each step via its own (or a shared) processing queue, and allow your program to individually process each step in turn:
 
 #+begin_src plantuml :file distributed-systems-distributed-pipeline.png
+!theme crt-green
 queue "Input" as input
 queue "Output" as output
 queue step12 [
