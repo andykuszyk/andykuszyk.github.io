@@ -4,13 +4,19 @@ I am a Software Engineer based on the South coast of the UK. I currently work wi
 > 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 ---
+## [A practical checklist for building distributed systems](./2024-06-28-practical-checklist-for-distributed-systems.md)
+During a period when I was designing a new payments system, I worked with several teams of engineers to design new components in a highly distributed system. As we iterated on our design process, we created a checklist of ideas to consider when designing a new part of the system. In this blog post, I talk through each of the items on our checklist, and why we thought it was an important topic to consider when designing new distributed systems.
+
+*Published: 2nd September 2024*.
+
+---
 ## [A simple guide for writing good acceptance criteria](./2024-06-28-guidance-for-writing-acceptance-criteria.md)
 I recently shared some tips for writing acceptance criteria with a team I'm working with, so I thought I would re-post them here in case anyone else finds them useful.
 
 *Published: 28th June 2024.*
 
 ---
-## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md)
+## [Securing environment access from day one (4/8)](./2023-11-07-securing-environment-access.md) `bootstrapping-engineering-organisations`
 This is the third of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I go into more detail about one way to secure engineering access to your environments from day one; in a way that will scale with the size of both your team, and your estate.
 
 *Published: 29th May 2024*.
@@ -28,7 +34,7 @@ I recently wanted to perform some data analysis and visualise the results in a s
 *Published: 23rd November 2023*.
 
 ---
-## [Decision-making and design in growing engineering organisations (3/8)](./2023-05-17-decision-making-and-design.md)
+## [Decision-making and design in growing engineering organisations (3/8)](./2023-05-17-decision-making-and-design.md) `bootstrapping-engineering-organisations`
 This is the second of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss the importance of documenting decisions from early-on, and describe a framework I've found useful for structuring problem-solving and design discussions as engineering teams grow.
 
 *Published: 17th May 2023*.
@@ -40,13 +46,13 @@ I've recently published my first blog post on GitHub pages using Mermaid diagram
 *Published: 3rd May 2023*
 
 ---
-## [Secrets management in build and deployment pipelines (2/8)](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md)
+## [Secrets management in build and deployment pipelines (2/8)](./2023-05-03-secrets-management-in-build-and-deployment-pipelines.md) `bootstrapping-engineering-organisations`
 This is the first of my follow-up posts about [bootstrapping a successful engineering organisation](./2023-03-15-bootstrapping-an-engineering-organisation.md). In this post, I discuss some practical ideas for managing secrets in build and deployment pipelines which will scale well as an engineering organisation begins to grow.
 
 *Published: 3rd May 2023*
 
 ---
-## [Bootstrapping a successful engineering organisation (1/8)](./2023-03-15-bootstrapping-an-engineering-organisation.md)
+## [Bootstrapping a successful engineering organisation (1/8)](./2023-03-15-bootstrapping-an-engineering-organisation.md) `bootstrapping-engineering-organisations`
 I've been reflecting on the most important things to get right when bootstrapping a new engineering organisation, particuarly by thinking about what must have gone well when [Form3](https://www.form3.tech) was founded. This is the first of several posts describing what some of the major challenges might be, and how I think they can be solved.
 
 *Published: 15th March 2023*
