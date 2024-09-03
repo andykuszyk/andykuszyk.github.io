@@ -38,8 +38,8 @@ Make a note of the key's ID, which is `3453298457893DFHJKEHFGKJHFGKJSEH34Y78365`
 
 Now, you can export it as plain-text with:
 
-    gpg --armor --export-key <key-id> > public.key
-    gpg --armor --export-secret-key <key-id> > private.key
+    gpg --armor --export-key 3453298457893DFHJKEHFGKJHFGKJSEH34Y78365 > public.key
+    gpg --armor --export-secret-key 3453298457893DFHJKEHFGKJHFGKJSEH34Y78365 > private.key
 
 Keep these files safe, and take care transmitting them to your other machines! I store them in a password manager.
 
@@ -53,7 +53,7 @@ These keys can be imported with:
 
 And, finally, your imported key can be trusted with:
 
-    gpg --edit-key <key-id> trust quit
+    gpg --edit-key 3453298457893DFHJKEHFGKJHFGKJSEH34Y78365 trust quit
 
 > 💡 Choose option 5, ultimate trust.
 
