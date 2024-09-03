@@ -6,7 +6,7 @@
 #+options: todo:nil
 # Localwords: encrypt decrypt
 * Editing encrypted files in Emacs
-I routinely store note files (normally using ~org-mode~) in personal Git repos, which I commit automatically using [[https://github.com/ryuslash/git-auto-commit-mode][git-auto-commit-mode]].
+I routinely store note files (normally using ~org-mode~) in Git repos, which I commit automatically using [[https://github.com/ryuslash/git-auto-commit-mode][git-auto-commit-mode]].
 
 This works really well, but sometimes I'm working on some notes that I want to be ultra-safe in the event that my Git repo is maliciously accessed. On these occasions, I make use of Emacs' [[https://www.gnu.org/software/emacs/manual/html_node/epa/Encrypting_002fdecrypting-gpg-files.html][transparent support for editing GPG-encrypted files]]. Emacs does a fine job of transparently decrypting files when I open them, and encrypting them when I save them. However, I need to make sure that the encryption keys I use for the files are portable across machines, otherwise I might end up with files I can never open again! 😅
 
