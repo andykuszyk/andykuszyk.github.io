@@ -66,7 +66,7 @@ If you want to automatically encrypt files with a `*.gpg` extension when you sav
 
 First, allow passphrases to be entered directly in Emacs from the minibuffer:
 
-    (setq epa-pinentry-mode 'loopback)
+    (setq epg-pinentry-mode 'loopback)
 
 Next, disable the dialog you're normally presented with to select an encryption key:
 
@@ -87,7 +87,7 @@ If, like me, you're also making use of `git-auto-commit-mode`, your `.dir-locals
 So there you have it! If you want to make use of Emacs' built-in GPG encryption capabilities to automatically encrypt `*.gpg` files when they're saved, you need to:
 
 1.  Generate, store, and distribute a GPG key that you can use everywhere you want to encrypt/decrypt your notes.
-2.  Set the `epa-pinentry-mode` and `epa-file-select-keys` variables globally.
+2.  Set the `epg-pinentry-mode` and `epa-file-select-keys` variables globally.
 3.  Set the `epa-file-encrypt-to` on a per-file, or per-directory basis.
 4.  `C-x C-s` and profit!
 
