@@ -7,6 +7,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 > 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 ---
+## [Editing encrypted files in Emacs](./2024-08-29-editing-encrypted-files-in-emacs.md)
+I routinely store note files in Git repos, and use Emacs' native GPG support to encrypt and decrypt sensitive files. In this post I explain how I create and distribute GPG encryption keys, and how I configure Emacs to make the process as ergonomic as possible.
+
+*Published: 3rd September 2024*.
+
+---
 ## [A practical checklist for building distributed systems](./2024-06-28-practical-checklist-for-distributed-systems.md)
 During a period when I was designing a new payments system, I worked with several teams of engineers to design new components in a highly distributed system. As we iterated on our design process, we created a checklist of ideas to consider when designing a new part of the system. In this blog post, I talk through each of the items on our checklist, and why we thought it was an important topic to consider when designing new distributed systems.
 
