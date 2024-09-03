@@ -31,7 +31,7 @@ You should see some output like this:
     uid           [ultimate] James Kirk (Self-destruct key) <jkirk@starfleet.com>
     sub   cv25519 2024-01-01 [E]
 
-Make a note of they key's ID, which is `3453298457893DFHJKEHFGKJHFGKJSEH34Y78365` in this example.
+Make a note of the key's ID, which is `3453298457893DFHJKEHFGKJHFGKJSEH34Y78365` in this example.
 
 
 ### Step 2: exporting the keys
@@ -51,9 +51,11 @@ These keys can be imported with:
     gpg --import public.key
     gpg --import private.key
 
-And, finally, your imported key can be trusted with (choose option 5, ultimate trust):
+And, finally, your imported key can be trusted with:
 
     gpg --edit-key <key-id> trust quit
+
+> 💡 Choose option 5, ultimate trust.
 
 Now you're all set with an encryption key you can distribute between your machines! 🔒
 
@@ -70,7 +72,7 @@ Next, disable the dialog you're normally presented with to select an encryption 
 
     (setq epa-file-select-keys nil)
 
-Finally, in order for `epa-file-select-keys` to take effect, set `epa-file-encrypt-to` as a directory-local variable:
+Finally, in order for [`epa-file-select-keys`](https://www.gnu.org/software/emacs/manual/html_node/epa/Encrypting_002fdecrypting-gpg-files.html#index-epa_002dfile_002dselect_002dkeys-1) to take effect, set [`epa-file-encrypt-to`](https://www.gnu.org/software/emacs/manual/html_node/epa/Encrypting_002fdecrypting-gpg-files.html#index-epa_002dfile_002dencrypt_002dto) as a [directory-local variable](https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Variables.html):
 
     ((nil . ((epa-file-encrypt-to . "jkirk@starfleet.com"))))
 
