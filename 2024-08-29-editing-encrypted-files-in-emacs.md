@@ -60,6 +60,15 @@ And, finally, your imported key can be trusted with:
 Now you're all set with an encryption key you can distribute between your machines! 🔒
 
 
+### 💡 A note on asymmetric, versus symmetric encryption
+
+GPG supports symmetric encryption with a passphrase, as well as asymmetric encryption (which is what the key set-up above is for). Using symmetric encryption across different machines is easy; all you need is the passphrase, and you can decrypt your files anywhere. For symmetric encryption, you don't need to create keys or distribute them across machines.
+
+However, whilst this makes the set-up easier, it is less ergonomic for day-to-day basis. The passphrase for symmetric encryption is required to encrypt and decrypt the file, and (in my experience) GPG agent prompts for this passphrase regularly (e.g. every write to the file). On the other hand, with asymmetric encryption, the file can be encrypted using the public key (which requires no passphrase), and the GPG agent does a good job of caching the passphrase for the private key.
+
+So, although it's more effort to set-up asymmetric encryption, I prefer it for everyday encryption of files, because it limits the number of times I need to enter my passphrase.
+
+
 ## Configuring Emacs to work well with encrypted files
 
 If you want to automatically encrypt files with a `*.gpg` extension when you save them, you might also find these Emacs settings useful.
@@ -71,6 +80,8 @@ First, allow passphrases to be entered directly in Emacs from the minibuffer:
 Next, disable the dialog you're normally presented with to select an encryption key:
 
     (setq epa-file-select-keys nil)
+
+Setting `epa-file-select-keys` to `nil` also presupposes that you'll be using symmetric encryption.
 
 Finally, in order for [`epa-file-select-keys`](https://www.gnu.org/software/emacs/manual/html_node/epa/Encrypting_002fdecrypting-gpg-files.html#index-epa_002dfile_002dselect_002dkeys-1) to take effect, set [`epa-file-encrypt-to`](https://www.gnu.org/software/emacs/manual/html_node/epa/Encrypting_002fdecrypting-gpg-files.html#index-epa_002dfile_002dencrypt_002dto) as a [directory-local variable](https://www.gnu.org/software/emacs/manual/html_node/emacs/Directory-Variables.html):
 
