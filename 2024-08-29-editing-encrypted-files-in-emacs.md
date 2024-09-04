@@ -62,9 +62,9 @@ Now you're all set with an encryption key you can distribute between your machin
 
 ### 💡 A note on asymmetric, versus symmetric encryption
 
-GPG supports symmetric encryption with a passphrase, as well as asymmetric encryption (which is what the key set-up above is for). Using symmetric encryption across different machines is easy; all you need is the passphrase, and you can decrypt your files anywhere. For symmetric encryption, you don't need to create keys or distribute them across machines.
+GPG supports symmetric encryption with a passphrase, as well as asymmetric encryption (which is what the key set-up above is for). Using symmetric encryption across different machines is easy; all you need is the passphrase, and you can decrypt your files anywhere. For symmetric encryption, you don't need to create keys, or distribute them across machines.
 
-However, whilst this makes the set-up easier, it is less ergonomic for day-to-day basis. The passphrase for symmetric encryption is required to encrypt and decrypt the file, and (in my experience) GPG agent prompts for this passphrase regularly (e.g. every write to the file). On the other hand, with asymmetric encryption, the file can be encrypted using the public key (which requires no passphrase), and the GPG agent does a good job of caching the passphrase for the private key.
+However, whilst this makes the set-up easier, it is less ergonomic on a day-to-day basis. The passphrase for symmetric encryption is required to encrypt and decrypt the file, and (in my experience) GPG agent prompts for this passphrase regularly (e.g. every write to the file). On the other hand, with asymmetric encryption, the file can be encrypted using the public key (which requires no passphrase), and the GPG agent does a good job of caching the passphrase for the private key.
 
 So, although it's more effort to set-up asymmetric encryption, I prefer it for everyday encryption of files, because it limits the number of times I need to enter my passphrase.
 
