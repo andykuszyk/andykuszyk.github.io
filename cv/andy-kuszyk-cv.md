@@ -24,23 +24,27 @@ You can read more about me on my technology blog: [**andykuszyk.github.io**](htt
 ---
 
 # Work Experience
-## Deliveroo (2023 - present)
-### Staff Platform Engineer [contract] (Nov '23 - present)
-I currently work as Staff Engineer in Deliveroo's AWS platform engineering team. I'm primarily focused on Compute (ECS, EKS) and Datastores (mainly RDS Postgres and Aurora).
+## Typeform (2024 - present)
+### Staff Engineer (Sept '24 - present)
+I am currently working as a Staff Engineer at Typeform.
 
-I help teams with:
+## Deliveroo (2023 - 2024)
+### Staff Platform Engineer [contract] (Nov '23 - Sept '24)
+For almost a year, I worked as a Staff Engineer in Deliveroo's AWS platform engineering team. I was primarily focused on Compute (ECS, EKS) and Datastores (mainly RDS Postgres and Aurora).
+
+I helped teams with:
 
 - Initial research and planning for long-term initiatives.
 - Detailed technical designs for forthcoming projects.
 - Well-documented delivery plans, and hands-on assistance during implementation.
 
-Some of the notable projects I have worked on so far have been:
+Some of the notable projects I worked on were:
 
 - Introducing a diverse range of instances types into compute clusters in order to reduce wasted compute resources, and reduce the overall cost of EC2.
 - Zero-impact maintenance on critical certificate authority changes to RDS.
 - Wide-ranging planning for the implementation of a managed datastore service.
 
-Deliveroo have a very strong writing culture, so alongside all of these projects I've enjoyed contributing high-quality written research and designs.
+Deliveroo have a very strong writing culture, so alongside all of these projects I enjoyed contributing high-quality written research and designs.
 
 ## Form3 (2019 - 2023)
 ### Staff Engineer (Nov '22 - Nov '23)
