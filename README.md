@@ -4,7 +4,9 @@ I'm Andy Kuszyk, and I work as a Software Engineer. I'm based on the South coast
 
 I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experience in .NET, Clojure, and Python. And that's not to mention [Elisp](https://github.com/andykuszyk/noman.el)! 🤓
 
-> 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
+📓 If you're looking for my CV, you can find it [here](./cv/README.md).
+
+💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
 ## [Where do all the senior engineers go?](2024-10-04-where-do-all-they-senior-engineers-go.md)
