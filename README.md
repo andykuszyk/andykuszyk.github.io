@@ -7,6 +7,14 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 > 💡 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 ---
+## [Where do all the senior engineers go?](2024-10-04-where-do-all-they-senior-engineers-go.md)
+
+Earlier in my career, I wondered where all the senior engineers went in technology companies. There didn't seem to be that many in their 40s, 50s, and 60s. Now I'm a little more experienced, I think I've spotted where a lot of them end up.
+
+*Published: 4th October 2024.*
+
+
+---
 ## [Editing encrypted files in Emacs](./2024-08-29-editing-encrypted-files-in-emacs.md)
 I routinely store note files in Git repos, and use Emacs' native GPG support to encrypt and decrypt sensitive files. In this post I explain how I create and distribute GPG encryption keys, and how I configure Emacs to make the process as ergonomic as possible.
 
