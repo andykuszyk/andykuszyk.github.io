@@ -1,3 +1,9 @@
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+options: toc:nil
+#+options: stat:nil
+#+options: todo:nil
 * Where do all the senior engineers go?
 Earlier in my career, I often wondered where all the senior engineers went 🤔
 

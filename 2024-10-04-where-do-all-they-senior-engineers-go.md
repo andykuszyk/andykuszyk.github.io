@@ -1,10 +1,4 @@
 
-# Table of Contents
-
-1.  [Where do all the senior engineers go?](#org086996e)
-
-
-<a id="org086996e"></a>
 
 # Where do all the senior engineers go?
 
