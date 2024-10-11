@@ -83,7 +83,7 @@ So far so good, except there were no utilities (like `curl`) installed in the co
 
 Rather than sending the HTTP request from the same container, I tried sending it from an adjacent pod in the same namespace:
 
-    kubectl -n dev run -it andy-debug --image nicolaka/netshoot
+    kubectl run -it andy-debug --image nicolaka/netshoot
 
 The `nicolaka/netshoot` is an excellent container image containing an array of useful network debugging utilities. In this case, I just needed `curl`. I sent the HTTP request that causes a 400 when sent from the Lambda, and&#x2026;received a 200 response 🤔
 
