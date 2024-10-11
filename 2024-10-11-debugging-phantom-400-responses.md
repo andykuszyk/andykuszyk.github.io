@@ -176,7 +176,7 @@ After much ruminating, complaining to colleagues, and long walks to clear my hea
     req.write(json_payload);
     req.end();
 
-With this changed deployed to the Lambda, payloads which would have resulted in a 400 response now return a 200. Success! 🎉
+With this change deployed to the Lambda, payloads which would have resulted in a 400 response now return a 200. Success! 🎉
 
 
 ## Why it worked 💡

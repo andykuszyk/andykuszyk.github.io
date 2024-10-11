@@ -203,7 +203,7 @@ req.write(json_payload);
 req.end();
 #+end_src
 
-With this changed deployed to the Lambda, payloads which would have resulted in a 400 response now return a 200. Success! 🎉
+With this change deployed to the Lambda, payloads which would have resulted in a 400 response now return a 200. Success! 🎉
 ** DONE Why it worked 💡
 But, the question still remained: why did using the ~Transfer-Encoding: chunked~ header cause /intermittent/ 400s. When I investigated the access logs of the ALB, it showed small request sizes when the payload was sent from Javascript, and large sizes when sent from ~curl~.
 
