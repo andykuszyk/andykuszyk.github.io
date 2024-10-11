@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Debugging phantom 400 responses](./2024-10-11-debugging-phantom-400-responses.md)
+I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemlingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
+
+*Published: 11th October 2024.*
+
+---
 ## [Where do all the senior engineers go?](2024-10-04-where-do-all-they-senior-engineers-go.md)
 
 Earlier in my career, I wondered where all the senior engineers went in technology companies. There didn't seem to be that many in their 40s, 50s, and 60s. Now I'm a little more experienced, I think I've spotted where a lot of them end up.
