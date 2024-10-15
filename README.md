@@ -10,7 +10,7 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 
 ---
 ## [Debugging phantom 400 responses](./2024-10-11-debugging-phantom-400-responses.md)
-I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemlingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
+I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
 
 *Published: 11th October 2024.*
 

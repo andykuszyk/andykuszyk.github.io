@@ -5,7 +5,7 @@
 #+options: stat:nil
 #+options: todo:nil
 * Debugging phantom HTTP 400 responses
-I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemlingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
+I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
 
 Although--at times--frustrating, it was a great opportunity to explore some new infrastructure, and practice some network debugging skills. So much so, that I thought I would summarise the problem, how I debugged it, and the solution in a blog post. If you ever have the same problem in the future, I hope your Google searches bring you straight to this page to save you all the trouble!
 ** The problem
