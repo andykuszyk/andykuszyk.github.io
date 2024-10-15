@@ -207,6 +207,6 @@ With this change deployed to the Lambda, payloads which would have resulted in a
 ** DONE Why it worked 💡
 But, the question still remained: why did using the ~Transfer-Encoding: chunked~ header cause /intermittent/ 400s. When I investigated the access logs of the ALB, it showed small request sizes when the payload was sent from Javascript, and large sizes when sent from ~curl~.
 
-In other words, when the ~Content-Length~ header was sent, the ALB forwarded the request normally. However, when ~Transfer-Encoding~ was used the ALB didn't forward (or even log) the body. I assume the body was being truncated at the ALB, because there's nothing downstream of it other than the client (as demonstrated by ~dig~ earlier).
+It turns out that Django (which was used for the HTTP server implementation in the API), and the WSGI implementation in Python general, [[https://stackoverflow.com/questions/12091067/handling-http-chunked-encoding-with-django][doesn't support chunked transfer encoding]] out-of-the-box. My guess is that smaller payload were being transmitted in a single chunk, and were handled gracefully by the API. Larger bodies were transmitted in smaller chunks, and the API wasn't configured to receive the stream of them; which resulted in a 400 being returned for an empty body.
 
-I have absolutely no idea why this might be happening, however. Do you?! If you have any good ideas, feel free to [[https://www.linkedin.com/in/andy-kuszyk/][get in touch]]! 📧
+The main learning for me, was that sending HTTP requests from NodeJS isn't as straightforward as it seems, and that the default behaviour of using chunked encoding is something to watch out for!
