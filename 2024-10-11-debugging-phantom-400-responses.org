@@ -107,6 +107,8 @@ node lambda [Lambda
 
 <NodeJS>]
 
+actor "My machine" as me
+
 package "AWS Load Balancing" as lb {
   card alb [Application
   Load Balancer]
@@ -123,6 +125,7 @@ node api [API
 }
 
 lambda -> alb : HTTP POST
+me -> alb : HTTP POST
 waf -> api
 #+end_src
 
