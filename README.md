@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [My three phases of onboarding as a staff engineer](./2024-11-12-my-three-phases-of-onboarding.md)
+I recently joined [Typeform](https://www.typeform.com/) as a staff engineer, which marked the third time in as many years that I've either joined a new company, or joined a new team, in this type of role. It's my experience that onboarding as a staff engineer is different to onboarding in other types of engineering roles, and I've noticed that I go three distinct phases of onboarding when I start out in this type of role. In this post, I describe my three phases, and offer some practical examples of how I navigate each one.
+
+*Published: 22nd November 2024.*
+
+---
 ## [Debugging phantom 400 responses](./2024-10-11-debugging-phantom-400-responses.md)
 I recently spent an entire week debugging an unusual situation involving unexplained, intermittent 400 responses to seemingly well-formed HTTP requests. Throughout the week, I tried a variety of things to debug the situation, pulled out more than a little of my hair, and finally stumbled across the solution.
 
