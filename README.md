@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Hypothesis-driven debugging](./2024-11-29-hypothesis-driven-debugging.md)
+Several years ago, I spent some time investigating performance problems in a large distributed system. After a while, I noticed that I was using something akin to the scientific method to track down the root causes. In this post, I explain how to use hypotheses--specifically *falsifiable* hypotheses--to debug problems in software systems.
+
+*Published: 29th November 2024.*
+
+---
 ## [My three phases of onboarding as a staff engineer](./2024-11-12-my-three-phases-of-onboarding.md)
 I recently joined [Typeform](https://www.typeform.com/) as a staff engineer, which marked the third time in as many years that I've either joined a new company, or joined a new team, in this type of role. It's my experience that onboarding as a staff engineer is different to onboarding in other types of engineering roles, and I've noticed that I go three distinct phases of onboarding when I start out in this type of role. In this post, I describe my three phases, and offer some practical examples of how I navigate each one.
 
