@@ -6,7 +6,7 @@ Several years ago, I spent about 18 months performance testing a distributed pay
 
 The most difficult challenge I encountered during this period was debugging a distributed system at scale to try to identify the cause of failures and bottlenecks. Debugging an individual software component can sometimes be tricky, but modern debuggers make the process somewhat straightforward. Often you can write a failing test case for a bug you're investigating, and use a debugger to at least narrow down the possible causes.
 
-However, when investigating problems in large distributed system, the only tools you have at hand are the telemetry you receive from the system: logs, metrics, and traces. Often, this means you just need to *guess* what problems might be caused by, and *see if you were right*.
+However, when investigating problems in a large distributed system, the only tools you have at hand are the telemetry you receive from the system: logs, metrics, and traces. Often, this means you just need to *guess* what problems might be caused by, and *see if you were right*.
 
 When I was debugging performance problems at Form3, I realised that the *guess and see* method is very similar to the [scientific method](https://en.wikipedia.org/wiki/Scientific_method). Furthermore, if you treat your guesses as hypotheses&#x2013;in particular, as *falsifiable* hypotheses&#x2013;then guessing can actually be a really effective way to diagnose problems.
 
