@@ -57,7 +57,7 @@ Alright, let's look at a practical example, and walk through a couple of differe
 
 ![img](hypothesis-driven-debugging-real-world-example.png)
 
-In this example, users are creating resources in the system by sending HTTP requests to an application. The application enqueues the resources for asynchronous processing, consumers them at some later time, and then persists them to a database. The timeline for this process is illustrated below:
+In this example, users are creating resources in the system by sending HTTP requests to an application. The application enqueues the resources for asynchronous processing, consumes them at some later time, and then persists them to a database. The timeline for this process is illustrated below:
 
 ![img](hypothesis-driven-debugging-real-world-timeline.png)
 
