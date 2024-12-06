@@ -61,7 +61,7 @@ In this example, users are creating resources in the system by sending HTTP requ
 
 ![img](hypothesis-driven-debugging-real-world-timeline.png)
 
-Now, let's imagine that you have some telemetry that tells you how long it takes for a request to go from being sent by the user, to being persisted in the database. The 99th percentile for this metric is 10 seconds, which is much to high. You need a hypothesis! Let's say our first hypothesis is:
+Now, let's imagine that you have some telemetry that tells you how long it takes for a request to go from being sent by the user, to being persisted in the database. The 99th percentile for this metric is 10 seconds, which is much too high. You need a hypothesis! Let's say our first hypothesis is:
 
 > *Slow processing times are caused by latency in the queuing technology.*
 
