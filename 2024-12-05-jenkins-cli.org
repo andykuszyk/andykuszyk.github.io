@@ -94,7 +94,7 @@ And a simple step that outputs the parameter value:
 Alright, now we can use the CLI to trigger the parameterised job as follows:
 
 #+begin_src bash :results none :exports code
-$ jk build test-folder/test-job -p foo=bar -v -f
+jk build test-folder/test-job -p foo=bar -v -f
 #+end_src
 
 =build= is one of the commands provided by the CLI, but you can explore the others by running =jk help=. I've specified the name of the job including its folder path, along with the =-p= flag to specify a parameter, and the =-v= and =-f= flags to tail the console output of the job.
@@ -102,7 +102,7 @@ $ jk build test-folder/test-job -p foo=bar -v -f
 The =-p= flag can be used more than once to specify multiple parameter values, e.g:
 
 #+begin_src bash :results none :exports code
-$ jk build test-folder/test-job -p foo=bar -p spam=eggs -v -f
+jk build test-folder/test-job -p foo=bar -p spam=eggs -v -f
 #+end_src
 
 The value for the =-p= flag is just the parameter and its value in the form ~<name>=<value>~.

@@ -81,13 +81,13 @@ And a simple step that outputs the parameter value:
 
 Alright, now we can use the CLI to trigger the parameterised job as follows:
 
-    $ jk build test-folder/test-job -p foo=bar -v -f
+    jk build test-folder/test-job -p foo=bar -v -f
 
 `build` is one of the commands provided by the CLI, but you can explore the others by running `jk help`. I've specified the name of the job including its folder path, along with the `-p` flag to specify a parameter, and the `-v` and `-f` flags to tail the console output of the job.
 
 The `-p` flag can be used more than once to specify multiple parameter values, e.g:
 
-    $ jk build test-folder/test-job -p foo=bar -p spam=eggs -v -f
+    jk build test-folder/test-job -p foo=bar -p spam=eggs -v -f
 
 The value for the `-p` flag is just the parameter and its value in the form `<name>=<value>`.
 
