@@ -31,7 +31,7 @@ Once you've got the JAR on disk, you can run the CLI using Java as follows:
 java -jar jenkins-cli.jar
 #+end_src
 
-However, there's a few pre-requisites you need to setup first. To begin with, you need to tell the CLI where to find Jenkins. You can do this either by passing the =-s= command-line parameter, or by setting the =JENKINS_url= environment variable:
+However, there's a few pre-requisites you need to setup first. To begin with, you need to tell the CLI where to find Jenkins. You can do this either by passing the =-s= command-line parameter, or by setting the =JENKINS_URL= environment variable:
 
 #+begin_src bash :results none :exports code
 export JENKINS_URL=http://localhost:8080
