@@ -41,7 +41,7 @@ You also need to supply your credentials for Jenkins using the =-auth= parameter
 
 - Using a file, rather than directly in the command-line (/otherwise they will appear in your shell history/).
 - As an encrypted file on disk (/otherwise anyone could read it! 😅/).
-- Using an API token, rather than your password (/because this revoked if it is compromised/).
+- Using an API token, rather than your password (/because this can be revoked if it is compromised/).
 
 For this example, we'll just use the admin password you retrieved from Jenkins' startup logs, but we will store it in an encrypted file:
 
