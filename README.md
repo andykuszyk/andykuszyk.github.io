@@ -9,6 +9,14 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Running parameterised Jenkins jobs using the Jenkins CLI](./2024-12-05-jenkins-cli.md)
+I have used Jenkins on-and-off for many years, but have never really been a power-user. I recently started using it a lot more, and needed to trigger parameterised jobs regularly with a variety of different parameter configurations. Doing this through the UI quickly became cumbersome, and I thought to myself: *there must be a better way!*
+
+It turns out, there is! In this post I explain how to set-up and use the Jenkins CLI, to make working with your builds from a terminal nice and ergonomic.
+
+*Published: 6th December 2024.*
+
+---
 ## [Hypothesis-driven debugging](./2024-11-29-hypothesis-driven-debugging.md)
 Several years ago, I spent some time investigating performance problems in a large distributed system. After a while, I noticed that I was using something akin to the scientific method to track down the root causes. In this post, I explain how to use hypotheses--specifically *falsifiable* hypotheses--to debug problems in software systems.
 
