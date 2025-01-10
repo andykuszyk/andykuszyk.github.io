@@ -1,0 +1,34 @@
+** GPG
+Generate key
+#+begin_src bash :results output verbatim :tangle temp.bash
+gpg --full-generate-key
+#+end_src
+
+Get key ID:
+#+begin_src bash :results output verbatim :tangle temp.bash
+gpg --list-secret-keys --keyid-format=long
+#+end_src
+** Git
+#+begin_src bash :results output verbatim :tangle temp.bash
+git config --global commit.gpgsign true
+git config --global user.signingkey <key-id>
+#+end_src
+** Pinentry library
+#+begin_src bash :results output verbatim :tangle temp.bash
+brew install pinentry
+#+end_src
+** Emacs configuration
+#+begin_src elisp :results none
+(use-package pinentry :ensure t)
+(pinentry-start)
+#+end_src
+** Bonus Shell config
+#+begin_src bash :results output verbatim :tangle temp.bash
+export GPG_TTY=$(tty)
+#+end_src
+** GPG agent config
+#+begin_src conf
+allow-emacs-pinentry
+default-cache-ttl 7200
+max-cache-ttl 7200
+#+end_src
