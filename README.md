@@ -9,6 +9,10 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Entering GPG passphrases with Emacs when signing commits with GPG](./2025-01-10-commit-signing-with-gpg-and-emacs.md)
+I recently set-up commit signing with Git for the first time since I've been using Magit in Emacs as my daily-driver Git client. It turns out, if you use a passphrase for your GPG keys, it's a little tricky to setup Emacs as the pinentry client for entering passphrases. I've written down what I did to get this working in the hopes that it will save my future self (and perhaps you!) the effort of finding out how to do it.
+
+---
 ## [Running parameterised Jenkins jobs using the Jenkins CLI](./2024-12-05-jenkins-cli.md)
 I have used Jenkins on-and-off for many years, but have never really been a power-user. I recently started using it a lot more, and needed to trigger parameterised jobs regularly with a variety of different parameter configurations. Doing this through the UI quickly became cumbersome, and I thought to myself: *there must be a better way!*
 

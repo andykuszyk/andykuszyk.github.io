@@ -6,7 +6,7 @@
 #+options: todo:nil
 * Entering GPG passphrases with Emacs when signing commits with GPG
 I recently set-up commit signing with Git for the first time since I've been using Magit in Emacs as my daily-driver Git client. It turns out, if you use a passphrase for your GPG keys, it's a little tricky to setup Emacs as the pinentry client for entering passphrases. I've written down what I did to get this working in the hopes that it will save my future self (and perhaps you!) the effort of finding out how to do it.
-** Step -1: setting up your GPG key
+** DONE Step -1: setting up your GPG key
 In order to sign Git commits with GPG, you'll need a GPG key:
 
 #+begin_src bash :results output verbatim :tangle temp.bash
@@ -35,35 +35,44 @@ $ gpg --export --armor 53467HJGRGHJFYH438756YUTR784365785YUIHYJ
 ...
 -----END PGP PUBLIC KEY BLOCK-----
 #+end_src
-** Step 0: setting up Git
+** DONE Step 0: setting up Git
 Next, you'll want to enable commit signing automatically:
 
 #+begin_src bash :results output verbatim :tangle temp.bash
 git config --global commit.gpgsign true
 #+end_src
 
-And tell Git which key to use. You need to use the short-form of the key's ID:
+And tell Git which key to use:
 
 #+begin_src bash :results output verbatim :tangle temp.bash
-#!/bin/bash
+git config --global user.signingkey 53467HJGRGHJFYH438756YUTR784365785YUIHYJ
 #+end_src
-git config --global user.signingkey <key-id>
-** Pinentry library
+
+Now, if you try to commit from a terminal you should be prompted for your passphrase. If you're not, you're probably missing this environment variable in your shell's =.rc= file:
+
+#+begin_src bash :results output verbatim :tangle temp.bash
+export GPG_TTY=$(tty)
+#+end_src
+** DONE Step 1: Emacs as a =pinentry= client
+Alright, now that you've got commit signing setup, what we actually need to do is configure Emacs to a be a =pinentry= client.
+
+First, make sure you've got it installed. For Mac OS, run:
+
 #+begin_src bash :results output verbatim :tangle temp.bash
 brew install pinentry
 #+end_src
-** Emacs configuration
+
+Next, in Emacs, install the client package:
+
 #+begin_src elisp :results none
 (use-package pinentry :ensure t)
 (pinentry-start)
 #+end_src
-** Bonus Shell config
-#+begin_src bash :results output verbatim :tangle temp.bash
-export GPG_TTY=$(tty)
-#+end_src
-** GPG agent config
+
+Finally, configure GPG to use Emacs. Put this in you =gpg-agent.conf= file, which for me is at =~/.gnupg/gpg-agent.conf=:
+
 #+begin_src conf
 allow-emacs-pinentry
-default-cache-ttl 7200
-max-cache-ttl 7200
 #+end_src
+
+Enjoy passphrase-protected commit signing! 🎊
