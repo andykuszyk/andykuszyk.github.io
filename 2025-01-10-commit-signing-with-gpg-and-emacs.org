@@ -1,18 +1,53 @@
-** GPG
-Generate key
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+options: toc:nil
+#+options: stat:nil
+#+options: todo:nil
+* Entering GPG passphrases with Emacs when signing commits with GPG
+I recently set-up commit signing with Git for the first time since I've been using Magit in Emacs as my daily-driver Git client. It turns out, if you use a passphrase for your GPG keys, it's a little tricky to setup Emacs as the pinentry client for entering passphrases. I've written down what I did to get this working in the hopes that it will save my future self (and perhaps you!) the effort of finding out how to do it.
+** Step -1: setting up your GPG key
+In order to sign Git commits with GPG, you'll need a GPG key:
+
 #+begin_src bash :results output verbatim :tangle temp.bash
 gpg --full-generate-key
 #+end_src
 
-Get key ID:
+Be sure to set a passphrase! 🔒
+
+Next, you'll probably need to export the public key and let your Git forge (e.g. GitHub) know about it. List your keys:
+
 #+begin_src bash :results output verbatim :tangle temp.bash
-gpg --list-secret-keys --keyid-format=long
+$ gpg --list-keys
+[keyboxd]
+---------
+pub   ed25519 2380-10-01 [SC]
+      53467HJGRGHJFYH438756YUTR784365785YUIHYJ
+uid           [ultimate] Jim Kirk <jim.kirkg@starfleet.com>
+sub   cv25519 2380-10-01 [E]
 #+end_src
-** Git
+
+And then use the key ID to export it in plain-text:
+
+#+begin_src bash :results output verbatim :tangle temp.bash
+$ gpg --export --armor 53467HJGRGHJFYH438756YUTR784365785YUIHYJ
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+...
+-----END PGP PUBLIC KEY BLOCK-----
+#+end_src
+** Step 0: setting up Git
+Next, you'll want to enable commit signing automatically:
+
 #+begin_src bash :results output verbatim :tangle temp.bash
 git config --global commit.gpgsign true
-git config --global user.signingkey <key-id>
 #+end_src
+
+And tell Git which key to use. You need to use the short-form of the key's ID:
+
+#+begin_src bash :results output verbatim :tangle temp.bash
+#!/bin/bash
+#+end_src
+git config --global user.signingkey <key-id>
 ** Pinentry library
 #+begin_src bash :results output verbatim :tangle temp.bash
 brew install pinentry
