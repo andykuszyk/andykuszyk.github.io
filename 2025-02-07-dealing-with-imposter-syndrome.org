@@ -19,7 +19,9 @@ However, one thing that became clear to me as I was speaking with my colleague w
 
 I shared these ideas with my colleague, and they found them helpful, so I thought I would share them here in-case others find themselves in similar situations and ask themselves: /"how can I deal with this?"/
 ** Talk to people
-My first reaction when I feel like the only person who doesn't know /that technology/ used be to hide this from those around me. I don't want to get caught out! However, this is counterproductive for two reasons:
+When I feel like I'm the only person who doesn't know /that technology/, my first reaction used be to hide it from those around me. I don't want to get caught out! 😅
+
+However, it became clear that this was counterproductive for two reasons:
 
 1. Your colleagues are probably in the best position to help you learn.
 2. You can't ask basic questions if you're pretending to be an expert!
