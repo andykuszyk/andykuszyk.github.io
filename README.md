@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Dealing with imposter syndrome as a software engineer](2025-02-07-dealing-with-imposter-syndrome.md)
+I was recently speaking with a colleague who was explaining how they often work on tasks that require technical knowledge they don't have. I told them that this was a familiar experience to me, and that I frequently feel "out of my depth"! In this post, I explain some of the ways I deal with this, and remain confident and productive when learning new technologies.
+
+*Published: 14th February 2025*
+
+---
 ## [Entering GPG passphrases with Emacs when signing commits with GPG](./2025-01-10-commit-signing-with-gpg-and-emacs.md)
 I recently set-up commit signing with Git for the first time since I've been using Magit in Emacs as my daily-driver Git client. It turns out, if you use a passphrase for your GPG keys, it's a little tricky to setup Emacs as the pinentry client for entering passphrases. I've written down what I did to get this working in the hopes that it will save my future self (and perhaps you!) the effort of finding out how to do it.
 
