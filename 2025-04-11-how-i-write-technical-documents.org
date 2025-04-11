@@ -5,7 +5,7 @@
 #+options: stat:nil
 #+options: todo:nil
 * How I write technical documents
-I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared thoughts with my colleague, and they found them valuable, so here they are in written form--my favourite medium!
+I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared my thoughts with my colleague, and they found them valuable, so here they are in written form--my favourite medium!
 
 The sorts of documents I'm talking about in this context are technical design documents (TDDs), requests for comments (RFCs), and the like; a document communicating a technical idea for feedback and review, but not necessarily by someone familiar with the domain.
 
@@ -25,7 +25,11 @@ For example:
 
 #+begin_src markdown
 ## Executive summary
-This proposal discusses the problems of processing `foo` events at scale, and suggests that **we introduce an event-sourcing architecture** to decouple event production from consumption. **Kafka is recommended** as an ideal technology for this architecture, although other options are discussed.
+This proposal discusses the problems of processing `foo` events at
+scale, and suggests that **we introduce an event-sourcing
+architecture** to decouple event production from consumption. **Kafka
+is recommended** as an ideal technology for this architecture,
+although other options are discussed.
 #+end_src
 ** DONE 2. Move from the abstract to the specific
 At each level of a technical document, I try to move from the abstract to the specific. This means in the document structure, I will start by outlining the problem and its context, before starting to discuss solution options.
@@ -94,6 +98,7 @@ When a new `foo` is created, we will:
 This same idea could be expressed in a component diagram:
 
 #+begin_src plantuml :file 2025-04-11-how-i-write-technical-documents.org-component-diagram.png
+!theme crt-green
 node "foo-producer" as fp
 queue "Kafka" as k
 node "s3-consumer" as sc
@@ -114,6 +119,7 @@ pc --> db
 Alternatively, a sequence diagram could be used:
 
 #+begin_src plantuml :file 2025-04-11-how-i-write-technical-documents.org-sequence-diagram.png
+!theme crt-green
 participant "foo-producer" as fp
 queue "Kafka" as k
 participant "s3-consumer" as sc

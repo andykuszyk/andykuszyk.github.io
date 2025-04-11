@@ -2,7 +2,7 @@
 
 # How I write technical documents
 
-I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
+I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared my thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
 
 The sorts of documents I'm talking about in this context are technical design documents (TDDs), requests for comments (RFCs), and the like; a document communicating a technical idea for feedback and review, but not necessarily by someone familiar with the domain.
 
@@ -24,7 +24,11 @@ That doesn't necessarily mean a literal headline, but an executive summary or in
 For example:
 
     ## Executive summary
-    This proposal discusses the problems of processing `foo` events at scale, and suggests that **we introduce an event-sourcing architecture** to decouple event production from consumption. **Kafka is recommended** as an ideal technology for this architecture, although other options are discussed.
+    This proposal discusses the problems of processing `foo` events at
+    scale, and suggests that **we introduce an event-sourcing
+    architecture** to decouple event production from consumption. **Kafka
+    is recommended** as an ideal technology for this architecture,
+    although other options are discussed.
 
 
 ## 2. Move from the abstract to the specific
