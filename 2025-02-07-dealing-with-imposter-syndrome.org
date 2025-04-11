@@ -4,6 +4,18 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
+* Linkedin post                                                    :noexport:
+I was recently speaking with a colleague who was explaining how they often work on tasks that require technical knowledge they don't have. I told them that this was a familiar experience to me, and that I frequently feel "out of my depth"! 😅
+
+We had a great conversation about some ways to deal with these situations--in particular, how to deal with imposter syndrome--and I've written up our conversation here: https://akuszyk.com/2025-02-07-dealing-with-imposter-syndrome.html 💭
+
+The TL;DR is that whenever I feel unprepared to work with new technologies or domains, I always try to:
+
+🙂 Talk to people, and be honest about what I know I don't know.
+📚 Read the docs, and try to find good primary sources of information.
+💻 Simplify the task, so that I can work on it locally without breaking anything!
+
+I'd be interested to hear how other people deal with the onset of imposter syndrome, or simply how you approach learning a new technology. Do you have any tips for dealing with these situations?
 * Dealing with imposter syndrome as a software engineer
 I was recently speaking with a colleague who is earlier in their career journey than me. They were explaining how they often work on tasks that require technical knowledge they don't have; they feel overwhelmed by the amount of knowledge required to complete these tasks, and worried that other people might start noticing that they don't have the skills required for the job.
 
