@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [How I write technical documents](2025-04-11-how-i-write-technical-documents.md)
+I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
+
+*Published: 11th April 2025*
+
+---
 ## [Dealing with imposter syndrome as a software engineer](2025-02-07-dealing-with-imposter-syndrome.md)
 I was recently speaking with a colleague who was explaining how they often work on tasks that require technical knowledge they don't have. I told them that this was a familiar experience to me, and that I frequently feel "out of my depth"! In this post, I explain some of the ways I deal with this, and remain confident and productive when learning new technologies.
 
