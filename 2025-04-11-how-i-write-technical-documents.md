@@ -21,14 +21,9 @@ That doesn't necessarily mean a literal headline, but an executive summary or in
 
 For example:
 
-```markdown
-## Executive summary
-This proposal discusses the problems of processing `foo` events at
-scale, and suggests that **we introduce an event-sourcing
-architecture** to decouple event production from consumption. **Kafka
-is recommended** as an ideal technology for this architecture,
-although other options are discussed.
-```
+> **Executive summary**
+> 
+> This proposal discusses the problems of processing `foo` events at scale, and suggests that **we introduce an event-sourcing architecture** to decouple event production from consumption. **Kafka is recommended** as an ideal technology for this architecture, although other options are discussed.
 
 
 ## 2. Move from the abstract to the specific

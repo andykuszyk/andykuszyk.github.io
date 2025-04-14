@@ -22,15 +22,11 @@ The first thing I try to keep in mind is that not everyone will read the entire 
 That doesn't necessarily mean a literal headline, but an executive summary or introduction that conveys the most important facts first can convey 80% of your meaning to 80% of your audience¹.
 
 For example:
+#+begin_quote
+*Executive summary*
 
-#+begin_src markdown
-## Executive summary
-This proposal discusses the problems of processing `foo` events at
-scale, and suggests that **we introduce an event-sourcing
-architecture** to decouple event production from consumption. **Kafka
-is recommended** as an ideal technology for this architecture,
-although other options are discussed.
-#+end_src
+This proposal discusses the problems of processing =foo= events at scale, and suggests that *we introduce an event-sourcing architecture* to decouple event production from consumption. *Kafka is recommended* as an ideal technology for this architecture, although other options are discussed.
+#+end_quote
 ** DONE 2. Move from the abstract to the specific
 At each level of a technical document, I try to move from the abstract to the specific. This means in the document structure, I will start by outlining the problem and its context, before starting to discuss solution options.
 
