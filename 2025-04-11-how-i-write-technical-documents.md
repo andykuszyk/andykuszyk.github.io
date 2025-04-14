@@ -1,5 +1,3 @@
-
-
 # How I write technical documents
 
 I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared my thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
@@ -23,12 +21,14 @@ That doesn't necessarily mean a literal headline, but an executive summary or in
 
 For example:
 
-    ## Executive summary
-    This proposal discusses the problems of processing `foo` events at
-    scale, and suggests that **we introduce an event-sourcing
-    architecture** to decouple event production from consumption. **Kafka
-    is recommended** as an ideal technology for this architecture,
-    although other options are discussed.
+```markdown
+## Executive summary
+This proposal discusses the problems of processing `foo` events at
+scale, and suggests that **we introduce an event-sourcing
+architecture** to decouple event production from consumption. **Kafka
+is recommended** as an ideal technology for this architecture,
+although other options are discussed.
+```
 
 
 ## 2. Move from the abstract to the specific
@@ -41,21 +41,23 @@ My aim here is build context as the reader moves through document; I want them t
 
 For example:
 
-    ## Proposal
-    The high-level architecuture for processing `foo` events will be as follows:
-    
-    1. The `foo` processor will publish events to Kafka.
-    2. A consumer will read these events and save them to S3.
-    3. Another consumer will read these events and save them Postgres.
-    
-    Each of these steps is described in more detail below.
-    
-    ### 1. Publishing `foo` events to Kafka
-    ...
-    ### 2. Saving events to S3
-    ...
-    ### 3. Saving events to Postgres
-    ...
+```markdown
+## Proposal
+The high-level architecuture for processing `foo` events will be as follows:
+
+1. The `foo` processor will publish events to Kafka.
+2. A consumer will read these events and save them to S3.
+3. Another consumer will read these events and save them Postgres.
+
+Each of these steps is described in more detail below.
+
+### 1. Publishing `foo` events to Kafka
+...
+### 2. Saving events to S3
+...
+### 3. Saving events to Postgres
+...
+```
 
 
 ## 3. Say the same thing three times
@@ -83,15 +85,19 @@ For example, I might explain an idea using:
 
 If we take the example used earlier in this post, we could use prose:
 
-    The `foo` producer will process `foo` events by publishing them to Kafka in the `foo.created` topic. This topic will be consumed by two different consumers: an S3 consumer, and a Postgres consumer. The S3 consumer will process `foo.created` events by saving them as an object in S3, whereas the Postgres consumer will insert a new record into a Postgres database.
+```markdown
+The `foo` producer will process `foo` events by publishing them to Kafka in the `foo.created` topic. This topic will be consumed by two different consumers: an S3 consumer, and a Postgres consumer. The S3 consumer will process `foo.created` events by saving them as an object in S3, whereas the Postgres consumer will insert a new record into a Postgres database.
+```
 
 Similarly, we could say the same thing as a list:
 
-    When a new `foo` is created, we will:
-    
-    - Process it in a Kafka producer by sending a new `foo.created` event to Kafka.
-    - Consume `foo.created` events by saving them to S3.
-    - Consume `foo.created` events by inserting new records in Postgres
+```markdown
+When a new `foo` is created, we will:
+
+- Process it in a Kafka producer by sending a new `foo.created` event to Kafka.
+- Consume `foo.created` events by saving them to S3.
+- Consume `foo.created` events by inserting new records in Postgres
+```
 
 This same idea could be expressed in a component diagram:
 
@@ -113,4 +119,3 @@ Happy writing! 📚
 ---
 
 ¹The statistics in this post were entirely fabricated!
-
