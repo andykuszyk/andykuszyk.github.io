@@ -23,7 +23,7 @@ That doesn't necessarily mean a literal headline, but an executive summary or in
 
 For example:
 #+begin_quote
-*Executive summary*
+_*Executive summary*_
 
 This proposal discusses the problems of processing =foo= events at scale, and suggests that *we introduce an event-sourcing architecture* to decouple event production from consumption. *Kafka is recommended* as an ideal technology for this architecture, although other options are discussed.
 #+end_quote
@@ -36,23 +36,31 @@ My aim here is build context as the reader moves through document; I want them t
 
 For example:
 
-#+begin_src markdown
-## Proposal
-The high-level architecuture for processing `foo` events will be as follows:
+#+begin_quote
+_*Proposal*_
 
-1. The `foo` processor will publish events to Kafka.
+The high-level architecture for processing =foo= events will be as follows:
+
+1. The =foo= processor will publish events to Kafka.
+
 2. A consumer will read these events and save them to S3.
+
 3. Another consumer will read these events and save them Postgres.
 
 Each of these steps is described in more detail below.
 
-### 1. Publishing `foo` events to Kafka
+_*1. Publishing `foo` events to Kafka*_
+
 ...
-### 2. Saving events to S3
+
+_*2. Saving events to S3*_
+
 ...
-### 3. Saving events to Postgres
+
+_*3. Saving events to Postgres*_
+
 ...
-#+end_src
+#+end_quote
 ** DONE 3. Say the same thing three times
 My final rule of thumb is that whenever I'm trying to communicate a technical concept, I try to explain it in three different ways.
 
@@ -77,19 +85,21 @@ For example, I might explain an idea using:
 
 If we take the example used earlier in this post, we could use prose:
 
-#+begin_src markdown
-The `foo` producer will process `foo` events by publishing them to Kafka in the `foo.created` topic. This topic will be consumed by two different consumers: an S3 consumer, and a Postgres consumer. The S3 consumer will process `foo.created` events by saving them as an object in S3, whereas the Postgres consumer will insert a new record into a Postgres database.
-#+end_src
+#+begin_quote
+The =foo= producer will process =foo= events by publishing them to Kafka in the =foo.created= topic. This topic will be consumed by two different consumers: an S3 consumer, and a Postgres consumer. The S3 consumer will process =foo.created= events by saving them as an object in S3, whereas the Postgres consumer will insert a new record into a Postgres database.
+#+end_quote
 
 Similarly, we could say the same thing as a list:
 
-#+begin_src markdown
-When a new `foo` is created, we will:
+#+begin_quote
+When a new =foo= is created, we will:
 
-- Process it in a Kafka producer by sending a new `foo.created` event to Kafka.
-- Consume `foo.created` events by saving them to S3.
-- Consume `foo.created` events by inserting new records in Postgres
-#+end_src
+- Process it in a Kafka producer by sending a new =foo.created= event to Kafka.
+
+- Consume =foo.created= events by saving them to S3.
+
+- Consume =foo.created= events by inserting new records in Postgres
+#+end_quote
 
 This same idea could be expressed in a component diagram:
 
