@@ -4,3 +4,5 @@ description: A blog about software engineering, collaboration, and--occasionally
 author: Andy Kuszyk
 plugins:
   - jekyll-feed
+feed:
+  categories: true
