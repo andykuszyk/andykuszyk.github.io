@@ -1,6 +1,3 @@
 theme: jekyll-theme-hacker
 title: akuszyk.com
 description: A blog about software engineering, collaboration, and--occasionally--Emacs.
-author: Andy Kuszyk
-plugins:
-  - jekyll-feed
