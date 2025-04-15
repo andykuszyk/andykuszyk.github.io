@@ -8,6 +8,8 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
+🛜 You can subscribe to updates on this blog using the [RSS feed](./feed.xml).
+
 ---
 ## [How I write technical documents](2025-04-11-how-i-write-technical-documents.md)
 I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared my thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
