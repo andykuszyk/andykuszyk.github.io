@@ -26,7 +26,11 @@ You can read more about me on my technology blog: [**andykuszyk.github.io**](htt
 # Work Experience
 ## Typeform (2024 - present)
 ### Staff Engineer (Sept '24 - present)
-I am currently working as a Staff Engineer at Typeform.
+At Typeform I work across the engineering organisation as a leader, architect, consultant, and mentor. In my first six months, I have:
+
+- **Researched & designed a video content export feature;** starting with no knowledge of the product, I extensively researched the architecture, and reviewed existing functionality, before proposing an approach for building this new capability. When this design was implemented, I remained close to the delivery, and helped troubleshoot any architectural difficulties that arose.
+- **Consolidated various documentation sources into a few canonical sources of truth;** including distilling a large technology radar into an authoritative golden path, and crowd-sourcing contributions to a set of concise architectural descriptions of core user journeys. 
+- **Took a leading role in the last-mile delivery of a multi-year project;** co-ordinating efforts organisation-wide to launch a multi-region capability.
 
 ## Deliveroo (2023 - 2024)
 ### Staff Platform Engineer [contract] (Nov '23 - Sept '24)
