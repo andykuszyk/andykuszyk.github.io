@@ -5,7 +5,7 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* Writing an internal Terraform provider from A to Z [4/8]
+* Writing an internal Terraform provider from A to Z [7/10]
 I recently wrote a Terraform provider for an internal API at Typeform, and followed the development from writing the provider, to deploying into Terraform CI infrastructure, and building Terraform around it. Some of these steps were a little tricky, or required me to trawl through documentation, and I thought to myself: /"I hope this is easier next time I do it!"/
 
 Well, in the interests of preserving what I've learned for my future self, this post describes what I learned about the "A to Z" of building, deploying, and running an internal Terraform provider. If you find yourself needing to do a similar thing, then I hope this post helps you to 🤞
@@ -189,7 +189,7 @@ resource "internal_foo" "test" {
 #+end_src
 
 As you can see, the =terraform-plugin-testing= library allows you to define test steps by declaring Terraform resource definitions, and then inspecting the state afterwards to perform assertions.
-** PROG Deploying the provider
+** DONE Deploying the provider
 Once you've written your provider, you'll need to deploy it into your Terraform CI infrastructure so that it can be used in your Terraform code. Normally, Terraform providers are deployed via a Terraform registry. However, if this is your first internal Terraform provider, you might not have a private registry. You could set one up, but I'm going to describe an alternative below which facilitates the deployment of your internal provider without needing a registry.
 
 Fundamentally, a Terraform provider is a compiled Go binary that is controlled by Terraform via RPC. All you need to do to deploy it is compile it, copy it to where you're running =terraform=, and install it locally. A convenient way to do this is via a GitHub release:
@@ -216,7 +216,7 @@ repo -> init: Downloads binaries
 
 When you create a release in GitHub, your CI can compile your provider binaries, and upload them to the release as downloadable artifacts. Then, before you run =terraform init= in your Terraform infrastructure, you can download and install the provider.
 
-Compiling and uploading the provider binaries can be achieved with a simple GitHub Actions workflow that uses =goreleaser=:
+Compiling and uploading the provider binaries can be achieved with a simple GitHub Actions workflow that uses [[https://goreleaser.com/][=goreleaser=]]:
 
 #+begin_src yaml :exports code
 name: Release
@@ -230,17 +230,102 @@ jobs:
   goreleaser:
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - uses: actions/setup-go@v5
-        with:
-          go-version-file: 'go.mod'
-          cache: true
-      - name: Run GoReleaser
-        uses: goreleaser/goreleaser-action@v6
-        with:
-          args: release --clean
+      - uses: goreleaser/goreleaser-action@v6
 #+end_src
-** TODO Installing the provider
-** TODO Using the provider
+** PROG Installing the provider [1/2]
+Once your provider is being compiled and deployed as a downloadable artifact to a GitHub release, it's ready to be installed wherever you'll be running =terraform init=, =terraform plan=, and =terraform apply=. This is probably your Terraform CI server, but it could be anywhere. As long as it has access to your GitHub repo (e.g. with a =GITHUB_TOKEN= environment variable), it can download your provider binary and install it locally.
+
+Installing your provider is a little tricky, because the default Terraform behavior is to try downloading it from a registry. If we want to install the provider without a registry, we need to do two things:
+
+1. Download the plugin, and store it in a special directory.
+2. Configure Terraform to look for the provider on the local filesystem, rather than in a remote registry.
+*** PROG Downloading the plugin
+In order to download your plugin, you'll first need to identify the latest GitHub release and the download URL of the correct binary, and then download it to the special location Terraform expects. I suggest doing this with a shell script, which we can build up step by step.
+
+First, identify the platform you're running on in the format =<os>_<cpu-architecture>=:
+
+#+begin_src bash :exports code
+function get_arch() {
+    if [[ "$(arch)" == "x86_64" ]]; then
+	echo "amd64" # This helps us build the correct download URL for GitHub.
+    else
+	arch
+    fi
+}
+
+platform="$(uname | tr '[:upper:]' '[:lower:]')_$(get_arch)"
+#+end_src
+
+Next, we'll query the GitHub API to find the details of the right artifact for the latest release:
+
+#+begin_src bash :exports code
+json=$(curl https://api.github.com/repos/<organisation>/terraform-provider-foo/releases/latest \
+     -H "Accept: application/vnd.github+json" \
+     -H "Authorization: Bearer $GITHUB_TOKEN" \
+     -H "X-GitHub-Api-Version: 2022-11-28" 2> /dev/null| \
+	   jq --arg platform "${platform}.zip" -r '.assets[] | select(.name | endswith($platform))')
+#+end_src
+
+This should give you some JSON like this:
+
+#+begin_src json :exports code
+TODO
+#+end_src
+
+Finally, you can download the artifact to the special location that Terraform will use to search for providers locally. This is a directory in the working directory of your project in a path like =terraform.d/plugins/<host>/<namespace>/foo=, where:
+
+- =<host>= can be a hostname of your choosing, e.g. =acme.com=
+- =<namespace>= can be a category of your choosing, e.g. =internal=
+- =foo= is the name of your provider
+
+Using the JSON from GitHub, and this download directory, you can download your artifact as follows:
+
+#+begin_src bash :exports code
+url=$(echo "$json" | jq -r '.url')
+name=$(echo "$json" | jq -r '.name')
+
+wget --header "Authorization: Bearer $GITHUB_TOKEN" --header "Accept: application/octet-stream" -O "terraform.d/plugins/<host>/<namespace>/foo/${name}" "$url"
+#+end_src
+*** DONE Configuring Terraform to use your local filesystem
+In order for Terraform to use your local copy of the provider, you need to configure it to use an [[https://developer.hashicorp.com/terraform/cli/config/config-file#implied-local-mirror-directories][implied local filesystem mirror]]. This involves using a custom config file for the Terraform CLI, and telling =terraform= where to find it.
+
+The config file itself can be stored anywhere, but must have a =*.tfrc= file extension. Let's assume you use a file called =terraform.tfrc= in the working directory of your project:
+
+#+begin_src hcl :exports code
+provider_installation {
+  filesystem_mirror {
+    path = "/path/to/your/project/terraform.d/plugins"
+    include = ["<host>/<namespace>/foo"]
+  }
+  direct {
+    exclude = ["<host>/<namespace>/foo"]
+  }
+}
+#+end_src
+
+This file tells Terraform to explicitly search for your provider (=<host>/<namespace>/foo=) in the =terraform.d/plugins= directory we created in your working directory. It also explicitly tells Terraform /not/ to search for your provider in a registry.
+
+Once you've created this file, you just need to tell =terraform= to use this file with an environment variable when you run it:
+
+#+begin_src bash :export code
+TF_CLI_CONFIG_FILE=$(pwd)/terraform.tfrc terraform init
+#+end_src
+** DONE Using the provider
+Now you're good to go to use your provider as your normally would. For example, you might have a =providers.tf= that looks like this:
+
+#+begin_src terraform :exports code
+terraform {
+  required_providers {
+    appcatalog = {
+      source = "<host>/<namespace>/foo"
+    }
+  }
+}
+
+provider "foo" {
+  // Your provider config here.
+}
+
+#+end_src
 ** TODO Summary
