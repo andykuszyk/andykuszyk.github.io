@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Writing an internal Terraform provider from A to Z](./2025-05-21-internal-terraform-providers-from-a-to-z.md)
+I recently wrote a Terraform provider for an internal API, and wanted to deploy it simply without requiring an internal Terraform registry. In this post, I describe the basics of writing a Terraform provider, a good way to test providers, and a simple deployment pipeline to get started quickly.
+
+*Published: 23rd May 2025*
+
+---
 ## [How I write technical documents](2025-04-11-how-i-write-technical-documents.md)
 I was recently talking with a colleague about how to write technical documents, and they asked me if I had any tips. Although I enjoy writing technical documents (e.g. design documents), I'm by no means an expert. I shared my thoughts with my colleague, and they found them valuable, so here they are in written form&#x2013;my favourite medium!
 

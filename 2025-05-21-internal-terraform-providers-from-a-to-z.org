@@ -5,7 +5,7 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
-* Writing an internal Terraform provider from A to Z [7/10]
+* Writing an internal Terraform provider from A to Z [10/10]
 I recently wrote a Terraform provider for an internal API at Typeform, and followed the development from writing the provider, to deploying into Terraform CI infrastructure, and building Terraform around it. Some of these steps were a little tricky, or required me to trawl through documentation, and I thought to myself: /"I hope this is easier next time I do it!"/
 
 Well, in the interests of preserving what I've learned for my future self, this post describes what I learned about the "A to Z" of building, deploying, and running an internal Terraform provider. If you find yourself needing to do a similar thing, then I hope this post helps you to 🤞
@@ -18,7 +18,7 @@ When writing a Terraform provider--internal or not--the first place to start is 
 
 In this repo you will find a =provider.go= containing metadata about your provider, and a schema for the arguments your provider can take as configuration. When you start building your provider, you'll also need a file per resource. Let's take the example for a =foo= resource, which you'll probably write in a file called =foo_resource.go=. This file will have a few key elements, along with its associated tests in =foo_resource_test.go=.
 *** DONE The resource data model
-In =foo_resource.go=, you'll need to define the data mode of your resource (i.e. the configuration its Terraform =resource= accepts) in two ways:
+In =foo_resource.go=, you'll need to define the data model of your resource (i.e. the configuration its Terraform =resource= accepts) in two ways:
 
 1. As a Go data structure for serialising and deserialising the data to HCL.
 2. As a schema of fields and data types, defined using a Hashicorp API.
@@ -233,14 +233,14 @@ jobs:
       - uses: actions/setup-go@v5
       - uses: goreleaser/goreleaser-action@v6
 #+end_src
-** PROG Installing the provider [1/2]
+** DONE Installing the provider [2/2]
 Once your provider is being compiled and deployed as a downloadable artifact to a GitHub release, it's ready to be installed wherever you'll be running =terraform init=, =terraform plan=, and =terraform apply=. This is probably your Terraform CI server, but it could be anywhere. As long as it has access to your GitHub repo (e.g. with a =GITHUB_TOKEN= environment variable), it can download your provider binary and install it locally.
 
 Installing your provider is a little tricky, because the default Terraform behavior is to try downloading it from a registry. If we want to install the provider without a registry, we need to do two things:
 
 1. Download the plugin, and store it in a special directory.
 2. Configure Terraform to look for the provider on the local filesystem, rather than in a remote registry.
-*** PROG Downloading the plugin
+*** DONE Downloading the plugin
 In order to download your plugin, you'll first need to identify the latest GitHub release and the download URL of the correct binary, and then download it to the special location Terraform expects. I suggest doing this with a shell script, which we can build up step by step.
 
 First, identify the platform you're running on in the format =<os>_<cpu-architecture>=:
@@ -267,10 +267,20 @@ json=$(curl https://api.github.com/repos/<organisation>/terraform-provider-foo/r
 	   jq --arg platform "${platform}.zip" -r '.assets[] | select(.name | endswith($platform))')
 #+end_src
 
-This should give you some JSON like this:
+This should give you some JSON that looks something like this:
 
 #+begin_src json :exports code
-TODO
+{
+  "url": "https://api.github.com/repos/acme/terraform-provider-foo/releases/assets/2542153478",
+  "name": "terraform-provider-foo_1.0.0_darwin_arm64.zip",
+  "uploader": {
+    "login": "github-actions[bot]",
+    "type": "Bot"
+  },
+  "content_type": "application/zip",
+  "state": "uploaded",
+  "browser_download_url": "https://github.com/acme/terraform-provider-foo/releases/download/v1.0.0/terraform-provider-foo_1.0.0_darwin_arm64.zip"
+}
 #+end_src
 
 Finally, you can download the artifact to the special location that Terraform will use to search for providers locally. This is a directory in the working directory of your project in a path like =terraform.d/plugins/<host>/<namespace>/foo=, where:
@@ -328,4 +338,7 @@ provider "foo" {
 }
 
 #+end_src
-** TODO Summary
+** DONE Summary
+So, there you have it! If you want to write a simple, internal provider, and deploy it without worrying about running an internal Terraform registry, then I hope this post helps.
+
+Happy Terraforming! 👷
