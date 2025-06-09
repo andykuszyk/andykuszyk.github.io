@@ -1,10 +1,6 @@
 # Three things all engineering teams need
 
-Over the last few years, I've seen a handful of different engineering organisations from three perspectives:
-
-1.  An individual contributor (Senior Engineer)
-2.  An organisational leader (Head of Engineering)
-3.  A technical leader (Staff Engineer)
+Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, and organisation leader, and a technical leader.
 
 From each of these perspectives, I've noticed that among the many and varied best practices each team has had, there have been three fundamental ingredients in common. Interestingly, I've seen all three materialised in quite different ways, but I think the essence of each is important no matter where you are. These three things are:
 
@@ -17,15 +13,15 @@ The first two are quite related, and the third one less so, but I've noticed tha
 
 ## 1. A way to manage the configuration of your source code estate at scale
 
-Assuming you use an enterprise git forge like GitHub, when you have hundreds of users and thousands of repos, managing the configuration of your source code estate becomes a challenge. Some configuration can be managed centrally through your forge's tooling (e.g. who can access which repos), but much of it is bespoke to your needs. Let me give you some examples of what types of configuration I'm taking about:
+When you have hundreds of users and thousands of repos, managing the configuration of your source code estate becomes a challenge. Some configuration can be managed centrally through your forge's tooling (e.g. who can access which repos), but much of it is bespoke to your needs. Let me give you some examples of what types of configuration I'm taking about:
 
 -   Using a standardised way to tag and categories all your repos.
 -   Managing a standard set of files (CI workflows, CODEOWNER files, etc.) in all of your repos.
 -   Ensuring your branch protection rules are uniform across your estate, or even dynamic depending on the use case (e.g. documentation repos vs. production repos).
 
-In my experience, a good way to manage this type of custom configuration at scale is by using Terraform. Just as you might use Terraform to manage your AWS infrastructure, you can use the excellent [GitHub Terraform provider](https://registry.terraform.io/providers/integrations/github/latest/docs). It has support for managing [repo topics](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_topics), [branch protection rules](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection), and even [files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file).
+In my experience, a good way to manage this type of custom configuration at scale is by using Terraform. Just as you might use Terraform to manage your AWS infrastructure, you can use the excellent [GitHub Terraform provider](https://registry.terraform.io/providers/integrations/github/latest/docs) to manage your repos. It has support for managing [repo topics](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_topics), [branch protection rules](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/branch_protection), and even [files](https://registry.terraform.io/providers/integrations/github/latest/docs/resources/repository_file).
 
-Some of the best examples of using Terraform this way have been to maintain a declarative YAML file of all repos, and use this as an input to a Terraform module:
+Some of the best examples I've seen of using Terraform this way have been to maintain a declarative YAML file of all repos, and use this as an input to a Terraform module:
 
 ```yaml
 andykuszyk.github.io:
@@ -51,7 +47,7 @@ module "repos" {
 
 ## 2. A way to monitor the health of your source code estate at scale
 
-Managing the *configuration* of your source code estate is all well and good, but it doesn't tell you much about what's *in* your repos. I think it's also important to have a way to assess the health of what's stored within your repos, and have a global way of evaluating your estate, and imposing rules on it. Some examples might be:
+Managing the *configuration* of your source code estate is all well and good, but it doesn't tell you much about what's *in* your repos. I think it's also important to have a way to assess the health of what's stored within your repos, have a global way of evaluating your estate, and impose rules on changes to it. Some examples might be:
 
 -   Using standard linters for specific languages, or monitoring which repos aren't linted.
 -   Checking for the use of deprecated tools or libraries, and warning about their use.

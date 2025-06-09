@@ -10,7 +10,7 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 
 ---
 ## [Three things all engineering teams need](2025-06-06-three-things-all-engineering-teams-need.md)
-Over the last few years, I've seen a few different engineering organisations in a few different roles, and I've observed that all of them have had three essential ingredients in common: the ability to configure the source code estate, a way to measure its health, and a forum for discussing changes to it. In this post, I unpack each of these ideas, and provide some examples of ways to achieve them.
+Over the last few years, I've seen a few different engineering organisations in a few different roles, and I've observed that all of them have had three essential ingredients in common: the ability to configure their source code estate, a way to measure its health, and a forum for discussing changes to it. In this post, I unpack each of these ideas, and provide some examples of ways to achieve them.
 
 *Published: 9th June 2025*
 
