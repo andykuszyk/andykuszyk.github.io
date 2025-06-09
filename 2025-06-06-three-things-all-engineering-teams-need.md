@@ -1,6 +1,6 @@
 # Three things all engineering teams need
 
-Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, and organisation leader, and a technical leader.
+Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, an organisation leader, and a technical leader.
 
 From each of these perspectives, I've noticed that among the many and varied best practices each team has had, there have been three fundamental ingredients in common. Interestingly, I've seen all three materialised in quite different ways, but I think the essence of each is important no matter where you are. These three things are:
 

@@ -5,8 +5,22 @@
 #+options: stat:nil
 #+options: todo:nil
 # Localwords: organisation organisations YAML materialised repos GitHub Terraform AWS standardise CI datastore
+* LinkedIn post                                                    :noexport:
+Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, an organisation leader, and a technical leader.
+
+From each of these perspectives, I've noticed that among the many and varied best practices each team has had, there have been three fundamental ingredients in common. Interestingly, I've seen all three materialised in quite different ways, but I think the essence of each is important no matter where you are. These three things are:
+
+1. A way to manage the configuration of your source code estate at scale
+2. A way to monitor the health of your source code estate at scale
+3. A central forum for technical discussion and decision making
+
+I've written more about each of these topics in a blog post here: https://akuszyk.com/2025-06-06-three-things-all-engineering-teams-need.html
+
+I'd be interested to hear observations that other people have about these "essential ingredients". What fundamental things do you think an engineering organisation needs to thrive, and how have you seen these things brought to life?
+
+#engineeringleadership #terraform #techleadership #techtips #engineeringbestpractices
 * Three things all engineering teams need
-Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, and organisation leader, and a technical leader.
+Over the last few years, I've seen a handful of different engineering organisations from the perspectives of an individual contributor, an organisation leader, and a technical leader.
 
 From each of these perspectives, I've noticed that among the many and varied best practices each team has had, there have been three fundamental ingredients in common. Interestingly, I've seen all three materialised in quite different ways, but I think the essence of each is important no matter where you are. These three things are:
 
