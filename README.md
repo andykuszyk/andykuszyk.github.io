@@ -9,6 +9,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Three things all engineering teams need](2025-06-06-three-things-all-engineering-teams-need.md)
+Over the last few years, I've seen a few different engineering organisations in a few different roles, and I've observed that all of them have had three essential ingredients in common: the ability to configure the source code estate, a way to measure its health, and a forum for discussing changes to it. In this post, I unpack each of these ideas, and provide some examples of ways to achieve them.
+
+*Published: 9th June 2025*
+
+---
 ## [Writing an internal Terraform provider from A to Z](./2025-05-21-internal-terraform-providers-from-a-to-z.md)
 I recently wrote a Terraform provider for an internal API, and wanted to deploy it simply without requiring an internal Terraform registry. In this post, I describe the basics of writing a Terraform provider, a good way to test providers, and a simple deployment pipeline to get started quickly.
 
