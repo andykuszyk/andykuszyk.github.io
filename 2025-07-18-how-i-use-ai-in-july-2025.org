@@ -41,7 +41,7 @@ The evaluator should have two levels:
 
 If a repository isn't a Go repository (i.e. it doesn't have a go.mod file), then this evaluator is not applicable.
 
-If it does have a go.mod file, then it is not compliant if the go.mod file contains github.com/aws/aws-sdk-go but not github.com/aws/aws-sdk-go-v2. If the go.mod file contains github.com/aws/aws-sdk-go-v2 but not github.com/aws/aws-sdk-go-v2, then it is fully compliant.
+If it does have a go.mod file, then it is not compliant if the go.mod file contains github.com/aws/aws-sdk-go but not github.com/aws/aws-sdk-go-v2. If the go.mod file contains github.com/aws/aws-sdk-go-v2 but not github.com/aws/aws-sdk-go, then it is fully compliant.
 
 In other words, only repos that use github.com/aws/aws-sdk-go-v2 exclusively are full compliant.
 
@@ -61,7 +61,7 @@ The impact of using LLMs in these two ways has been quite profound:
 *** 1. My /time to retrieve technical information/ has decreased dramatically
 Asking an LLM has enabled me to find out what I need, when I need it, and continue with my day.
 *** 2. My /capacity to get things done/ has expanded significantly
-Whereas previously I would think /"that's a good idea, maybe I'll do it some day"/, now I just ask Claude Code to do it in the background. It costs me a couple of minutes to write the prompt, and more often than not it gets the job down. Now, the limit to my productivity is less my available time, and more my available ideas.
+Whereas previously I would think /"that's a good idea, maybe I'll do it some day"/, now I just ask Claude Code to do it in the background. It costs me a couple of minutes to write the prompt, and more often than not it gets the job done. Now, the limit to my productivity is less my available time, and more my available ideas.
 ** What?
 So, what tools am I using for chat and agentic editing?
 
