@@ -4,6 +4,16 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
+* LinkedIn post                                                    :noexport:
+Right now, the AI landscape is rapidly shifting in software engineering. New tools are being published weekly, and what was science fiction yesterday is old news by tomorrow. It's hard to keep up! 😅
+
+I've been on a journey of adopting AI tools into my work as a software engineer this year, and I thought halfway through might be a good time to take stock and write down how, why, and what I'm using AI for. I've written a blog post that I hope provides some inspiration in the present-day for how you might make use of these tools yourself.
+
+If you're interested in how I'm using Claude Code, Claude Opus 4, and--of course!--the relevant Emacs packages, take look here:
+
+https://akuszyk.com/2025-07-18-how-i-use-ai-in-july-2025.html
+
+#SoftwareEngineering #AI #DeveloperProductivity #TechTools #Engineering #ClaudeCode #Anthropic #Emacs
 * How I'm using AI as a Software Engineer in July 2025
 /"Wow,"/ you might think, /"that's a very specific title!"/
 
@@ -17,9 +27,6 @@ So, how am I using AI in July 2025? For two main things:
 Instead of turning to Google, or even staple primary sources like =man= pages, I now ask an LLM questions as my first port of call. Sometimes, if I'm asking about something vague or non-technical (e.g. where do I find the settings for X in web app Y), the results aren't great; I have to Google it anyway.
 
 However, for most of my technical questions, the LLM responses are superior to the results of a Google search, and much faster than manually looking things up in documentation. I still cross-reference documentation to help build my understanding (e.g. to find out what a special =jq= operator does), but asking an LLM is a massive productivity booster for getting access to the information I need, when I need it.
-
-#+DOWNLOADED: screenshot @ 2025-07-18 15:24:12
-[[file:images/2025-07-18_15-24-12_screenshot.png]]
 *** 2. Interactive code editing
 Increasingly, I'm using an agentic coding tool to make /all/ of my code changes. This isn't necessarily faster on its own (although in many cases it is! ✨), but it makes me /productive in parallel/. In other words, it enables me to work on several things concurrently when I would ordinarily only have the bandwidth to do one at a time.
 

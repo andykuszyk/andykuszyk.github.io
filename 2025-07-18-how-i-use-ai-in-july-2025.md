@@ -17,10 +17,6 @@ So, how am I using AI in July 2025? For two main things:
 Instead of turning to Google, or even staple primary sources like `man` pages, I now ask an LLM questions as my first port of call. Sometimes, if I'm asking about something vague or non-technical (e.g. where do I find the settings for X in web app Y), the results aren't great; I have to Google it anyway.
 
 However, for most of my technical questions, the LLM responses are superior to the results of a Google search, and much faster than manually looking things up in documentation. I still cross-reference documentation to help build my understanding (e.g. to find out what a special `jq` operator does), but asking an LLM is a massive productivity booster for getting access to the information I need, when I need it.
-
-![img](images/2025-07-18_15-24-12_screenshot.png)
-
-
 ### 2. Interactive code editing
 
 Increasingly, I'm using an agentic coding tool to make *all* of my code changes. This isn't necessarily faster on its own (although in many cases it is! ✨), but it makes me *productive in parallel*. In other words, it enables me to work on several things concurrently when I would ordinarily only have the bandwidth to do one at a time.
