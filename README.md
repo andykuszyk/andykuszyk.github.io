@@ -9,6 +9,14 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [How I use AI tools as a Software Engineer in July 2025](./2025-07-18-how-i-use-ai-in-july-2025.md)
+Right now, the AI landscape is rapidly shifting in software engineering. New tools are being published weekly, and what was science fiction yesterday is old news by tomorrow. It's hard to keep up! 😅
+
+I've been on a journey of adopting AI tools into my work as a software engineer this year, and I thought halfway through might be a good time to take stock and write down how, why, and what I'm using AI for. This post will probably be wildly out-of-date in another six months, but I hope it provides some inspiration in the present-day for how you might make use of these tools yourself.
+
+*Published: 18th July 2025*
+
+---
 ## [Three things all engineering teams need](2025-06-06-three-things-all-engineering-teams-need.md)
 Over the last few years, I've seen a few different engineering organisations in a few different roles, and I've observed that all of them have had three essential ingredients in common: the ability to configure their source code estate, a way to measure its health, and a forum for discussing changes to it. In this post, I unpack each of these ideas, and provide some examples of ways to achieve them.
 
