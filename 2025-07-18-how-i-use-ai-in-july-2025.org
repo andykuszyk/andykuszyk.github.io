@@ -1,0 +1,76 @@
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+options: toc:nil
+#+options: stat:nil
+#+options: todo:nil
+* How I'm using AI as a Software Engineer in July 2025
+/"Wow,"/ you might think, /"that's a very specific title!"/
+
+Right now, the AI landscape is rapidly shifting in software engineering. New tools are being published weekly, and what was science fiction yesterday is old news by tomorrow. It's hard to keep up! 😅
+
+I've been on a journey of adopting AI tools into my work as a software engineer this year, and I thought halfway through might be a good time to take stock and write down how, why, and what I'm using AI for. This post will probably be wildly out-of-date in another six months, but I hope it provides some inspiration in the present-day for how you might make use of these tools yourself.
+** How?
+So, how am I using AI in July 2025? For two main things:
+
+*** 1. Question & answer
+Instead of turning to Google, or even staple primary sources like =man= pages, I now ask an LLM questions as my first port of call. Sometimes, if I'm asking about something vague or non-technical (e.g. where do I find the settings for X in web app Y), the results aren't great; I have to Google it anyway.
+
+However, for most of my technical questions, the LLM responses are superior to the results of a Google search, and much faster than manually looking things up in documentation. I still cross-reference documentation to help build my understanding (e.g. to find out what a special =jq= operator does), but asking an LLM is a massive productivity booster for getting access to the information I need, when I need it.
+
+#+DOWNLOADED: screenshot @ 2025-07-18 15:24:12
+[[file:images/2025-07-18_15-24-12_screenshot.png]]
+*** 2. Interactive code editing
+Increasingly, I'm using an agentic coding tool to make /all/ of my code changes. This isn't necessarily faster on its own (although in many cases it is! ✨), but it makes me /productive in parallel/. In other words, it enables me to work on several things concurrently when I would ordinarily only have the bandwidth to do one at a time.
+
+I'm using Claude Code for this, and use it from anything as simple as:
+
+#+begin_quote
+Add a log line to this function to print out the variable =foo=
+#+end_quote
+
+To work that requires a detailed prompt:
+
+#+begin_quote
+Add a new evaluator to this repository (similar to those found in src/domain/evaluators/) called "go-aws-sdk". This evaluator should check repositories to see which version of the Go AWS SDK they are using.
+
+The evaluator should have two levels:
+
+- Not compliant (score 0)
+- Fully compliant (score 1)
+
+If a repository isn't a Go repository (i.e. it doesn't have a go.mod file), then this evaluator is not applicable.
+
+If it does have a go.mod file, then it is not compliant if the go.mod file contains github.com/aws/aws-sdk-go but not github.com/aws/aws-sdk-go-v2. If the go.mod file contains github.com/aws/aws-sdk-go-v2 but not github.com/aws/aws-sdk-go-v2, then it is fully compliant.
+
+In other words, only repos that use github.com/aws/aws-sdk-go-v2 exclusively are full compliant.
+
+You should add test cases for this new evaluator as follows:
+
+- A repo with no go.mod file: not applicable.
+- A repo with a go.mod file, but neither github.com/aws/aws-sdk-go or github.com/aws/aws-sdk-go-v2: fully compliant
+- A repo with a go.mod file containing github.com/aws/aws-sdk-go-v2, but not github.com/aws/aws-sdk-go: fully compliant
+- A repo with a go.mod file containing github.com/aws/aws-sdk-go but not github.com/aws/aws-sdk-go-v2: not compliant
+- A repo with a go.mod file containing github.com/aws/aws-sdk-go and github.com/aws/aws-sdk-go-v2: not compliant
+#+end_quote
+
+In the first example, Claude Code adds a new log line admirably (taking into account the local conventions for logging libraries, message styles, etc). In the second case, it takes several minutes to generate fully-working, PR-ready code that does just what I've asked for. Whilst it works on these code changes, I work on something else (or another =claude= prompt 🤓).
+** Why?
+The impact of using LLMs in these two ways has been quite profound:
+
+*** 1. My /time to retrieve technical information/ has decreased dramatically
+Asking an LLM has enabled me to find out what I need, when I need it, and continue with my day.
+*** 2. My /capacity to get things done/ has expanded significantly
+Whereas previously I would think /"that's a good idea, maybe I'll do it some day"/, now I just ask Claude Code to do it in the background. It costs me a couple of minutes to write the prompt, and more often than not it gets the job down. Now, the limit to my productivity is less my available time, and more my available ideas.
+** What?
+So, what tools am I using for chat and agentic editing?
+
+I'm using Anthropic models exclusively, in particular Claude Opus 4. I've had good results with these models, and my company has provided a paved road to access them.
+
+For a Q&A chat interface, I'm using [[https://github.com/karthink/gptel][gptel]] in Emacs.
+
+For agentic editing, I'm using [[https://github.com/anthropics/claude-code][Claude Code]] with the [[https://github.com/manzaltu/claude-code-ide.el][claude-code-ide]] Emacs package.
+** Next update: August 2025! 😅
+Hopefully this post has given you some food for thought 💡
+
+I'm sure my tools and approach will continue to change as rapidly as the landscape evolves. Perhaps I'll be revising this post in a month or two, we'll see! 🍿
