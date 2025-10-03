@@ -10,7 +10,7 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 
 ---
 ## [Democratising access to AI](./2025-09-05-ai-adoption-in-engineering-orgs.md)
-AI usage in software engineering is still a relatively new art#x2013;especially when it comes to the use of agentic AI tools. As these tools become more prevalent, it's up to each of us to decide *how, why, and what* we're going to use on a daily basis.
+AI usage in software engineering is still a relatively new art--especially when it comes to the use of agentic AI tools. As these tools become more prevalent, it's up to each of us to decide *how, why, and what* we're going to use on a daily basis.
 
 However, it's also rapidly becoming the responsibility of engineering leaders to decide *how, why, and what* their teams are going to be using. I don't mean to say that they need to prescribe specific tools or use-cases for their team members. I think it's quite a personal choice for each of us, much like our selection of a text editor. Despite our personal preferences, in order for AI adoption to be widespread in an engineering organisation, it has to be *democratised* and *federated*.
 
