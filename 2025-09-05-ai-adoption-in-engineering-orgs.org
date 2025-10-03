@@ -1,0 +1,110 @@
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+options: toc:nil, stat:nil, todo:nil
+* [[https://www.notion.so/typeform/Democratising-access-to-AI-26523dfc4c00803b98a6c044f6e00c5f][Democratising access to AI]]
+#+begin_quote
+🔗 /Originally posted on the [[https://medium.com/typeforms-engineering-blog/democratising-access-to-ai-2baea617eff6][Typeform engineering blog]]/
+#+end_quote
+AI usage in software engineering is still a relatively new art--especially when it comes to the use of agentic AI tools. As these tools become more prevalent, it's up to each of us to decide /how, why, and what/ we're going to use on a daily basis. My own journey is a [[https://akuszyk.com/2025-07-18-how-i-use-ai-in-july-2025.html][work in progress]], and is constantly evolving!
+
+However, it's also rapidly becoming the responsibility of engineering leaders to decide /how, why, and what/ their teams are going to be using. I don't mean to say that they need to prescribe specific tools or use-cases for their team members. I think it's quite a personal choice for each of us, much like our selection of a text editor. Despite our personal preferences, in order for AI adoption to be widespread in an engineering organisation, it has to be /democratised/ and /federated/.
+
+At Typeform, 2025 has been a journey of /democratising access/ to AI tools within our engineering organisation. We've gone from few people using agentic coding tools at the beginning of the year, to over 75% of our team using these tools today.
+
+In this post I'm going to illustrate some of the ways I've been helping roll out the use of AI tools within our team. Much like my [[https://akuszyk.com/2025-07-18-how-i-use-ai-in-july-2025.html][other post about tools]], this is a snapshot of my thoughts and ideas in October 2025. Perhaps I'll have come across better approaches by November! 😅
+** Democratising access to AI
+I asked my LLM what it means for something to be /democratised/:
+
+#+begin_quote
+*Democratise*: To make something accessible to ordinary people instead of just elites, by removing barriers, simplifying usage, and distributing power more widely. Essentially moving from "only for the few" to "available to many."
+#+end_quote
+
+When I think about adoption of AI tools in an engineering organisation, a fundamental prerequisite is that everyone should have /equal access/ with as few /barriers to entry/ as possible. What we've done at Typeform this year is leverage [[https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html][AWS Bedrock API keys]] for providing team members with access to LLMs in Bedrock.
+
+This is convenient for our organisation, because it means we can track usage and costs via our AWS account. We can also directly link an engineer's usage of LLMs to their usage of other AWS resources; when an engineer joins or leaves, their access to LLMs is automatic.
+
+It's also convenient for individuals; we've added a command to our in-house engineering toolkit (a CLI called =tf=), so that generating a Bedrock API key is as simple as:
+
+#+begin_src bash :exports code
+$ tf bedrock-api-key
+AWEDDGEtgrdfhkj...
+#+end_src
+
+Rolling out this tooling within our team means that:
+
+- Everyone has access :: if you're an engineer, you can generate a Bedrock API key.
+- Access is simple :: there are no special setup requirements, or manual configuration steps. You run the command, and that's it.
+
+#+begin_quote
+💡 If you're interested in how we did this, you can find more details in the appendix at the end of this post.
+#+end_quote
+** Federating usage of AI
+For me, the important thing is to democratise /access/ to AI in order to facilitate /usage/ of AI. Once people have access to an underlying model, they can pick and choose the tools they are using with the same freedom they use to choose text editors, note-takers, and calendar apps.
+
+Although Bedrock API keys are still fairly new, they are supported by Roo Code, Cline, and Claude Code (not to mention a number of Emacs packages 🤓). By democratising access to LLMs in Bedrock, we are /federating the usage/ of tools to individuals; people can use what they like, how they like, as long as it can use Bedrock.
+** An enabler or an accelerator?
+Cross-referencing our AI usage with our code contribution metrics yields unsurprising results: /our top AI users are also amongst our most prolific contributors/.
+
+However, if we rewind the clock a few months to before AI usage was widespread in our team, the same individuals are still amongst our most regular contributors.
+
+For me, this begs the question:
+
+#+begin_quote
+Are AI tools /enabling/ more people to make more contributions, or /accelerating/ those who were already prolific contributors?
+#+end_quote
+
+The answer isn't clear just now, but I suspect it's a mix of both. Those people who were already very familiar with our codebase and making regular contributions have probably been accelerated by AI tools. Similarly, those less familiar are now being enabled to make more contributions than before, and in areas they would have been less comfortable with before.
+
+Either way, AI is having a positive impact on our individuals, and our teams 🚀
+** It's not all ✨ and 🌈
+This approach is working well for us, particularly when it comes to putting access to AI tools in the hands of all our team members. However, Bedrock API keys are still new, and their support in various tools and plugins is sometimes missing.
+
+Furthermore, all of our engineers are now using Bedrock in a /single AWS account/. This means that we're all depleting the same [[https://docs.aws.amazon.com/general/latest/gr/bedrock.html#limits_bedrock][Bedrock limits]], notably tokens per minute. During busy times of the day, this can result in Bedrock rate-limiting our engineers. We can switch to a different AWS region to consume the quota somewhere else, but it isn't ideal. We're in touch with our AWS account team to work on a solution.
+
+Overall this isn't too much of a problem for our team, and the benefits of democratising access to AI in this way outweigh some of the rough edges at the moment.
+** It's a journey, not a destination
+As AI tooling evolves, we need to change the way we think about building software, the tools we use, and the way we work with other disciplines. The way we operate as teams and organisations is changing too, so I think it's important to maintain an open mind about how we use AI tools as individuals, teams, and organisations. I hope this post gave you an insight into how we're using AI at Typeform, and I'm sure updates will follow in the future!
+
+-----
+
+* Appendix: how we generated Bedrock API keys
+If you're interested in how we generated Bedrock API keys for each of our engineers, you can find the detailed steps below. I've used the AWS CLI to illustrate steps, and so that you can reproduce the process manually. In reality, we materialised this process by provisioning the users and policies in Terraform, and by generating the API key in a CLI.
+** Step 1: provision a policy for accessing Bedrock
+Your users will need just enough permissions to access Bedrock, and nothing else:
+#+begin_src bash :exports code
+$ aws iam create-policy --policy-name bedrock-api-key-access --policy-document '{
+  "Version": "2012-10-17",
+  "Statement": [
+      {
+	  "Sid": "BedrockAPIs",
+	  "Effect": "Allow",
+	  "Action": [
+	      "bedrock:CallWithBearerToken",
+	      "bedrock:InvokeModel",
+	      "bedrock:InvokeModelWithResponseStream"
+	  ],
+	  "Resource": "*"
+      }
+  ]
+}'
+#+end_src
+** Step 2: provision a special user
+We provisioned special IAM users specifically for Bedrock API keys, so that their usage didn't interfere with our access controls for other parts of our estate:
+#+begin_src bash :exports code
+$ aws iam create-user --user-name jim-kirk-bedrock-api-key-user
+#+end_src
+** Step 3: attach the policy to the user
+You can attach the policy directly to the special user, or via a group.
+#+begin_src bash :exports code
+$ aws iam attach-user-policy --user-name jim-kirk-bedrock-api-key-user --policy-arn arn:aws:iam::<account-id>:policy/bedrock-api-key-access
+#+end_src
+** Step 4: generating a Bedrock API key
+We automated this in a command line tool bundled with the rest of our developer tooling:
+#+begin_src bash :exports code
+$ aws iam create-service-specific-credential \
+    --user-name jim-kirk-bedrock-api-key-user \
+    --service-name bedrock.amazonaws.com \
+    --credential-age-days 90 \
+    | jq -r '.ServiceSpecificCredential.ServiceCredentialSecret'
+#+end_src

@@ -9,6 +9,16 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Democratising access to AI](./2025-09-05-ai-adoption-in-engineering-orgs.md)
+AI usage in software engineering is still a relatively new art#x2013;especially when it comes to the use of agentic AI tools. As these tools become more prevalent, it's up to each of us to decide *how, why, and what* we're going to use on a daily basis.
+
+However, it's also rapidly becoming the responsibility of engineering leaders to decide *how, why, and what* their teams are going to be using. I don't mean to say that they need to prescribe specific tools or use-cases for their team members. I think it's quite a personal choice for each of us, much like our selection of a text editor. Despite our personal preferences, in order for AI adoption to be widespread in an engineering organisation, it has to be *democratised* and *federated*.
+
+In this post I illustrate some of the ways I've been helping roll out the use of AI tools within my own team--from both organisational and technical points of view.
+
+*Published: 3rd October 2025*.
+
+---
 ## [How I use AI tools as a Software Engineer in July 2025](./2025-07-18-how-i-use-ai-in-july-2025.md)
 Right now, the AI landscape is rapidly shifting in software engineering. New tools are being published weekly, and what was science fiction yesterday is old news by tomorrow. It's hard to keep up! 😅
 
