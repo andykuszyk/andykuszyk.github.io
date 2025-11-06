@@ -84,4 +84,4 @@ Hopefully, however, this will lead to consensus. Stakeholders will support the v
 
 These stages are the *genesis* of a technical project. Before work can begin in earnest spanning teams, months, and launches, I think it's essential to *research*, *propose*, and *negotiate*.
 
-Effective research and proposals are vital, but by far the most important&#x2013;and most challenging&#x2013;stage is *negotiation*. In order for any technical plan to be successful, it's the negotiation stage which will *bring people together*, *build consensus*, and create a *common senses of purpose*.
+Effective research and proposals are vital, but by far the most important&#x2013;and most challenging&#x2013;stage is *negotiation*. In order for any technical plan to be successful, it's the negotiation stage which will *bring people together*, *build consensus*, and create a *common sense of purpose*.
