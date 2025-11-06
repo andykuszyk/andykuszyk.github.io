@@ -9,6 +9,15 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Three stages of technical leadership](./2025-11-06-three-stages-of-technical-leadership.md)
+
+Technical leadership as an individual contributor is a bizarre mix of deep technical research, project management, and *diplomacy*. In order for a software project to be successful, it has to *actually work* and be delivered *on time*. The intersection between these success criteria is all about *shared understanding*, which is where the diplomacy comes in.
+
+Over the last few years I've observed that the initial stages of technical leadership fall into three distinct steps. They're not necessarily linear, and there's a lot of feedback cycles and iteration between them. Nonetheless, I think each phase can be characterised by some key activities. In this post, I explain what I think these stages are, and how to successfully navigate them.
+
+*Published: 6th November 2025*
+
+---
 ## [Democratising access to AI](./2025-09-05-ai-adoption-in-engineering-orgs.md)
 AI usage in software engineering is still a relatively new art--especially when it comes to the use of agentic AI tools. As these tools become more prevalent, it's up to each of us to decide *how, why, and what* we're going to use on a daily basis.
 
