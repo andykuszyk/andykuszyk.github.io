@@ -36,7 +36,7 @@ I think the key to good research at this stage is to cover as much breadth as po
 This will give you a good understanding of the overall landscape and alternatives, whilst also uncovering insight into some of the technical challenges you will need to tackle later.
 
 
-## Stage 2: Proposal
+## Stage 2: Propose
 
 Once you've thoroughly researched your domain, you will have a good understanding of the *problems you need to solve*. At this stage, I always think it's good practice to *write the problems down*. You may still have no idea *how* you might solve these problems; or even *if* you will. But, before writing any proposal for the future of your technical project it's important to understand the *problem* you're trying to solve.
 
