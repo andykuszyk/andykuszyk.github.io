@@ -4,8 +4,6 @@ Technical leadership as an individual contributor is a bizarre mix of deep techn
 
 > 💡 When I'm referring to *technical leadership* as an *individual contributor*, I'm talking about roles like staff/principal engineer, technical architect, lead engineer, etc.
 
-![img](2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png)
-
 Over the last few years I've observed that the initial stages of technical leadership fall into three distinct steps. They're not necessarily linear, and there's a lot of feedback cycles and iteration between them. Nonetheless, I think each phase can be characterised by some key activities.
 
 These stages are:
@@ -15,6 +13,8 @@ These stages are:
 3.  Negotiate
 
 In this post, I'm going to explain what I think is involved in each step along with some practical tips for being successful at it.
+
+![img](2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png)
 
 
 ## Stage 1: Research

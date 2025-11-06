@@ -11,19 +11,6 @@ Technical leadership as an individual contributor is a bizarre mix of deep techn
 💡 When I'm referring to /technical leadership/ as an /individual contributor/, I'm talking about roles like staff/principal engineer, technical architect, lead engineer, etc.
 #+end_quote
 
-#+begin_src plantuml :file 2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png
-!theme crt-green
-storage "📚 Research" as res
-storage "📣 Propose" as prop
-storage "🤝 Negotiate" as neg
-
-res -> prop
-prop -> neg
-#+end_src
-
-#+RESULTS:
-[[file:2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png]]
-
 Over the last few years I've observed that the initial stages of technical leadership fall into three distinct steps. They're not necessarily linear, and there's a lot of feedback cycles and iteration between them. Nonetheless, I think each phase can be characterised by some key activities.
 
 These stages are:
@@ -33,6 +20,32 @@ These stages are:
 3. Negotiate
 
 In this post, I'm going to explain what I think is involved in each step along with some practical tips for being successful at it.
+
+#+begin_src plantuml :file 2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png
+!theme crt-green
+storage "📚 Research" as res
+storage "📣 Propose" as prop
+storage "🤝 Negotiate" as neg
+storage "🤞 Propose" as prop2
+storage "🙏 Negotiate" as neg2
+storage "😅 Propose" as prop3
+storage "🙏🙏 Negotiate" as neg3
+
+res -> prop
+prop -> neg
+neg --> prop2
+prop2 -> neg2
+neg2 --> prop3
+prop3 -> neg3
+
+res -[hidden]-> prop2
+prop2 -[hidden]->prop3
+res -[hidden]--> prop3
+#+end_src
+
+#+RESULTS:
+[[file:2025-11-06-three-stages-of-technical-leadership.org-research-propose-negotiate.png]]
+
 ** Stage 1: Research
 In order for any technical project to be successful, it has to be researched up-front. As a technical leader, before you can propose a design or articulate a strategy, you have to /know what you're talking about/ in sufficient detail to avoid any obvious traps or blind alleys later on.
 
