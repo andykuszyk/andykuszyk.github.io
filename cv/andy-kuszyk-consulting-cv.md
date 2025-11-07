@@ -26,11 +26,16 @@ You can read more about me on my technology blog: [**andykuszyk.github.io**](htt
 # Work Experience
 ## Typeform (2024 - present)
 ### Staff Engineer (Sept '24 - present)
-At Typeform I work across the engineering organisation as a leader, architect, consultant, and mentor. In my first six months, I have:
+At Typeform I work across the engineering organisation as a leader, architect, consultant, and mentor. My notable achievements and areas of impact are as follows:
 
+#### 2025
+- **Took a leading role in the last-mile delivery of a multi-year project;** co-ordinating organisation-wide efforts crossing many team boundaries to launch a multi-region capability.
+- **Evangelised the use of AI within the engineering team;** I lead the roll-out of systematically providing every engineer with access to LLMs in such a way that individuals could mix-and-match their own tools. You can read more about this journey [here](https://medium.com/typeforms-engineering-blog/democratising-access-to-ai-2baea617eff6).
+- **Laid the foundations for an AI-native future;** lead the research, design, and delivery of an extensive programme to introduce MCP servers throughout our platform to enable AI features to be developed at pace.
+
+#### 2024
 - **Researched & designed a video content export feature;** starting with no knowledge of the product, I extensively researched the architecture, and reviewed existing functionality, before proposing an approach for building this new capability. When this design was implemented, I remained close to the delivery, and helped troubleshoot any architectural difficulties that arose.
 - **Consolidated various documentation sources into a few canonical sources of truth;** including distilling a large technology radar into an authoritative golden path, and crowd-sourcing contributions to a set of concise architectural descriptions of core user journeys. 
-- **Taken a leading role in the last-mile delivery of a multi-year project;** co-ordinating efforts organisation-wide to launch a multi-region capability.
 
 ## Deliveroo (2023 - 2024)
 ### Staff Platform Engineer [contract] (Nov '23 - Sept '24)
