@@ -4,6 +4,24 @@
 #+options: toc:nil
 #+options: stat:nil
 #+options: todo:nil
+* LinkedIn post                                                    :noexport:
+I think technical leadership as an individual contributor is a mix of deep technical research, project management, and /diplomacy/ 🤝
+
+In order for a software project to be successful, it has to /actually work/ and be delivered /on time/. The intersection between these success criteria is all about /shared understanding/, which is where the diplomacy comes in.
+
+Over the last few years I've observed that the initial stages of technical leadership fall into three distinct steps. They're not necessarily linear, and there's a lot of feedback cycles and iteration between them. Nonetheless, I think each phase can be characterised by some key activities.
+
+For me these three stages are:
+
+1. Research
+2. Propose
+3. Negotiate
+
+The first two stages are where the technical work happens. However, it's the third stage--negotiation--which is the most critical. This is where people build a common understanding of their shared goals, and where misconceptions and disagreements are resolved 💡
+
+I've written more about these three stages in a blog post here: https://akuszyk.com/2025-11-06-three-stages-of-technical-leadership.html
+
+If you've experienced these stages in a different form, or have other ways of framing them, I'd love to hear from you! 💬
 * Three stages of technical leadership
 Technical leadership as an individual contributor is a bizarre mix of deep technical research, project management, and /diplomacy/. In order for a software project to be successful, it has to /actually work/ and be delivered /on time/. The intersection between these success criteria is all about /shared understanding/, which is where the diplomacy comes in.
 
