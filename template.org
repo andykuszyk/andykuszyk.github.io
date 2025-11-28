@@ -1,7 +1,5 @@
 :PROPERTIES:
 :UNNUMBERED: t
 :END:
-#+options: toc:nil
-#+options: stat:nil
-#+options: todo:nil
+#+options: toc:nil stat:nil todo:nil
 * Title

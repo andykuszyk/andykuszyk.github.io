@@ -9,6 +9,15 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Debugging the Model Context Protocol with `tcpdump`](./2025-11-28-debugging-mcp-with-tcpdump.md)
+Over the last few months I've been researching MCP from a few different angles to understand the best way to use it in an application ecosystem, and also how to build for it at scale. Part of this research has been a deep-dive into the protocol itself, and how clients and servers communicate.
+
+In this post, I'm going to provide an example of a simple MCP server, and then demonstrate how I've been understanding the client/server communication by inspecting their traffic using `tcpdump`.
+
+
+*Published: 28th November 2025*
+
+---
 ## [Three stages of technical leadership](./2025-11-06-three-stages-of-technical-leadership.md)
 
 Technical leadership as an individual contributor is a bizarre mix of deep technical research, project management, and *diplomacy*. In order for a software project to be successful, it has to *actually work* and be delivered *on time*. The intersection between these success criteria is all about *shared understanding*, which is where the diplomacy comes in.
