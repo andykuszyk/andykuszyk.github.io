@@ -4,7 +4,8 @@
 #+options: toc:nil stat:nil todo:nil
 * Plantuml theme                                                   :noexport:
 #+name: theme
-#+begin_src plantuml
+#+begin_src plantuml :file theme.png
+!theme crt-green
 #+end_src
 * Structuring technical ideation: problems, proposals, and delivery
 I've [[https://akuszyk.com/2025-11-06-three-stages-of-technical-leadership.html][previously written]] about some of the challenges of technical leadership, in particular the need to conduct deep research, explore your problem space, and negotiate consensus with stakeholders.

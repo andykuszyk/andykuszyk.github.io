@@ -9,6 +9,19 @@ I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experi
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Structuring technical ideation: problems, proposals, and delivery](./2026-02-06-structuring-technical-ideation.md)
+I've [previously written](https://akuszyk.com/2025-11-06-three-stages-of-technical-leadership.html) about some of the challenges of technical leadership, in particular the need to conduct deep research, explore your problem space, and negotiate consensus with stakeholders.
+
+I find the *exploration of problems* phase can be particularly daunting&#x2013;especially when the problem space is large or complex.
+It's easy to feel overwhelmed by the scale of the research you need to conduct&#x2013;and the prospect of crystallising all the options into a cohesive technical plan can seem impossible.
+
+Despite this challenge in the *technical ideation* phase, a little bit of structure to the way you tackle it can help scaffold your ideas, and allow you to collaborate with a wider group of people.
+
+In this post, I outline some of the ways I tackle this by breaking down large problems into smaller ones, and managing the process of solving them.
+
+*Published: 6th February 2026*
+
+---
 ## [Debugging the Model Context Protocol with `tcpdump`](./2025-11-28-debugging-mcp-with-tcpdump.md)
 Over the last few months I've been researching MCP from a few different angles to understand the best way to use it in an application ecosystem, and also how to build for it at scale. Part of this research has been a deep-dive into the protocol itself, and how clients and servers communicate.
 
