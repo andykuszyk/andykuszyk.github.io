@@ -1,0 +1,57 @@
+:PROPERTIES:
+:UNNUMBERED: t
+:END:
+#+options: toc:nil stat:nil todo:nil
+* MCP is the new REST
+Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty--a /nice to have/--to being a table-stakes feature that many users are starting to expect.
+
+Behind the scenes, this has led to a +mad scramble+ co-ordinated effort by engineering teams to introduce LLM-friendly interfaces in their backend systems. Many of these systems may have originally been designed to work well with Javascript clients, which probably means that they followed a traditional paradigm of exposing business objects over HTTP--likely using the REST pattern.
+
+Unfortunately, LLMs struggle with REST for a number of reasons. In order for an LLM to interact well with a backend system, it has to do so on its own terms--using /natural language/. The Model Context Protocol has become an industry standard for how to expose external systems to an LLM in such a way that it can interact with those systems fluidly and naturally, but with the structure necessary for machine-to-machine communication.
+
+In this post I'm going to cover the problem with REST for LLMs in more detail, and also describe how we've risen to this challenge at Typeform--making MCP our new REST API.
+** The problem with REST
+REST is a great paradigm for share structured resource data between clients and servers transcending network, language, and tooling boundaries. It's also an intuitive way to model domains, and expose granular primitives for creating, reading, updating, and deleting data in those domains.
+
+However, whilst it's great for Javascript clients, it causes a great deal of confusion for LLMs! Nested data structures, trailing commas, closing braces/brackets/quotes--I mean, it's a jungle out there! 😅
+
+It's definitely possible to get your LLM to speak REST. You can load it with your OpenAPI specs, craft your system problems with instructions about how to patch resources, and explain the difference between POST and PUT requests. But, at the end of the day, LLMs will always struggle with access resources this way because they're designed to work with /natural language/--not JSON.
+
+MCP comes to the rescue with a structured way for LLMs to access external systems that still has the flexibility of natural language. In some cases, it's even possible to wrap existing REST endpoints with equivilant MCP tools; effectively exposing their JSON structure as a tool's output schema.
+
+However, what LLMs /really/ need are tools to access external systems the way a /user/ would access them. This doesn't mean a CRUD endpoint for a business object; it means a list of operations that a user would invoke on a regular basis as part of their interaction with your product.
+
+Let's look at an [arbitrarily simple] example. Imagine you have a REST API that exposes a person resource:
+
+#+begin_src json
+{
+  "first_name": "james",
+  "last_name": "kirk",
+  "job_title": "starship captain",
+  "favourite_hobby": "boldy going where no-one has gone before"
+}
+#+end_src
+
+In your product, you might collect information about a person one step at a time. /"What's your name?"/ followed by, /"what's your job title?"/. When your product has finished collecting all the information about a person, it might make a =POST /person= REST request to create the resource.
+
+However, from a /user's/ perspective they're creating individual resources for name, job, hobby, etc.
+
+In order for an LLM to provide the best conversational experience, it needs tools that model this. I.e. it needs tools like:
+
+- =set_person_first_name=
+- =set_person_last_name=
+- =set_person_job_title=
+
+Rather than a single =create_person= tool. This is obviously a simple example--in reality, a =create_person= tool might be just fine for an LLM. But, if your business objects have tens or hundreds of fields, nested data structures, and complex relationships, then the full structure of your data will be too much for an LLM to handle; it needs smaller, functional tools so that it can think like--well, a human.
+** A Taxonomy of Tools
+When you start to think about the need to re-model the interface to your platform in terms of an LLM's MCP needs, rather than in a set of REST resources, it's a daunting challenge! You might need hundreds--or thousands!--of individual tools. These tools need many of the same primitives as your REST endpoints--like authentication, rate limiting, access controls, observability, etc.--but they require a completely new approach to your existing HTTP API.
+
+Overcoming this challenge requires the problem space to be divided up and made easier to manage. Of the many tools you need to build some will be easy, some will require a little effort, and some will be major undertakings. If you can categorise the work ahead of you, you can start to plan for MCP tools to emerge organically from the work your teams are already doing.
+
+At Typeform, we did this by establishing a simple /taxonomy of tools/. This allowed us to categorise tools in to low, medium, and high effort--and prepare tooling and strategies for each category. This taxonomy consists of:
+
+- *CRUD tools* which are simple wrappers of existing REST endpoints
+- *Domain-specific tools* which are bespoke tools crafted for a particular domain that expose functionality designed for LLMs
+- *Agentic tools* which are LLM-enhanced tools that introduce an additional layer of reasoning or inference between the LLM client and the upstream business services.
+** Every team is an MCP team
+** The future of MCP and REST
