@@ -11,15 +11,15 @@ Unfortunately, LLMs struggle with REST for a number of reasons. In order for an 
 
 In this post I'm going to cover the problem with REST for LLMs in more detail, and also describe how we've risen to this challenge at Typeform--making MCP our new REST API.
 ** The problem with REST
-REST is a great paradigm for share structured resource data between clients and servers transcending network, language, and tooling boundaries. It's also an intuitive way to model domains, and expose granular primitives for creating, reading, updating, and deleting data in those domains.
+REST is a great paradigm for sharing structured resource data between clients and servers transcending network, language, and tooling boundaries. It's also an intuitive way to model domains, and expose granular primitives for creating, reading, updating, and deleting data in those domains.
 
-However, whilst it's great for Javascript clients, it causes a great deal of confusion for LLMs! Nested data structures, trailing commas, closing braces/brackets/quotes--I mean, it's a jungle out there! 😅
+However, whilst it's great for Javascript clients, it causes a great deal of confusion for LLMs! Nested data structures, trailing commas, closing braces/brackets/quotes--I mean, it's a JSON jungle out there! 😅
 
-It's definitely possible to get your LLM to speak REST. You can load it with your OpenAPI specs, craft your system problems with instructions about how to patch resources, and explain the difference between POST and PUT requests. But, at the end of the day, LLMs will always struggle with access resources this way because they're designed to work with /natural language/--not JSON.
+It's definitely possible to get your LLM to speak REST. You can load it with your OpenAPI specs, craft your system prompts with instructions about how to patch resources, and explain the difference between POST and PUT requests. But, at the end of the day, LLMs will always struggle to access resources this way because they're designed to work with /natural language/--not JSON.
 
 MCP comes to the rescue with a structured way for LLMs to access external systems that still has the flexibility of natural language. In some cases, it's even possible to wrap existing REST endpoints with equivilant MCP tools; effectively exposing their JSON structure as a tool's output schema.
 
-However, what LLMs /really/ need are tools to access external systems the way a /user/ would access them. This doesn't mean a CRUD endpoint for a business object; it means a list of operations that a user would invoke on a regular basis as part of their interaction with your product.
+However, what LLMs /really/ need are tools to access external systems the way a /user/ would access them. This doesn't mean a CRUD endpoint for a business object; it means a list of operations that a user would perform on a regular basis as part of their interaction with your product.
 
 Let's look at an [arbitrarily simple] example. Imagine you have a REST API that exposes a person resource:
 
@@ -54,4 +54,144 @@ At Typeform, we did this by establishing a simple /taxonomy of tools/. This allo
 - *Domain-specific tools* which are bespoke tools crafted for a particular domain that expose functionality designed for LLMs
 - *Agentic tools* which are LLM-enhanced tools that introduce an additional layer of reasoning or inference between the LLM client and the upstream business services.
 ** Every team is an MCP team
+With this framing in place, you can start to build a picture of where you need to build tools, and how you need to build them. However, if your REST API has existed for any length of time then its implementation is probably /decentralised/--its upstream implementation is federated amongst many different services, each owned by a different team.
+
+Now that you have a strategy for building an MCP API to complement your REST one, you need a way to make every /API/ team an /MCP/ team.
+
+At Typeform, we've achieved this with:
+
+- A common architectural vision
+- Shared tooling
+- An MCP gateway
+*** A common architectural vision
+We've laid out a paved road for MCP server delivery that enables every team to easily contribute to a shared architectural vision. This architectural vision isn't groundbreaking--in fact it's simple, and very familiar.
+
+Let's consider the implicit common vision in the REST world:
+#+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-rest-vision.png
+actor "Public\nclient" as client
+
+package "Your platform" as plat {
+  node "[REST] API gateway" as restgw
+
+  node "Service A" as a {
+    rectangle "REST\nAPI" as a_rest
+    rectangle "Business\nlogic" as a_biz
+    a_rest --> a_biz
+  }
+
+  node "Service B" as b {
+    rectangle "REST\nAPI" as b_rest
+    rectangle "Business\nlogic" as b_biz
+    b_rest --> b_biz
+  }
+
+  rectangle "Internal\nclient" as int
+}
+
+client --> restgw
+restgw --> a_rest
+restgw --> b_rest
+int -> a_rest
+#+end_src
+
+#+RESULTS:
+[[file:2026-02-13-mcp-is-the-new-rest.org-rest-vision.png]]
+
+In this world, the shared architectural vision is:
+
+- Build your business services in separate programs by domain
+- For each domain, expose a REST API for clients to access your services
+- Expose the REST API to internal clients directly
+- Expose the REST API to public clients via a gateway
+
+A shared vision for teams building MCP servers can look much the same:
+#+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-mcp-vision.png
+actor "Public\nclient" as client
+
+package "Your platform" as plat {
+  node "MCP API gateway" as restgw
+
+  node "Service A" as a {
+    rectangle "MCP\nAPI" as a_rest
+    rectangle "Business\nlogic" as a_biz
+    a_rest --> a_biz
+  }
+
+  node "Service B" as b {
+    rectangle "MCP\nAPI" as b_rest
+    rectangle "Business\nlogic" as b_biz
+    b_rest --> b_biz
+  }
+
+  rectangle "Internal\nclient" as int
+}
+
+client --> restgw
+restgw --> a_rest
+restgw --> b_rest
+int -> a_rest
+
+#+end_src
+
+#+RESULTS:
+[[file:2026-02-13-mcp-is-the-new-rest.org-mcp-vision.png]]
+
+This approach follows all the same paradigms for security, rate-limiting, and observability as the REST API; it just substitutes the protocol for the API. Ultimately, this common vision leads to a hybrid approach where your REST and MCP APIs live alongside one another:
+#+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-mcp-and-rest.png
+actor "Public REST\nclient" as rest_client
+actor "Public MCP\nclient" as mcp_client
+
+package "Your platform" as plat {
+  node "REST API gateway" as restgw
+  node "MCP API gateway" as mcpgw
+
+  node "Service A" as a {
+    rectangle "REST\nAPI" as a_rest
+    rectangle "MCP\nAPI" as a_mcp
+    rectangle "Business\nlogic" as a_biz
+    a_rest --> a_biz
+    a_mcp --> a_biz
+  }
+
+  node "Service B" as b {
+    rectangle "REST\nAPI" as b_rest
+    rectangle "MCP\nAPI" as b_mcp
+    rectangle "Business\nlogic" as b_biz
+    b_rest -[hidden]> b_mcp
+    b_rest --> b_biz
+    b_mcp --> b_biz
+  }
+}
+
+rest_client --> restgw
+mcp_client --> mcpgw
+restgw --> a_rest
+mcpgw --> b_mcp
+restgw --> b_rest
+mcpgw --> a_mcp
+
+#+end_src
+
+#+RESULTS:
+[[file:2026-02-13-mcp-is-the-new-rest.org-mcp-and-rest.png]]
+*** Shared tooling
+For your well-established REST API, you probably have shared libraries that handle things like authentication, tracing, and logging. There's middleware, HTTP servers, HTTP clients, testing utilities, and more. In short, you probably have mature shared tooling for building REST APIs.
+
+In order for every team to be able to contribute to this shared architectural vision for MCP, they're going to need similar--if less mature--tooling. At the very least, you'll probably want a paved road for bootstrapping an MCP server, adding tools to it, and integrating it with your existing HTTP servers.
+
+This tooling, combined with a little documentation, and a shared understanding of the architecture, should hopefully lay the foundations for every team to contribute to the future of your new MCP API.
+*** An MCP gateway
+You might be wondering what an /MCP gateway/ looks like in practice, in the context of this new architecture. In principle, it exists to perform many of the same functions as an API gateway:
+
+- Providing a single endpoint for clients to connect to
+- Handling edge concerns like rate-limiting, security, and observability
+- Routing traffic to a variety of upstream endpoints (i.e. to many different MCP servers)
+- Denying requests to internal-only endpoints--or, in this case, tools
+
+There are many technologies to fulfill this need for REST APIs--some open-source projects, some paid solutions, and some managed services from cloud providers.
+
+I've seen a similar landscape emerging for MCP gateways, but--for now--our needs at Typeform are relatively simple, and we have opted to write our own. We'll continue to re-evaluate this decision as the marketplace matures.
 ** The future of MCP and REST
+So, although MCP is the /new/ REST, I don't mean MCP is /replacing/ REST. I think REST as a paradigm is here to stay--at least as long as we have Javascript clients!--and MCP is emerging as a complementary API surface that needs to live alongside REST.
+
+For me, the challenge is to navigate the journey of integrating MCP into your platform and business services in a way that is seamless and low-effort. Adding MCP to your product should be an evolution--not a revolution. In a future where products are increasingly LLM-centric, this evolution is an essential one, and I hope the ideas in this post give you food for thought as you embark on your own MCP journey.
