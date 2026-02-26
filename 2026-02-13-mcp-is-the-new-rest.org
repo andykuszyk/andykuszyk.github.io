@@ -72,6 +72,8 @@ We've laid out a paved road for MCP server delivery that enables every team to e
 
 Let's consider the implicit common vision in the REST world:
 #+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-rest-vision.png
+!theme crt-green
+skinparam backgroundColor transparent
 actor "Public\nclient" as client
 
 package "Your platform" as plat {
@@ -110,6 +112,8 @@ In this world, the shared architectural vision is:
 
 A shared vision for teams building MCP servers can look much the same:
 #+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-mcp-vision.png
+!theme crt-green
+skinparam backgroundColor transparent
 actor "Public\nclient" as client
 
 package "Your platform" as plat {
@@ -142,6 +146,8 @@ int -> a_rest
 
 This approach follows all the same paradigms for security, rate-limiting, and observability as the REST API; it just substitutes the protocol for the API. Ultimately, this common vision leads to a hybrid approach where your REST and MCP APIs live alongside one another:
 #+begin_src plantuml :file 2026-02-13-mcp-is-the-new-rest.org-mcp-and-rest.png
+!theme crt-green
+skinparam backgroundColor transparent
 actor "Public REST\nclient" as rest_client
 actor "Public MCP\nclient" as mcp_client
 
