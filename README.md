@@ -2,11 +2,23 @@ Welcome to my blog 👋
 
 I'm Andy Kuszyk, and I work as a Software Engineer. I'm based on the South coast of the UK, and enjoy writing about my experiences.
 
-I currently work with Golang, Terraform, AWS, and Kubernetes. I also have experience in .NET, Clojure, and Python. And that's not to mention [Elisp](https://github.com/andykuszyk/noman.el)! 🤓
+I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https://www.typeform.com/). I also have experience in .NET, Clojure, and Python. And that's not to mention [Elisp](https://github.com/andykuszyk/noman.el)! 🤓
 
 📓 If you're looking for my CV, you can find it [here](./cv/README.md).
 
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
+
+---
+## [MCP is the new REST](./2026-02-13-mcp-is-the-new-rest.md)
+Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty&#x2013;a *nice to have*&#x2013;to being a table-stakes feature that many users are starting to expect.
+
+Behind the scenes, this has led to a ~~mad scramble~~ co-ordinated effort by engineering teams to introduce LLM-friendly interfaces in their backend systems. Many of these systems may have originally been designed to work well with JavaScript clients, which probably means that they followed a traditional paradigm of exposing business objects over HTTP&#x2013;likely using the REST pattern.
+
+Unfortunately, LLMs struggle with REST for a number of reasons. In order for an LLM to interact well with a backend system, it has to do so on its own terms&#x2013;using *natural language*. The Model Context Protocol has become an industry standard for how to expose external systems to an LLM in such a way that it can interact with those systems fluidly and naturally, but with the structure necessary for machine-to-machine communication.
+
+In this post I'm going to cover the problem with REST for LLMs in more detail, and also describe how we've risen to this challenge at Typeform&#x2013;making MCP our new REST API.
+
+*Published: 26th February 2026*
 
 ---
 ## [Structuring technical ideation: problems, proposals, and delivery](./2026-02-06-structuring-technical-ideation.md)

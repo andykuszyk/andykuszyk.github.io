@@ -5,19 +5,23 @@
 * MCP is the new REST
 Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty--a /nice to have/--to being a table-stakes feature that many users are starting to expect.
 
-Behind the scenes, this has led to a +mad scramble+ co-ordinated effort by engineering teams to introduce LLM-friendly interfaces in their backend systems. Many of these systems may have originally been designed to work well with Javascript clients, which probably means that they followed a traditional paradigm of exposing business objects over HTTP--likely using the REST pattern.
+Behind the scenes, this has led to a +mad scramble+ co-ordinated effort by engineering teams to introduce LLM-friendly interfaces in their backend systems. Many of these systems may have originally been designed to work well with JavaScript clients, which probably means that they followed a traditional paradigm of exposing business objects over HTTP--likely using the REST pattern.
 
 Unfortunately, LLMs struggle with REST for a number of reasons. In order for an LLM to interact well with a backend system, it has to do so on its own terms--using /natural language/. The Model Context Protocol has become an industry standard for how to expose external systems to an LLM in such a way that it can interact with those systems fluidly and naturally, but with the structure necessary for machine-to-machine communication.
 
 In this post I'm going to cover the problem with REST for LLMs in more detail, and also describe how we've risen to this challenge at Typeform--making MCP our new REST API.
+
+#+begin_quote
+💡If you're new to MCP, you might want to read [[https://modelcontextprotocol.io/docs/getting-started/intro][this guide]] before diving into the "rest" of this post (no pun intended! 😂)
+#+end_quote
 ** The problem with REST
 REST is a great paradigm for sharing structured resource data between clients and servers transcending network, language, and tooling boundaries. It's also an intuitive way to model domains, and expose granular primitives for creating, reading, updating, and deleting data in those domains.
 
-However, whilst it's great for Javascript clients, it causes a great deal of confusion for LLMs! Nested data structures, trailing commas, closing braces/brackets/quotes--I mean, it's a JSON jungle out there! 😅
+However, whilst it's great for JavaScript clients, it causes a great deal of confusion for LLMs! Nested data structures, trailing commas, closing braces/brackets/quotes--I mean, it's a JSON jungle out there! 😅
 
 It's definitely possible to get your LLM to speak REST. You can load it with your OpenAPI specs, craft your system prompts with instructions about how to patch resources, and explain the difference between POST and PUT requests. But, at the end of the day, LLMs will always struggle to access resources this way because they're designed to work with /natural language/--not JSON.
 
-MCP comes to the rescue with a structured way for LLMs to access external systems that still has the flexibility of natural language. In some cases, it's even possible to wrap existing REST endpoints with equivilant MCP tools; effectively exposing their JSON structure as a tool's output schema.
+MCP comes to the rescue with a structured way for LLMs to access external systems that still has the flexibility of natural language. In some cases, it's even possible to wrap existing REST endpoints with equivalent MCP tools; effectively exposing their JSON structure as a tool's output schema.
 
 However, what LLMs /really/ need are tools to access external systems the way a /user/ would access them. This doesn't mean a CRUD endpoint for a business object; it means a list of operations that a user would perform on a regular basis as part of their interaction with your product.
 
@@ -188,10 +192,10 @@ You might be wondering what an /MCP gateway/ looks like in practice, in the cont
 - Routing traffic to a variety of upstream endpoints (i.e. to many different MCP servers)
 - Denying requests to internal-only endpoints--or, in this case, tools
 
-There are many technologies to fulfill this need for REST APIs--some open-source projects, some paid solutions, and some managed services from cloud providers.
+There are many technologies to fulfil this need for REST APIs--some open-source projects, some paid solutions, and some managed services from cloud providers.
 
 I've seen a similar landscape emerging for MCP gateways, but--for now--our needs at Typeform are relatively simple, and we have opted to write our own. We'll continue to re-evaluate this decision as the marketplace matures.
 ** The future of MCP and REST
-So, although MCP is the /new/ REST, I don't mean MCP is /replacing/ REST. I think REST as a paradigm is here to stay--at least as long as we have Javascript clients!--and MCP is emerging as a complementary API surface that needs to live alongside REST.
+So, although MCP is the /new/ REST, I don't mean MCP is /replacing/ REST. I think REST as a paradigm is here to stay--at least as long as we have JavaScript clients!--and MCP is emerging as a complementary API surface that needs to live alongside REST.
 
 For me, the challenge is to navigate the journey of integrating MCP into your platform and business services in a way that is seamless and low-effort. Adding MCP to your product should be an evolution--not a revolution. In a future where products are increasingly LLM-centric, this evolution is an essential one, and I hope the ideas in this post give you food for thought as you embark on your own MCP journey.
