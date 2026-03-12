@@ -10,7 +10,7 @@ I hope you find it interesting!
 
 ---
 
-1.  [Bootstrapping a successful engineering organisation](bootstrapping-an-engineering-organisation.md)
+1.  [Bootstrapping a successful engineering organisation](2023-03-15-bootstrapping-an-engineering-organisation.md)
 2.  [Secrets management in build & deployment pipelines](2023-05-03-secrets-management-in-build-and-deployment-pipelines.md)
 3.  [Decision making & design](2023-05-17-decision-making-and-design.md)
 4.  [Securing environment access](2023-11-07-securing-environment-access.md)

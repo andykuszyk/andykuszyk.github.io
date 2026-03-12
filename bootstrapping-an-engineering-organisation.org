@@ -13,7 +13,7 @@ I hope you find it interesting!
 
 -----
 
-1. [[file:bootstrapping-an-engineering-organisation.org][Bootstrapping a successful engineering organisation]]
+1. [[file:2023-03-15-bootstrapping-an-engineering-organisation.md][Bootstrapping a successful engineering organisation]]
 2. [[file:2023-05-03-secrets-management-in-build-and-deployment-pipelines.md][Secrets management in build & deployment pipelines]]
 3. [[file:2023-05-17-decision-making-and-design.md][Decision making & design]]
 4. [[file:2023-11-07-securing-environment-access.md][Securing environment access]]
