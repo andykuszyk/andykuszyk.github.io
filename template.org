@@ -2,4 +2,10 @@
 :UNNUMBERED: t
 :END:
 #+options: toc:nil stat:nil todo:nil
+* Plantuml theme                                                   :noexport:
+#+name: plantuml-theme
+#+begin_src plantuml :file template.org-plantuml-theme.png :exports none
+!theme crt-green
+skinparam backgroundColor transparent
+#+end_src
 * Title
