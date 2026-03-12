@@ -30,7 +30,9 @@ Logs are great for a simple, low-volume way of understanding what your program i
 
 If your program is running in a container scheduler like Kubernetes, its logs are probably being sent to a file:
 
-![img](2026-03-12-getting-observability-right.org-single-container-logs.png) Now, when you start building a platform, it can be easy enough to view the logs from a single program&#x2013;you just open the file. But as soon as you start running multiple replicas of your program across multiple machines, things begin to get a little complicated:
+![img](2026-03-12-getting-observability-right.org-single-container-logs.png)
+
+Now, when you start building a platform, it can be easy enough to view the logs from a single program&#x2013;you just open the file. But as soon as you start running multiple replicas of your program across multiple machines, things begin to get a little complicated:
 
 ![img](2026-03-12-getting-observability-right.org-logs-multiple-machines.png) When you start running your platform at any scale greater than *one of anything*, you need a way to *aggregate* your logs&#x2013;you need all of them in one place so you can search, filter, and analyse them across machine and container boundaries.
 

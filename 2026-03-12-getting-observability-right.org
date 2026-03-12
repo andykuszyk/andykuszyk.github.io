@@ -51,6 +51,7 @@ node "Machine 1" as m1 {
 
 #+RESULTS:
 [[file:2026-03-12-getting-observability-right.org-single-container-logs.png]]
+
 Now, when you start building a platform, it can be easy enough to view the logs from a single program--you just open the file. But as soon as you start running multiple replicas of your program across multiple machines, things begin to get a little complicated:
 #+begin_src plantuml :file 2026-03-12-getting-observability-right.org-logs-multiple-machines.png :noweb yes
 <<plantuml-theme>>
