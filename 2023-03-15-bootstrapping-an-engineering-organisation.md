@@ -126,7 +126,7 @@ Part of this is tooling, but a greater part is your organisation's attitude towa
 ### Observability
 Building applications without an observability platform leaves your engineers blind to how their software is performing, and makes it almost impossible to manage your product in production. Establishing a means of observing your software from day 1 is essential.
 
-*Blog post to follow!*
+I've written a detailed blog post about observability [here](2026-03-12-getting-observability-right.md).
 
 ## Considerations
 ### Building and managing compute capacity
