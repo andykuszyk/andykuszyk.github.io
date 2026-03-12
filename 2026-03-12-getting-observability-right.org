@@ -10,7 +10,7 @@
 !theme crt-green
 skinparam backgroundColor transparent
 #+end_src
-* Getting observability right when bootstrapping an engineering organisation
+* Getting observability right from day one
 When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
 
 However, whilst building a /product/ it's important to consider that you're also building a /platform/. If you don't build your platform in lock-step with your product, sooner or later you'll start to have problems.
