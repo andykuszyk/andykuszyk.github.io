@@ -9,6 +9,18 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
 ---
+## [Getting observability right from day one (9/9)](./2026-03-12-getting-observability-right.md)
+When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
+
+However, whilst building a *product* it's important to consider that you're also building a *platform*. If you don't build your platform in lock-step with your product, sooner or later you'll start to have problems.
+
+There are many aspects to good platform-building (e.g. testing, secrets management, monitoring & alerting, etc.), but in this blog post I cover *observability*--the *monitoring* in monitoring & alerting.
+
+> ℹ️ This blog post is part of a [series](bootstrapping-an-engineering-organisation.md) about bootstrapping engineering organisations.
+
+*Published: 12th March 2026*
+
+---
 ## [MCP is the new REST](./2026-02-13-mcp-is-the-new-rest.md)
 Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty&#x2013;a *nice to have*&#x2013;to being a table-stakes feature that many users are starting to expect.
 
