@@ -2,6 +2,16 @@
 :UNNUMBERED: t
 :END:
 #+options: toc:nil stat:nil todo:nil
+* Linkedin post                                                    :noexport:
+Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty to being a table-stakes feature that many users are starting to expect.
+
+Behind the scenes, this has led to engineering teams working to introduce LLM-friendly interfaces in their backend systems. Many of these systems may have originally been designed to work well with JavaScript clients, which probably means that they followed a traditional paradigm of exposing business objects over HTTP--likely using the REST pattern.
+
+Unfortunately, LLMs struggle with REST for a number of reasons. In order for an LLM to interact well with a backend system, it has to do so on its own terms--using natural language. The Model Context Protocol has become an industry standard for how to expose external systems to an LLM in such a way that it can interact with those systems fluidly and naturally, but with the structure necessary for machine-to-machine communication.
+
+In my latest blog post I cover the problem with REST for LLMs in more detail, and also describe how we've risen to this challenge at @Typeform--making MCP our new REST API.
+
+https://medium.com/typeforms-engineering-blog/mcp-is-the-new-rest-e5461fc017af
 * MCP is the new REST
 Over the last 12 months, using an LLM to interact with a system or product has gone from being a novelty--a /nice to have/--to being a table-stakes feature that many users are starting to expect.
 
