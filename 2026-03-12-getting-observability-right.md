@@ -34,7 +34,9 @@ If your program is running in a container scheduler like Kubernetes, its logs ar
 
 Now, when you start building a platform, it can be easy enough to view the logs from a single program&#x2013;you just open the file. But as soon as you start running multiple replicas of your program across multiple machines, things begin to get a little complicated:
 
-![img](2026-03-12-getting-observability-right.org-logs-multiple-machines.png) When you start running your platform at any scale greater than *one of anything*, you need a way to *aggregate* your logs&#x2013;you need all of them in one place so you can search, filter, and analyse them across machine and container boundaries.
+![img](2026-03-12-getting-observability-right.org-logs-multiple-machines.png)
+
+When you start running your platform at any scale greater than *one of anything*, you need a way to *aggregate* your logs&#x2013;you need all of them in one place so you can search, filter, and analyse them across machine and container boundaries.
 
 When you're bootstrapping an engineering organisation, I think it's important to solve this problem of *log aggregation* early, because it will serve as the foundation for your team's observability and will pay back its investment quickly in time savings when your team are debugging problems.
 
