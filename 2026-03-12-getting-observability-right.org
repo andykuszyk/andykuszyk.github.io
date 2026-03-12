@@ -11,7 +11,7 @@
 skinparam backgroundColor transparent
 #+end_src
 * Getting observability right when bootstrapping an engineering organisation
-When you start building a product, its easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and out-class your competitors--all at the same time!
+When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
 
 However, whilst building a /product/ it's important to consider that you're also building a /platform/. If you don't build your platform in lock-step with your product, sooner or later you'll start to have problems.
 
@@ -35,7 +35,7 @@ Logs are probably the simplest of all telemetry sources. They are lines of text 
 Logs are great for a simple, low-volume way of understanding what your program is doing. Log messages for notable events in your program's lifecycle are useful, but high-volume events--or events you want to analyse over time--are best suited to a different type of instrumentation.
 
 #+begin_quote
-💡 Examples of good uses-cases for logs might include program start/stop messages, information about notable business transactions /(provided they are low-volume)/, and unexpected errors.
+💡 Examples of good use cases for logs might include program start/stop messages, information about notable business transactions /(provided they are low-volume)/, and unexpected errors.
 #+end_quote
 
 If your program is running in a container scheduler like Kubernetes, its logs are probably being sent to a file:
@@ -78,7 +78,7 @@ When you start running your platform at any scale greater than /one of anything/
 
 When you're bootstrapping an engineering organisation, I think it's important to solve this problem of /log aggregation/ early, because it will serve as the foundation for your team's observability and will pay back its investment quickly in time savings when your team are debugging problems.
 
-There are many platforms that will help you aggregate logs such as Loki/Grafana, Kibana/Elasticsearch, Datadog, New Relic, and more. Utimately, you want a central place where all your logs are aggregated so that an engineer can easily find logs from across your platform:
+There are many platforms that will help you aggregate logs such as Loki/Grafana, Kibana/Elasticsearch, Datadog, New Relic, and more. Ultimately, you want a central place where all your logs are aggregated so that an engineer can easily find logs from across your platform:
 
 #+begin_src plantuml :file 2026-03-12-getting-observability-right.org-log-aggregator.png :noweb yes
 
@@ -133,7 +133,7 @@ If you want to search all the logs that show a 500 status code, you need to do a
 
 Your program can still output its log messages on individual lines /(I've formatted this JSON for readability)/, but now your log aggregator can index explicit fields in your log data to make searching for =status_code: 500= easy.
 
-The other thing that will help make your logs particular useful is a /correlation ID/. If you get this right from the beginning when building your platform, it really pays dividends as your product grows. A correlation ID is an extra field in your log messages that correlates it with upstream and downstream processing--whether that processing happened within a particular program, or in different programs. For example, when a user does something in your product service A might write these log lines:
+The other thing that will help make your logs particularly useful is a /correlation ID/. If you get this right from the beginning when building your platform, it really pays dividends as your product grows. A correlation ID is an extra field in your log messages that correlates it with upstream and downstream processing--whether that processing happened within a particular program, or in different programs. For example, when a user does something in your product service A might write these log lines:
 
 #+begin_src json
 {
@@ -175,11 +175,11 @@ For these high-frequency, numerical, time-series use-cases, metrics allow you to
 💡 Good examples of metrics might be HTTP response times, database query latency, and counters for particular events in your system.
 #+end_quote
 
-Unlike logs, metrics are normally collected or published via a network protocol like HTTP. This means you will need to set-up some infrastructure to process the metrics telemetry from your programs, and store it in some kind of metrics back-end.
+Unlike logs, metrics are normally collected or published via a network protocol like HTTP. This means you will need to set up some infrastructure to process the metrics telemetry from your programs, and store it in some kind of metrics back-end.
 
 As well as good commercial offerings like Datadog and New Relic, there is strong support for metrics in the open source community with the likes of Prometheus, Cortex, Grafana, and many others.
 
-Similar to logs, a common pattern is to collect metrics from your programs and publish the to a /metrics aggregator/ or analysis platform:
+Similar to logs, a common pattern is to collect metrics from your programs and publish them to a /metrics aggregator/ or analysis platform:
 
 #+begin_src plantuml :file 2026-03-12-getting-observability-right.org-metrics-aggregator.png :noweb yes
 <<plantuml-theme>>
@@ -204,6 +204,10 @@ m2 --> plat
 
 #+RESULTS:
 [[file:2026-03-12-getting-observability-right.org-metrics-aggregator.png]]
+
+#+begin_quote
+ℹ️ Depending on which system you use to process metrics telemetry, your applications may publish--or /push/--telemetry, or it might be collected--or /pulled/. Both are common paradigms for metrics telemetry.
+#+end_quote
 
 Collecting metrics from your applications will enable you to query and analyse trends at a higher level than logs, and understand how your system is performing over time:
 
@@ -243,19 +247,23 @@ legend bottom
 CLOSED: [2026-03-12 Thu 11:41]
 Logs give you a simple, textual view into the way your programs are running. Metrics give you a good high-level understanding of performance, which is especially useful for numerical data.
 
-However, neither type of instrumentation is particularly good for gain a /detailed/ understanding of what your programs are doing. As your platform grows, you might want to understand the flows through your system at the level of /individual function calls/ across service and machine boundaries.
+However, neither type of instrumentation is particularly good for gaining a /detailed/ understanding of what your programs are doing. As your platform grows, you might want to understand the flows through your system at the level of /individual function calls/ across service and machine boundaries.
 
 Whilst it is possible to gain this insight with logs, it can be very expensive to ingest, index, and store it in log aggregators. Metrics can give you some of this insight as well, but only at the aggregate level of the number or duration of function calls.
 
 If you really want to understand the granular flow of user actions throughout your platform, you need /traces/. Traces are like logs; they're mainly textual, but they're collected at a more granular level (e.g. for each function call). They can be correlated throughout a program--and even across a network--using a similar approach as logs, but they are detailed and high-volume. That means they are normally /sampled/, and don't really show /macro-trends/.
 
+#+begin_quote
+ℹ️ /Sampling/ means that only /some/ of the trace data is normally ingested and stored. Trace telemetry from your applications can produce a /lot/ of data, so it's common to only store a small percentage of it to provide a /representative sample/ of what's happening in your system.
+#+end_quote
+
 To understand simple, raw events in your programs; use logs.
 
-To understand how you system is performing en-masse; use metrics.
+To understand how your system is performing en masse; use metrics.
 
 To get an insight into the inner workings of your entire system; use traces.
 
-Similar to metrics, traces require a bit of infrastructure setup to be useful--you will need to collect the trace data, and ingest it into some kind of analysis platforn so that it can be queried and inspected.
+Similar to metrics, traces require a bit of infrastructure setup to be useful--you will need to collect the trace data, and ingest it into some kind of analysis platform so that it can be queried and inspected.
 
 When you're bootstrapping a new engineering organisation, it's my opinion that traces are the /least important/. Whilst they are tremendously valuable when done right, they can be harder to build across an entire platform than logs and metrics, and--in my opinion--offer less value.
 
