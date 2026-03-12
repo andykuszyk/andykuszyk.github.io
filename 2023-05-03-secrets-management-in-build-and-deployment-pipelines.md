@@ -7,6 +7,8 @@ However, it doesn't take long before you've got lots of secrets in lots of diffe
 
 Ideally, when bootstrapping an engineering organisation, you want to establish a good way of injecting secrets into your entire build and deployment pipeline estate from day one.
 
+> ℹ️ This blog post is part 2 of a [series](bootstrapping-an-engineering-organisation.md) about bootstrapping engineering organisations.
+
 ## First, an example
 What exactly am I talking about when I say "secrets management in build and deployment pipelines"? Let's start with a simple example to set the scene.
 

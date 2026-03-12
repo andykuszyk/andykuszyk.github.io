@@ -31,6 +31,8 @@ Overall, I hope this series of blog posts serves as a useful set of examples of 
 
 *Disclaimer: this is based on my experience working in business-to-customer and business-to-business SAAS environments, where the product is web-based. Your mileage may vary!*
 
+> ℹ️ This blog post is part 1 of a [series](bootstrapping-an-engineering-organisation.md) about bootstrapping engineering organisations.
+
 ## Day One
 ### Secrets management in build and deployment pipelines
 Secrets are required to build and deploy software. Normally when you start out, there are some simple, secure ways to inject secrets into your build and deployment pipelines. For example, with Travis you can use the CLI to commit an encrypted file to a repo, or add an encrypted environment variable. In GitHub actions, you can add a secret to a repo, which you can safely use later in your workflows.

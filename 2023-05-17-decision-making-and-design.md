@@ -12,6 +12,8 @@ If you don't start off making decisions and designing new things in a way that s
 
 This blog post describes one way of making decisions and designing new changes which scales well with a growing team, and includes everyone in the process.
 
+> ℹ️ This blog post is part 3 of a [series](bootstrapping-an-engineering-organisation.md) about bootstrapping engineering organisations.
+
 ## Writing, not talking
 As an engineering organisation grows, synchronous decision-making in conversation becomes harder to scale, and becomes less inclusive. In my view, the solution to this problem is to start off by making decisions via the medium of writing, rather than talking.
 

@@ -1,6 +1,8 @@
 # Securing environment access from day one
 I [recently wrote](https://andykuszyk.github.io/2023-03-15-bootstrapping-an-engineering-organisation.html) about what I thought were the key ingredients to success when bootstrapping a new engineering organisation. One of these ingredients was securing access to your environments from early on in the development of your engineering organisation.
 
+> ℹ️ This blog post is part 4 of a [series](bootstrapping-an-engineering-organisation.md) about bootstrapping engineering organisations.
+
 You'll probably start with a development environment. Then you might need a testing environment. Soon enough you'll have a production environment, and in no time at all you'll have a fleet of environments to manage. For each environment, your engineers will need a variety of different means of access. For example:
 
 - SSH access to compute nodes.
