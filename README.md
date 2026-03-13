@@ -8,6 +8,8 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 
 💬 If you'd like to get in touch, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk/).
 
+🎤 If you're interested in my conferences appearances, you can find more details [here](./conferences/README.md)
+
 ---
 ## [Getting observability right from day one (9/9)](./2026-03-12-getting-observability-right.md)
 When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
