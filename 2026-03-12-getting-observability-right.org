@@ -3,7 +3,17 @@
 :END:
 #+options: toc:nil stat:nil todo:nil
 * LinkedIn post                                                    :noexport:
-@datadog @newrelic @grafanalabs @prometheus @loki
+When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
+
+However, whilst building a product it's important to consider that you're also building a platform. If you don't build your platform in lock-step with your product, sooner or later you'll start to have problems.
+
+There are many aspects to good platform-building (e.g. testing, secrets management, monitoring & alerting, etc.), but one of the most fundamental is observability.
+
+I've written a blog post that takes a tour through the observability landscape covering logging, metrics, and tracing. I've included examples of how you might set youself up for success from day one with the likes of @prometheus @grafana @datadog and @newrelic:
+
+https://akuszyk.com/2026-03-12-getting-observability-right.html
+
+If you're one a journey of building the foundations of a new platform, or reflecting on an established one, I hope this post proves interesting!
 * Plantuml theme                                                   :noexport:
 #+name: plantuml-theme
 #+begin_src plantuml :file template.org-plantuml-theme.png :exports none
