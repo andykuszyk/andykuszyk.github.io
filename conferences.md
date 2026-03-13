@@ -1,0 +1,45 @@
+# Conference appearances
+
+I enjoy sharing my ideas and experiences, and have recently started speaking at conferences. If you'd like to get in touch about speaking opportunities, please reach out on [LinkedIn](https://www.linkedin.com/in/andy-kuszyk).
+
+---
+
+
+# SREday London, 12th March 2026
+
+
+## Description
+
+> As the trend to build more and more powerful AI experiences progresses, it's becoming increasingly important to build platforms in a way that LLMs can use.
+> 
+> Whilst REST APIs are great for Javascript clients, LLM's struggle with their PUTs and POSTs, not to mention handling trailing commas in JSON!
+> 
+> Needless to say, in order to make a platform truly AI-native, a traditional HTTP API is not enough. With MCP emerging as the new standard for interoperating LLMs with external systems, software teams are now faced with the challenge to rapidly evolve their existing systems to be MCP-compatible.
+> 
+> At Typeform, we're on this journey. We're building towards a future where MCP compliments our existing REST API, and we're trying to do this sustainably, securely, and reliably.
+> 
+> In this talk, I'll share the architectural patterns we using to achieve this, as well as some real life examples of our we're making MCP our new API.
+
+
+## Details
+
+You can find details of my appearance at SREday [here](https://sreday.com/2026-london-q1/Andy_Kuszyk_Typeform_MCP_is_the_new_REST_making_MCP_our_new_API).
+
+
+# TechLead Conf, 18th November 2025
+
+
+## Description
+
+> As AI transforms software development, teams face a critical choice: lead the change, or risk being left behind! At Typeform, we're proactively encouraging the use of AI tools, and helping everyone level-up their AI proficiency.
+> 
+> This means lots of things including the flexibility to try different tools, democratising access to (but controlling our expenditure on) LLMs, and ensuring we're hiring the next generation of engineers who have AI as part of their DNA.
+> 
+> In this talk, I'll provide some practical examples of how we're achieving these things at Typeform, as well as how we're enhancing the way we collaborate with people outside of engineering using AI tools.
+> 
+> I'll share real examples using AWS Bedrock and MCP servers, plus hard-won lessons from our journey. If your team is on the path to AI transformation, this talk will give you some practical strategies for making it a success.
+
+
+## Recording
+
+You can find a recording of my talk [here](https://gitnation.com/contents/democratising-ai-in-engineering-lessons-from-typeforms-journey).
