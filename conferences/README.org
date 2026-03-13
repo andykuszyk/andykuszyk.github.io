@@ -21,6 +21,7 @@ In this talk, I'll share the architectural patterns we using to achieve this, as
 #+end_quote
 ** Details
 You can find details of my appearance at SREday [[https://sreday.com/2026-london-q1/Andy_Kuszyk_Typeform_MCP_is_the_new_REST_making_MCP_our_new_API][here]].
+-----
 * TechLead Conf, 18th November 2025
 ** Description
 #+begin_quote

@@ -25,6 +25,8 @@ I enjoy sharing my ideas and experiences, and have recently started speaking at 
 
 You can find details of my appearance at SREday [here](https://sreday.com/2026-london-q1/Andy_Kuszyk_Typeform_MCP_is_the_new_REST_making_MCP_our_new_API).
 
+---
+
 
 # TechLead Conf, 18th November 2025
 
