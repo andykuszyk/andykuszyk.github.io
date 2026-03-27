@@ -9,7 +9,7 @@
 skinparam backgroundColor transparent
 #+end_src
 * Building a public MCP server
-It's 2026, and MCP servers are in the spotlight. /"It's like USB-C, but for LLMs!"/ they say, and across the industry MCP servers are popping into existance like stars in the proto-universe ✨
+It's 2026, and MCP servers are in the spotlight. /"It's like USB-C, but for LLMs!"/ they say, and across the industry MCP servers are popping into existence like stars in the proto-universe ✨
 
 In principle, an MCP server is easy to build. The protocol has a spec, there are official SDKs for most languages, and the overall idea is simple: you build tools /(just functions)/, you add schema /(just types)/, and you put them on the internet /(just HTTP servers)/.
 
@@ -22,13 +22,12 @@ These challenges aren't new problems, they're just emerging for MCP. If you have
 
 We've solved both of these challenges recently at Typeform, and in this post I'm going to describe how we've done it.
 ** A common architectural vision
-If you've got dozens of teams building hundreds of services across your product's domain, it's not practical to build just /one/ MCP server. You need to build MCP servers in each of your domains, just as you might build REST APIs in many different services. A good place to start is by /extending/ your existing APIs with MCP capabilities. This means you domain logic can remain centralised in specific services, and you can just add MCP as an additional transport option for clients.
+If you've got dozens of teams building hundreds of services across your platform, it's not practical to build just /one/ MCP server. You need to build MCP servers in each of your domains, just as you might build REST APIs in many different services. A good place to start is by /extending/ your existing APIs with MCP capabilities. This means your domain logic can remain centralised in specific services, and you can just add MCP as an additional transport option for clients.
 
-In order for this approach to be successful, it's important to establish a /common architectural vision/ across your team so that everyone understands the big picture. Your probably already have a shared vision for REST, for example, and it might look something like this:
+In order for this approach to be successful, it's important to establish a /common architectural vision/ across your team so that everyone understands the big picture. You probably already have a shared vision for REST, for example, and it might look something like this:
 
 #+begin_src plantuml :file 2026-03-20-building-a-public-mcp-server.org-rest-vision.png :noweb yes
 <<plantuml-theme>>
-skinparam backgroundColor transparent
 actor "Public\nclient" as client
 
 package "Your platform" as plat {
@@ -72,7 +71,6 @@ A shared vision for teams building MCP servers can look much the same:
 
 #+begin_src plantuml :file 2026-03-20-building-a-public-mcp-server.org-mcp-vision.png :noweb yes
 <<plantuml-theme>>
-skinparam backgroundColor transparent
 actor "Public\nclient" as client
 
 package "Your platform" as plat {
@@ -116,6 +114,7 @@ Building platform-wide MCP capabilities throughout your team is going to require
 - Exposes it as an HTTP handler
 - Allows REST endpoints to be wrapped as MCP tools
 - Allows arbitrary functions to be exposed as MCP tools
+- Handles security and observability
 
 You can do most of these things using the official SDKs of course, but our library does these things the /Typeform/ way--it integrates tightly with the rest of our toolchain, and allows teams to integrate MCP servers closely with their existing services.
 

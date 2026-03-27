@@ -11,6 +11,18 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 🎤 If you're interested in my conference appearances, you can find them [here](./conferences/README.md)
 
 ---
+## [Building a public MCP server](./2026-03-20-building-a-public-mcp-server.md)
+It's 2026, and MCP servers are in the spotlight. *"It's like USB-C, but for LLMs!"* they say, and across the industry MCP servers are popping into existence like stars in the proto-universe ✨
+
+In principle, an MCP server is easy to build. The protocol has a spec, there are official SDKs for most languages, and the overall idea is simple: you build tools *(just functions)*, you add schema *(just types)*, and you put them on the internet *(just HTTP servers)*.
+
+But, in reality, there are some hidden challenges behind the scenes. Your customers just need *one* server to connect to, but you don't just have *one* team building your product. You just need to offer *one* endpoint for clients to connect to, but you don't just have *one* backend server.
+
+These challenges aren't new problems, they're just emerging for MCP. In this post I explore how we've tackled them at Typeform.
+
+*Published: 27th March 2026*
+
+---
 ## [Getting observability right from day one (9/9)](./2026-03-12-getting-observability-right.md)
 When you start building a product, it's easy to get carried away with the experience your end users will see. You want the product to solve their problems, be easy to use, and outclass your competitors--all at the same time!
 
