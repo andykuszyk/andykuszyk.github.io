@@ -2,6 +2,19 @@
 :UNNUMBERED: t
 :END:
 #+options: toc:nil stat:nil todo:nil
+* LinkedIn post                                                    :noexport:
+It's 2026, and MCP servers are in the spotlight. "It's like USB-C, but for LLMs!" they say, and across the industry MCP servers are popping into existence like stars in the proto-universe ✨
+
+In principle, an MCP server is easy to build. The protocol has a spec, there are official SDKs for most languages, and the overall idea is simple: you build tools (just functions!), you add schema (just types!), and you put them on the internet (just HTTP servers!)
+
+But, in reality, there are some hidden challenges behind the scenes. Your customers just need one server to connect to, but you don't just have one team building your product. You just need to offer one endpoint for clients to connect to, but you don't just have one backend server.
+
+These challenges aren't new problems, they're just emerging for MCP. If you have a mature product, and a team too big to share a pizza, you need to:
+
+- Enable multiple teams to independently build MCP servers for their domains
+- Combine these MCP servers into a single, unified endpoint that your customers can use
+
+We've solved both of these challenges recently at Typeform, and we've written about building a public MCP server on our blog here: https://medium.com/typeforms-engineering-blog/building-typeforms-public-mcp-server-d9b39231b745
 * Plantuml theme                                                   :noexport:
 #+name: plantuml-theme
 #+begin_src plantuml :file template.org-plantuml-theme.png :exports none
