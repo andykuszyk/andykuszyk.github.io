@@ -5,6 +5,16 @@ I enjoy sharing my ideas and experiences, and have recently started speaking at 
 ---
 
 
+# AWS Summit Madrid, 4th June 2026
+
+
+## Description
+
+> In 2025, Typeform launched an AI-native conversational form builder powering 2 million interactions per month. The challenge: scaling across the entire organization, and evolving from a single assistant to a fleet of specialized agents. We migrated from self-managed Kubernetes to Amazon Bedrock AgentCore, deploying specialized agents for forms, research, contacts, and automations. Bedrock AgentCore provides durable execution, orchestration, memory, and elastic compute — so teams can focus on what makes Typeform's AI unique. 2026 goal: every product team becomes an "AI tea
+
+---
+
+
 # SREday London, 12th March 2026
 
 
