@@ -11,6 +11,12 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 🎤 If you're interested in my conference appearances, you can find them [here](./conferences/README.md)
 
 ---
+## [The brains behind Typeform AI](./2026-07-13-building-a-multi-agent-architecture.md)
+I've spent much of my working time over the first 6 months of 2026 collaborating with a wide group of people at Typeform to reimagine the in-product AI assistant: Typeform AI. This post is about the philosophy behind some of our architectural choices, some of the technical problems we've overcome, and the practical steps we've taken to make this project a success.
+
+*Published: 17th July 2026*
+
+---
 ## [Building a public MCP server](./2026-03-20-building-a-public-mcp-server.md)
 It's 2026, and MCP servers are in the spotlight. *"It's like USB-C, but for LLMs!"* they say, and across the industry MCP servers are popping into existence like stars in the proto-universe ✨
 
