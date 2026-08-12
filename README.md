@@ -12,7 +12,7 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 
 ---
 
-<center>All posts | [Bootstrapping an engineering organisation](./bootstrapping-an-engineering-organisation.md) | [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md)</center>
+All posts | [Bootstrapping an engineering organisation](./bootstrapping-an-engineering-organisation.md) | [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md)
 
 ---
 ## [The Art of Text Editing in the AI Age (1/9)](./2026-08-13-the-art-of-text-editing-in-the-ai-age.md)
