@@ -1,8 +1,4 @@
-<div class="org-center">
-<p>
-All posts | <a href="./bootstrapping-an-engineering-organisation.md">Bootstrapping an engineering organisation</a> | <a href="./the-art-of-text-editing.md">The Art of Text Editing in the AI Age</a>
-</p>
-</div>
+[All posts](README.md) | [Bootstrapping an engineering organisation](./bootstrapping-an-engineering-organisation.md) | The Art of Text Editing in the AI Age
 
 ---
 
