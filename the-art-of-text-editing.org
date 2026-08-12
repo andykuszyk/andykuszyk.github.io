@@ -2,7 +2,7 @@
 :UNNUMBERED: t
 :END:
 #+options: toc:nil stat:nil todo:nil
-[[file:README.md][All posts]] | [[./bootstrapping-an-engineering-organisation.md][Bootstrapping an engineering organisation]] | The Art of Text Editing in the AI Age
+〈 [[file:README.md][All posts]] ∣ [[./bootstrapping-an-engineering-organisation.md][Bootstrapping an engineering organisation]] ∣ /The Art of Text Editing in the AI Age/ 〉
 -----
 * The Art of Text Editing in the AI Age
 In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: /why should I need to understand how to edit files myself?/

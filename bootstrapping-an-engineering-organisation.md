@@ -1,4 +1,4 @@
-[All posts](README.md) | Bootstrapping an engineering organisation | [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md)
+〈 [All posts](README.md) ∣ *Bootstrapping an engineering organisation* ∣ [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md) 〉
 
 ---
 
