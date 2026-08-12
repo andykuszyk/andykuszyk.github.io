@@ -2,7 +2,6 @@
 :UNNUMBERED: t
 :END:
 #+options: toc:nil stat:nil todo:nil
------
 #+begin_center
 All posts | [[./bootstrapping-an-engineering-organisation.md][Bootstrapping an engineering organisation]] | [[./the-art-of-text-editing.md][The Art of Text Editing in the AI Age]]
 #+end_center
