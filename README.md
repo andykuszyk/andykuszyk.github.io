@@ -11,6 +11,22 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 🎤 If you're interested in my conference appearances, you can find them [here](./conferences/README.md)
 
 ---
+
+<center>All posts | [Bootstrapping an engineering organisation](bootstrapping-an-engineering-organisation.md) | [The Art of Text Editing in the AI Age](the-art-of-text-editing.md)</center>
+
+---
+## [The Art of Text Editing in the AI Age (1/9)](./2026-08-13-the-art-of-text-editing-in-the-ai-age.md)
+In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: *why should I need to understand how to edit files myself?*
+
+My opinion is that basic text editing skills have always been valuable, and remain valuable today. Where now we have AI, we have previously had the all-powerful IDE. It had menus and GUIs for all sorts of things that provided powerful abstractions over simple operations. Then and now I maintain: there is an *art to text editing* using *foundational tools* that are *available everywhere*.
+
+That's why I've decided to write this blog post series about the *art* of editing text, using `vim`, `emacs`, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI.
+
+> ℹ️ This blog post is part of a [series](the-art-of-text-editing.md) about the art of text editing in the AI age.
+
+*Published: 12th August 2026*
+
+---
 ## [The brains behind Typeform AI](./2026-07-13-building-a-multi-agent-architecture.md)
 I've spent much of my working time over the first 6 months of 2026 collaborating with a wide group of people at Typeform to reimagine the in-product AI assistant: Typeform AI. This post is about the philosophy behind some of our architectural choices, some of the technical problems we've overcome, and the practical steps we've taken to make this project a success.
 

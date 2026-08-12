@@ -1,3 +1,14 @@
+---
+
+<div class="org-center">
+<p>
+All posts | <a href="./bootstrapping-an-engineering-organisation.md">Bootstrapping an engineering organisation</a> | <a href="./the-art-of-text-editing.md">The Art of Text Editing in the AI Age</a>
+</p>
+</div>
+
+---
+
+
 # Bootstrapping an engineering organisation
 
 I've written (and continue to write!) this blog post series over the course of many years. It is based on my experiences at various companies that have had extremely good working practices. Much of what I write about is based on my observations at these companies, so credit goes to their employees!
