@@ -1,3 +1,7 @@
+〈 _All posts_ ∣ [Bootstrapping an engineering organisation](./bootstrapping-an-engineering-organisation.md) ∣ [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md) 〉
+
+---
+
 Welcome to my blog 👋
 
 I'm Andy Kuszyk, and I work as a Software Engineer. I'm based on the South coast of the UK, and enjoy writing about my experiences.
@@ -12,9 +16,6 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 
 ---
 
-〈 _All posts_ ∣ [Bootstrapping an engineering organisation](./bootstrapping-an-engineering-organisation.md) ∣ [The Art of Text Editing in the AI Age](./the-art-of-text-editing.md) 〉
-
----
 ## [The Art of Text Editing in the AI Age (1/9)](./2026-08-13-the-art-of-text-editing-in-the-ai-age.md)
 In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: *why should I need to understand how to edit files myself?*
 
