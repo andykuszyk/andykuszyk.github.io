@@ -16,7 +16,7 @@ In this post, I'm going to cover how to read files in Vim, Emacs, and the Linux 
 
 ### Vim
 
-Reading a file in Vim is simply a case of starting the program from a terminal, providing the file path as an argument. In order to avoid using custom configurations of Vim, all the Vim commands in these posts will use the `--clean` argument which ensures it starts with defaults only.
+Reading a file in Vim is simply a case of starting the program from a terminal, and providing the file path as an argument. In order to avoid using custom configurations of Vim, all the Vim commands in these posts will use the `--clean` argument which ensures it starts with defaults only.
 
 To read a file in Vim, run:
 
@@ -98,7 +98,7 @@ As for the Linux command-line, help is abundant via Manpages. In order to view t
 
 ![img](./images/man.gif)
 
-Running `man` just let's you read the file containing the manual, which generally uses `less`. As a result, any tips you pick up for reading files with `less` will also work for `man`.
+Running `man` just let's you read the file containing the manual, which generally uses `less` as a pager. As a result, any tips you pick up for reading files with `less` will also work for `man`.
 
 
 ## The art of&#x2026;reading files!
