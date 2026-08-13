@@ -2,7 +2,7 @@
 
 ---
 
-Welcome to my blog 👋
+**Welcome to my blog** 👋
 
 I'm Andy Kuszyk, and I work as a Software Engineer. I'm based on the South coast of the UK, and enjoy writing about my experiences.
 
