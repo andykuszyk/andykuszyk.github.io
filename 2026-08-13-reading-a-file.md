@@ -1,4 +1,4 @@
-# The Art of Text Editing in the AI Age: Reading a file
+# The Art of Reading Files in the AI Age
 
 Reading a file is probably the most fundamental skill when it comes to editing text files. Before you can insert, search, edit, or otherwise manipulate a file, you need to be able to read it.
 

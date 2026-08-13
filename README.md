@@ -15,6 +15,19 @@ I currently work with Golang, Terraform, AWS, and Kubernetes at [Typeform](https
 🎤 If you're interested in my conference appearances, you can find them [here](./conferences/README.md)
 
 ---
+## [The Art of Reading Files in the AI Age (2/9)](./2026-08-13-reading-a-file.md)
+
+Reading a file is probably the most fundamental skill when it comes to editing text files. Before you can insert, search, edit, or otherwise manipulate a file, you need to be able to read it.
+
+In the age of AI, you might be thinking: *"why do I need to worry about reading files?"* You can just open in them in your editor, IDE, or browser—or ask AI questions about the contents. Whilst there are a plethora of ways to open files, understanding how to do so in some foundational tools introduces you to the *bedrock* of the text editing experience.
+
+In this post, I cover how to read files in Vim, Emacs, and the Linux command line.
+
+> ℹ️ This blog post is part of a [series](the-art-of-text-editing.md) about the art of text editing in the AI age.
+
+*Published: 13th August 2026*
+
+---
 
 ## [The Art of Text Editing in the AI Age (1/9)](./2026-08-13-the-art-of-text-editing-in-the-ai-age.md)
 In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: *why should I need to understand how to edit files myself?*
