@@ -13,19 +13,19 @@ In the age of AI, agents are the main operator in charge of editing text files. 
 
 My opinion is that basic text editing skills have always been valuable, and remain valuable today. Where now we have AI, we have previously had the all-powerful IDE. It had menus and GUIs for all sorts of things that provided powerful abstractions over simple operations. Then and now I maintain: there is an /art to text editing/ using /foundational tools/ that are /available everywhere/.
 
-The tools I'm referring to are those such as =vim=, =emacs=, and Linux command-line utilities (e.g. =grep=, =sed=, etc.). These tools are probably already installed on your machine, and are widely available wherever you go—whether that's another local workstation, or a remote server.
+The tools I'm referring to are those such as Vim, Emacs, and Linux command-line utilities (e.g. =grep=, =sed=, etc.). These tools are probably already installed on your machine, and are widely available wherever you go—whether that's another local workstation, or a remote server.
 
 Not only are these tools valuable in a /practical/ sense—i.e. they can help you with the mechanics of editing files—but they are also important from a /philosophical/ angle as well.
 
 A person's understanding of how to work across projects, make sweeping changes, link a series of modifications together—in other words everything we do as programmers—is rooted in a fundamental understanding of how to edit files. If you're understanding stops at the IDE or the coding agent, then my view is that you're missing a valuable insight: how to edit text using foundational tools. It's my opinion that knowing how to edit text with these tools helps improve the way you /reason about text editing/, no matter which sophisticated abstraction you might be using.
 
-That's why I've decided to write this blog post series about the /art/ of editing text, using =vim=, =emacs=, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI.
+That's why I've decided to write this blog post series about the /art/ of editing text, using Vim, Emacs, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI.
 
 I'm going to structure the series around individual text editing operations, and cover:
 
 - What the operation is, and why it's important
-- How to complete the operation in stock =vim=
-- How to complete it in stock =emacs=
+- How to complete the operation in stock Vim
+- How to complete it in stock Emacs
 - How to complete it with the Linux command-line
 
 The topics I'm going to cover are:

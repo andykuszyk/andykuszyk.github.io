@@ -9,14 +9,14 @@ In the age of AI, agents are the main operator in charge of editing text files. 
 
 My opinion is that basic text editing skills have always been valuable, and remain valuable today. Where now we have AI, we have previously had the all-powerful IDE. It had menus and GUIs for all sorts of things that provided powerful abstractions over simple operations. Then and now I maintain: there is an *art to text editing* using *foundational tools* that are *available everywhere*.
 
-That's why I've decided to write this blog post series about the *art* of editing text, using `vim`, `emacs`, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI.
+That's why I've decided to write this blog post series about the *art* of editing text, using Vim, Emacs, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI.
 
 *12th August 2026*
 
 ---
 
 1.  [The art of text editing](./2026-08-13-the-art-of-text-editing-in-the-ai-age.md)
-2.  Reading a file
+2.  [Reading a file](2026-08-13-reading-a-file.md)
 3.  Navigating a file
 4.  Searching within a file
 5.  Finding a file in a project
