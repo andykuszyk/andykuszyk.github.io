@@ -4,41 +4,42 @@
 #+options: toc:nil stat:nil todo:nil
 * Conference appearances
 I enjoy sharing my ideas and experiences, and have recently started speaking at conferences. If you'd like to get in touch about speaking opportunities, please reach out on [[https://www.linkedin.com/in/andy-kuszyk][LinkedIn]].
-
 -----
-* AWS Summit Madrid, 4th June 2026
-** DONE Description
-CLOSED: [2026-07-17 Fri 15:56]
-#+begin_quote
-In 2025, Typeform launched an AI-native conversational form builder powering 2 million interactions per month. The challenge: scaling across the entire organization, and evolving from a single assistant to a fleet of specialized agents. We migrated from self-managed Kubernetes to Amazon Bedrock AgentCore, deploying specialized agents for forms, research, contacts, and automations. Bedrock AgentCore provides durable execution, orchestration, memory, and elastic compute — so teams can focus on what makes Typeform's AI unique. 2026 goal: every product team becomes an "AI team"
-#+end_quote
+* Building a polyglot multi-agent AI architecture on AWS AgentCore
+** GopherCon UK, 13th June 2026
+On the second day of GopherCon UK '26, I spoke about building a multi-agent AI architecture at Typeform; including some of the design decision, Conway's Law, and solving the problem of durable execution.
+
+/Recording to follow./
 -----
-* SREday London, 12th March 2026
-** Description
-#+begin_quote
-As the trend to build more and more powerful AI experiences progresses, it's becoming increasingly important to build platforms in a way that LLMs can use.
+* MCP is the New REST
+** GopherCon UK, 12th June 2026
+On the first day of GopherCon UK '26, I presented an expanded and updated version of my "MCP is the new REST" talk.
 
-Whilst REST APIs are great for Javascript clients, LLM's struggle with their PUTs and POSTs, not to mention handling trailing commas in JSON!
-
-Needless to say, in order to make a platform truly AI-native, a traditional HTTP API is not enough. With MCP emerging as the new standard for interoperating LLMs with external systems, software teams are now faced with the challenge to rapidly evolve their existing systems to be MCP-compatible.
-
-At Typeform, we're on this journey. We're building towards a future where MCP compliments our existing REST API, and we're trying to do this sustainably, securely, and reliably.
-
-In this talk, I'll share the architectural patterns we using to achieve this, as well as some real life examples of our we're making MCP our new API.
-#+end_quote
-** Details
-You can find details of my appearance at SREday [[https://sreday.com/2026-london-q1/Andy_Kuszyk_Typeform_MCP_is_the_new_REST_making_MCP_our_new_API][here]].
+/Recording to follow./
 -----
-* TechLead Conf, 18th November 2025
-** Description
-#+begin_quote
-As AI transforms software development, teams face a critical choice: lead the change, or risk being left behind! At Typeform, we're proactively encouraging the use of AI tools, and helping everyone level-up their AI proficiency.
+* The Brains Behind Typeform AI
+** AWS Summit Madrid, 4th June 2026
+At the 2026 AWS Summit in Madrid, I co-presented on behalf of Typeform with [[https://www.linkedin.com/in/carherrero/][Carmen Herrero]] about the "brains behind Typeform AI"—or how we built a multi-agent AI system capable of operating across Typeform's product surface.
 
-This means lots of things including the flexibility to try different tools, democratising access to (but controlling our expenditure on) LLMs, and ensuring we're hiring the next generation of engineers who have AI as part of their DNA.
+[[./images/aws-summit-26-slide.jpg]]
 
-In this talk, I'll provide some practical examples of how we're achieving these things at Typeform, as well as how we're enhancing the way we collaborate with people outside of engineering using AI tools.
+I also published a blog post on the same topic on the [[https://medium.com/typeforms-engineering-blog/the-brains-behind-typeform-ai-6e885f47159b][Typeform engineering blog]].
 
-I'll share real examples using AWS Bedrock and MCP servers, plus hard-won lessons from our journey. If your team is on the path to AI transformation, this talk will give you some practical strategies for making it a success.
-#+end_quote
-** Recording
-You can find a recording of my talk [[https://gitnation.com/contents/democratising-ai-in-engineering-lessons-from-typeforms-journey][here]].
+[[./images/aws-summit-26-speaking.jpg]]
+
+Unfortunately, talks were not recorded at the conference.
+-----
+* MCP is the New REST
+** SREday London, 12th March 2026
+In the Spring of 2026, I [[https://sreday.com/2026-london-q1/Andy_Kuszyk_Typeform_MCP_is_the_new_REST_making_MCP_our_new_API][spoke at SREDay London]] about the challenges of building AI agents using REST APIs, and how MCP solves some of those challenges.
+
+Although the conference wasn't recorded, I did also publish a [[https://medium.com/typeforms-engineering-blog/mcp-is-the-new-rest-e5461fc017af][blog post]] on the same subject.
+-----
+* Democratising AI in engineering
+** TechLead Conf London, 18th November 2025
+At the end of 2025, I spoke at TechLead Conf London about the journey we had been on to democratise access to AI tooling within the engineering organisation at Typeform.
+
+#+DOWNLOADED: screenshot @ 2026-08-28 16:31:25
+[[file:images/2026-08-28_16-31-25_screenshot.png]]
+
+You can find the full recording of the talk [[https://gitnation.com/contents/democratising-ai-in-engineering-lessons-from-typeforms-journey][here]], as well as an in-depth blog post on the same subject [[https://medium.com/typeforms-engineering-blog/democratising-access-to-ai-2baea617eff6][here]].
