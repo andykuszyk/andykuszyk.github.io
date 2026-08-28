@@ -12,7 +12,9 @@ I enjoy sharing my ideas and experiences, and have recently started speaking at 
 
 On the second day of GopherCon UK '26, I spoke about building a multi-agent AI architecture at Typeform; including some of the design decision, Conway's Law, and solving the problem of durable execution.
 
-*Recording to follow.*
+![img](images/2026-08-28_16-40-38_screenshot.png)
+
+The full recording can be found on [YouTube](https://www.youtube.com/watch?v=-48cwqiT3Wc&list=PLGZGLmEvGK8I&index=20).
 
 ---
 
@@ -24,7 +26,9 @@ On the second day of GopherCon UK '26, I spoke about building a multi-agent AI a
 
 On the first day of GopherCon UK '26, I presented an expanded and updated version of my "MCP is the new REST" talk.
 
-*Recording to follow.*
+![img](images/2026-08-28_16-39-30_screenshot.png)
+
+The full recording can be found on [YouTube](https://www.youtube.com/watch?v=4EK3usamWOc).
 
 ---
 
