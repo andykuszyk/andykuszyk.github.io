@@ -4,6 +4,19 @@
 #+options: toc:nil stat:nil todo:nil
 〈 [[file:README.md][All posts]] ∣ [[./bootstrapping-an-engineering-organisation.md][Bootstrapping an engineering organisation]] ∣ /The Art of Text Editing in the AI Age/ 〉
 -----
+* Linkedin announcements                                           :noexport:
+** series
+In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: 𝑤ℎ𝑦 𝑠ℎ𝑜𝑢𝑙𝑑 𝐼 𝑛𝑒𝑒𝑑 𝑡𝑜 𝑢𝑛𝑑𝑒𝑟𝑠𝑡𝑎𝑛𝑑 ℎ𝑜𝑤 𝑡𝑜 𝑒𝑑𝑖𝑡 𝑓𝑖𝑙𝑒𝑠 𝑚𝑦𝑠𝑒𝑙𝑓? 🤔
+
+My opinion is that basic text editing skills have always been valuable, and remain valuable today. Where now we have AI, we have previously had the all-powerful IDE. It had menus and GUIs for all sorts of things that provided powerful abstractions over simple operations. Then and now I maintain: there is an 𝑎𝑟𝑡 𝑡𝑜 𝑡𝑒𝑥𝑡 𝑒𝑑𝑖𝑡𝑖𝑛𝑔 using 𝑓𝑜𝑢𝑛𝑑𝑎𝑡𝑖𝑜𝑛𝑎𝑙 𝑡𝑜𝑜𝑙𝑠 that are 𝑎𝑣𝑎𝑖𝑙𝑎𝑏𝑙𝑒 𝑒𝑣𝑒𝑟𝑦𝑤ℎ𝑒𝑟𝑒.
+
+That's why I've decided to write a blog post series about the 𝑎𝑟𝑡 of editing text, using Vim, Emacs, and the Linux command-line. I think these skills have always been important, and will remain important—even in the age of AI ✨
+
+You can read the opening post here: https://akuszyk.com/2026-08-13-the-art-of-text-editing-in-the-ai-age.html
+
+And the second about 𝑟𝑒𝑎𝑑𝑖𝑛𝑔 𝑓𝑖𝑙𝑒𝑠 here: https://akuszyk.com/2026-08-13-reading-a-file.html
+
+More posts to come on navigating, searching, replacing, and inserting text. All with Vim, the Linux command-line, and—of course—my favourite: Emacs! 🤓
 * The Art of Text Editing in the AI Age
 In the age of AI, agents are the main operator in charge of editing text files. Humans write the prompts; agents write the files. In this AI-centric future, one might wonder: /why should I need to understand how to edit files myself?/
 
