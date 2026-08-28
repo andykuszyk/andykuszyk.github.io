@@ -3,6 +3,8 @@
 
 ## From point-and-click to AI-native
 
+*This article was originally posted on the [Typeform engineering blog](https://medium.com/typeforms-engineering-blog/the-brains-behind-typeform-ai-6e885f47159b).*
+
 Typeform has always had great user experience at the heart of its product. Whether it's the experience of a creator *(a user who creates a form)*, or a respondent *(a user who completes a form)*. Historically the calibre of the user experience was grounded in what you can see and do on-screen. Elegant interfaces, thoughtful design, and well-researched products.
 
 However, the age of AI is beginning to transform what user experience means. Where before it meant a button in just the right place, increasingly it means this:
