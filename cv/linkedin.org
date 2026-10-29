@@ -1,0 +1,33 @@
+I am:
+ 
+• 𝗔𝗻 𝗲𝘅𝗽𝗲𝗿𝗶𝗲𝗻𝗰𝗲𝗱 𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿; with more than a decade of individual contributions in Golang, Terraform, AWS, Python and .NET.
+ 
+• 𝗔 𝗰𝗼𝗺𝗽𝗲𝘁𝗲𝗻𝘁 𝗹𝗲𝗮𝗱𝗲𝗿; I have grown teams and projects from inception; I have led individuals, and entire engineering organisations.
+ 
+• 𝗔 𝗰𝗼𝗻𝗳𝗶𝗱𝗲𝗻𝘁 𝗮𝗿𝗰𝗵𝗶𝘁𝗲𝗰𝘁; I have designed new systems and platforms from scratch, and have facilitated a culture of excellence in growing teams.
+ 
+I value:
+ 
+• 𝗗𝗲𝘃𝗢𝗽𝘀 𝗽𝗿𝗮𝗰𝘁𝗶𝗰𝗲𝘀 and philosophies.
+ 
+• 𝗦𝘁𝗿𝗼𝗻𝗴 𝘄𝗿𝗶𝘁𝗶𝗻𝗴 𝗰𝘂𝗹𝘁𝘂𝗿𝗲𝘀 for documentation and design.
+ 
+• 𝗘𝗺𝗮𝗰𝘀, Linux, and free software!
+ 
+You can read more about me on my technology blog: https://akuszyk.com
+
+-----
+
+📅 𝟮𝟬𝟮𝟲
+• 𝗣𝗹𝗮𝗻𝗻𝗲𝗱 𝘁𝗵𝗲 𝘀𝘁𝗿𝗮𝘁𝗲𝗴𝗶𝗰 𝗺𝗶𝗴𝗿𝗮𝘁𝗶𝗼𝗻 𝗳𝗿𝗼𝗺 𝗼𝗻𝗲 𝗳𝗲𝗮𝘁𝘂𝗿𝗲-𝗳𝗹𝗮𝗴 𝗽𝗹𝗮𝘁𝗳𝗼𝗿𝗺 𝘁𝗼 𝗮𝗻𝗼𝘁𝗵𝗲𝗿; taking into account historical pain points, diverse feedback, and technical goals. Negotiated organisation-wide support, and established the programme of work in the 2027 roadmap.
+• 𝗖𝗼-𝗼𝗿𝗱𝗶𝗻𝗮𝘁𝗲𝗱 𝘁𝗵𝗲 𝗹𝗮𝘂𝗻𝗰𝗵 𝗼𝗳 𝗖𝗵𝗮𝘁𝗚𝗣𝗧 𝗮𝗻𝗱 𝗖𝗹𝗮𝘂𝗱𝗲 𝗮𝗽𝗽𝘀; matured the cross-team strategy for building MCP servers, and coalesced efforts to publish a public MCP server followed by ChatGPT and Claude apps.
+• 𝗗𝗲𝘀𝗶𝗴𝗻𝗲𝗱 & 𝗱𝗲𝗹𝗶𝘃𝗲𝗿𝗲𝗱 𝗮 𝗳𝗹𝗮𝗴𝘀𝗵𝗶𝗽 𝗔𝗜 𝗽𝗿𝗼𝗱𝘂𝗰𝘁; led the research, design, planning, and delivery of a multi-team effort to bring an industry-leading AI product to market as quickly as possible. This product was a user-facing AI assistant based on a multi-agent AI architecture, powered by MCP servers.
+
+📅 𝟮𝟬𝟮𝟱
+• 𝗟𝗮𝗶𝗱 𝘁𝗵𝗲 𝗳𝗼𝘂𝗻𝗱𝗮𝘁𝗶𝗼𝗻𝘀 𝗳𝗼𝗿 𝗮𝗻 𝗔𝗜-𝗻𝗮𝘁𝗶𝘃𝗲 𝗳𝘂𝘁𝘂𝗿𝗲; led the research, design, and delivery of an extensive programme to introduce MCP servers throughout the Typeform platform to enable AI features to be developed at pace.
+• 𝗘𝘃𝗮𝗻𝗴𝗲𝗹𝗶𝘀𝗲𝗱 𝘁𝗵𝗲 𝘂𝘀𝗲 𝗼𝗳 𝗔𝗜 𝘄𝗶𝘁𝗵𝗶𝗻 𝘁𝗵𝗲 𝗲𝗻𝗴𝗶𝗻𝗲𝗲𝗿𝗶𝗻𝗴 𝘁𝗲𝗮𝗺; I led the roll-out of systematically providing every engineer with access to LLMs in such a way that individuals could mix-and-match their own tools.
+• 𝗧𝗼𝗼𝗸 𝗮 𝗹𝗲𝗮𝗱𝗶𝗻𝗴 𝗿𝗼𝗹𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗹𝗮𝘀𝘁-𝗺𝗶𝗹𝗲 𝗱𝗲𝗹𝗶𝘃𝗲𝗿𝘆 𝗼𝗳 𝗮 𝗺𝘂𝗹𝘁𝗶-𝘆𝗲𝗮𝗿 𝗽𝗿𝗼𝗷𝗲𝗰𝘁; co-ordinating organisation-wide efforts crossing many team boundaries to launch a multi-region capability.
+
+📅 𝟮𝟬𝟮𝟰
+• 𝗖𝗼𝗻𝘀𝗼𝗹𝗶𝗱𝗮𝘁𝗲𝗱 𝘃𝗮𝗿𝗶𝗼𝘂𝘀 𝗱𝗼𝗰𝘂𝗺𝗲𝗻𝘁𝗮𝘁𝗶𝗼𝗻 𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗶𝗻𝘁𝗼 𝗮 𝗳𝗲𝘄 𝗰𝗮𝗻𝗼𝗻𝗶𝗰𝗮𝗹 𝘀𝗼𝘂𝗿𝗰𝗲𝘀 𝗼𝗳 𝘁𝗿𝘂𝘁𝗵; including distilling a large technology radar into an authoritative golden path, and crowd-sourcing contributions to a set of concise architectural descriptions of core user journeys.
+• 𝗥𝗲𝘀𝗲𝗮𝗿𝗰𝗵𝗲𝗱 & 𝗱𝗲𝘀𝗶𝗴𝗻𝗲𝗱 𝗮 𝘃𝗶𝗱𝗲𝗼 𝗰𝗼𝗻𝘁𝗲𝗻𝘁 𝗲𝘅𝗽𝗼𝗿𝘁 𝗳𝗲𝗮𝘁𝘂𝗿𝗲; starting with no knowledge of the product, I extensively researched the architecture, and reviewed existing functionality, before proposing an approach for building this new capability. When this design was implemented, I remained close to the delivery, and helped troubleshoot any architectural difficulties that arose.
