@@ -10,7 +10,7 @@ I enjoy sharing my ideas and experiences, and have recently started speaking at 
 
 ## GopherCon UK, 13th June 2026
 
-On the second day of GopherCon UK '26, I spoke about building a multi-agent AI architecture at Typeform; including some of the design decision, Conway's Law, and solving the problem of durable execution.
+On the second day of GopherCon UK '26, I spoke about building a multi-agent AI architecture at Typeform; including some of the design decisions, Conway's Law, and solving the problem of durable execution.
 
 ![img](images/2026-08-28_16-40-38_screenshot.png)
 
