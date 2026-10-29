@@ -28,6 +28,7 @@ You can read more about me on my [technology blog](https://akuszyk.com), or cont
 At Typeform I work across the engineering organisation as a leader, architect, consultant, and mentor. My notable achievements and areas of impact are as follows:
 
 #### 2026
+- **Planned the strategic migration from one feature-flag platform to another;** taking into account historical pain points, diverse feedback, and technical goals. Negotiated organisation-wide support, and established the programme of work in the 2027 roadmap.
 - **Co-ordinated the launch of ChatGPT and Claude apps;** matured the cross-team strategy for building MCP servers, and coalesced efforts to publish a public MCP server followed by ChatGPT and Claude apps.
 - **Designed & delivered a flagship AI product;** led the research, design, planning, and delivery of a multi-team effort to bring an industry-leading AI product to market as quickly as possible. This product was a user-facing AI assistant based on a multi-agent AI architecture, powered by MCP servers.
 
